@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35919.96 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.SecurityMonitor", "src\Core\CyberGreenhouse.SecurityMonitor\CyberGreenhouse.SecurityMonitor.csproj", "{35DD7DC3-BEAB-455D-AD5A-4DE8974FB32A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.MessageBus", "src\Core\CyberGreenhouse.MessageBus\CyberGreenhouse.MessageBus.csproj", "{906255C8-A999-42FD-8069-7893D477B346}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.MessageBus.RabbitMQ", "src\Core\CyberGreenhouse.MessageBus.RabbitMQ\CyberGreenhouse.MessageBus.RabbitMQ.csproj", "{95E38928-A8DC-40B5-B89C-F037EE0A24D2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{35DD7DC3-BEAB-455D-AD5A-4DE8974FB32A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35DD7DC3-BEAB-455D-AD5A-4DE8974FB32A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35DD7DC3-BEAB-455D-AD5A-4DE8974FB32A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35DD7DC3-BEAB-455D-AD5A-4DE8974FB32A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{906255C8-A999-42FD-8069-7893D477B346}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{906255C8-A999-42FD-8069-7893D477B346}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{906255C8-A999-42FD-8069-7893D477B346}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{906255C8-A999-42FD-8069-7893D477B346}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95E38928-A8DC-40B5-B89C-F037EE0A24D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95E38928-A8DC-40B5-B89C-F037EE0A24D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95E38928-A8DC-40B5-B89C-F037EE0A24D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95E38928-A8DC-40B5-B89C-F037EE0A24D2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{35DD7DC3-BEAB-455D-AD5A-4DE8974FB32A} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
+		{906255C8-A999-42FD-8069-7893D477B346} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
+		{95E38928-A8DC-40B5-B89C-F037EE0A24D2} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {013EA216-6DD7-4102-B990-6AB10C4CDEA9}
+	EndGlobalSection
+EndGlobal
