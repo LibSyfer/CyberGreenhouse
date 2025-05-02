@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35919.96 d17.13
+VisualStudioVersion = 17.13.35919.96
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.SecurityMonitor", "src\Core\CyberGreenhouse.SecurityMonitor\CyberGreenhouse.SecurityMonitor.csproj", "{35DD7DC3-BEAB-455D-AD5A-4DE8974FB32A}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.MessageBus", "src\Core\CyberGreenhouse.MessageBus\CyberGreenhouse.MessageBus.csproj", "{906255C8-A999-42FD-8069-7893D477B346}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.MessageBus.RabbitMQ", "src\Core\CyberGreenhouse.MessageBus.RabbitMQ\CyberGreenhouse.MessageBus.RabbitMQ.csproj", "{95E38928-A8DC-40B5-B89C-F037EE0A24D2}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "CyberGreenhouse.DockerCompose", "deploy\CyberGreenhouse.DockerCompose.dcproj", "{81DDED9D-158B-E303-5F62-77A2896D2A5A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{95E38928-A8DC-40B5-B89C-F037EE0A24D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95E38928-A8DC-40B5-B89C-F037EE0A24D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95E38928-A8DC-40B5-B89C-F037EE0A24D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

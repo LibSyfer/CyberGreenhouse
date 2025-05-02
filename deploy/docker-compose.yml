@@ -1,0 +1,6 @@
+services:
+  security-monitor:
+    image: ${DOCKER_REGISTRY-}cybergreenhousesecuritymonitor
+    build:
+      context: ../
+      dockerfile: src/Core/CyberGreenhouse.SecurityMonitor/Dockerfile
