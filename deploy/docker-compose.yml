@@ -13,3 +13,48 @@ services:
     ports:
       - 8080:8080
 
+  climate-control:
+    image: ${DOCKER_REGISTRY-}cybergreenhouseclimatecontrol
+    build:
+      context: ..
+      dockerfile: CyberGreenhouse.ClimateControl/Dockerfile
+
+
+  harvesting:
+    image: ${DOCKER_REGISTRY-}cybergreenhouseharvesting
+    build:
+      context: ..
+      dockerfile: src/Modules/CyberGreenhouse.Harvesting/Dockerfile
+    ports:
+      - 8081:8080
+
+
+  irrigation:
+    image: ${DOCKER_REGISTRY-}cybergreenhouseirrigation
+    build:
+      context: ..
+      dockerfile: src/Modules/CyberGreenhouse.Irrigation/Dockerfile
+
+
+  lighting:
+    image: ${DOCKER_REGISTRY-}cybergreenhouselighting
+    build:
+      context: ..
+      dockerfile: src/Modules/CyberGreenhouse.Lighting/Dockerfile
+
+
+  planting:
+    image: ${DOCKER_REGISTRY-}cybergreenhouseplanting
+    build:
+      context: ..
+      dockerfile: src/Modules/CyberGreenhouse.Planting/Dockerfile
+    ports:
+      - 8082:8080
+
+
+  ripeness-monitor:
+    image: ${DOCKER_REGISTRY-}cybergreenhouseripenessmonitor
+    build:
+      context: ..
+      dockerfile: src/Modules/CyberGreenhouse.RipenessMonitor/Dockerfile
+

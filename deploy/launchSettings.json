@@ -5,7 +5,13 @@
       "commandVersion": "1.0",
       "serviceActions": {
         "security-monitor": "StartDebugging",
-        "main-control": "StartDebugging"
+        "main-control": "StartDebugging",
+        "climate-control": "StartDebugging",
+        "harvesting": "StartDebugging",
+        "irrigation": "StartDebugging",
+        "lighting": "StartDebugging",
+        "planting": "StartDebugging",
+        "ripeness-monitor": "StartDebugging"
       }
     }
   }
