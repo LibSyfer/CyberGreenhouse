@@ -4,6 +4,8 @@
     {
         public const string MainControl = "MainControl";
 
+        public const string PlantDataSignatureChecker = "PlantDataSignatureChecker";
+
         public const string Lighting = "Lighting";
 
         public const string ClimateControl = "ClimateControl";

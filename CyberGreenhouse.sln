@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.ClimateCont
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.Core", "src\Core\CyberGreenhouse.Core\CyberGreenhouse.Core.csproj", "{759DE37F-ED01-B968-3EB8-B60440150FD5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.PlantDataSignatureChecker", "src\Modules\CyberGreenhouse.PlantDataSignatureChecker\CyberGreenhouse.PlantDataSignatureChecker.csproj", "{3CECF9C9-D816-4D31-BBF0-8527BDE5AFC6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{759DE37F-ED01-B968-3EB8-B60440150FD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{759DE37F-ED01-B968-3EB8-B60440150FD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{759DE37F-ED01-B968-3EB8-B60440150FD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CECF9C9-D816-4D31-BBF0-8527BDE5AFC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CECF9C9-D816-4D31-BBF0-8527BDE5AFC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CECF9C9-D816-4D31-BBF0-8527BDE5AFC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CECF9C9-D816-4D31-BBF0-8527BDE5AFC6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -103,6 +109,7 @@ Global
 		{520A0033-7C43-42DB-A491-1E6DE52907E8} = {B554F6C5-F485-4AE7-ADCA-C4406A946233}
 		{7F088CD5-0346-4C26-9B6B-1BAE39CD46E0} = {B554F6C5-F485-4AE7-ADCA-C4406A946233}
 		{759DE37F-ED01-B968-3EB8-B60440150FD5} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
+		{3CECF9C9-D816-4D31-BBF0-8527BDE5AFC6} = {B554F6C5-F485-4AE7-ADCA-C4406A946233}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {013EA216-6DD7-4102-B990-6AB10C4CDEA9}
