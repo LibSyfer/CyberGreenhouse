@@ -2,7 +2,6 @@
 using System.Text.Json;
 using CyberGreenhouse.MessageBus.RabbitMQ.Extensions;
 using CyberGreenhouse.MessageBus.Abstractions;
-using CyberGreenhouse.MessageBus.Messages;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
