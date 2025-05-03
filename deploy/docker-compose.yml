@@ -5,6 +5,7 @@ services:
       context: ..
       dockerfile: src/Core/CyberGreenhouse.SecurityMonitor/Dockerfile
 
+
   main-control:
     image: ${DOCKER_REGISTRY-}cybergreenhousemaincontrol
     build:
@@ -13,13 +14,14 @@ services:
     ports:
       - 8080:8080
 
+
   climate-control:
     image: ${DOCKER_REGISTRY-}cybergreenhouseclimatecontrol
     build:
       context: ..
-      dockerfile: CyberGreenhouse.ClimateControl/Dockerfile
+      dockerfile: src/Modules/CyberGreenhouse.ClimateControl/Dockerfile
 
-
+      
   harvesting:
     image: ${DOCKER_REGISTRY-}cybergreenhouseharvesting
     build:
@@ -57,4 +59,11 @@ services:
     build:
       context: ..
       dockerfile: src/Modules/CyberGreenhouse.RipenessMonitor/Dockerfile
+
+
+  plantdata-signature-checker:
+    image: ${DOCKER_REGISTRY-}cybergreenhouseplantdatasignaturechecker
+    build:
+      context: ..
+      dockerfile: src/Modules/CyberGreenhouse.PlantDataSignatureChecker/Dockerfile
 

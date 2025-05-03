@@ -11,7 +11,8 @@
         "irrigation": "StartDebugging",
         "lighting": "StartDebugging",
         "planting": "StartDebugging",
-        "ripeness-monitor": "StartDebugging"
+        "ripeness-monitor": "StartDebugging",
+        "plantdata-signature-checker": "StartDebugging"
       }
     }
   }
