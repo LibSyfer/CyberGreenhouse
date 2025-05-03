@@ -1,42 +1,40 @@
+using CyberGreenhouse.MainControl;
+using CyberGreenhouse.MessageBus.Common;
+using CyberGreenhouse.MessageBus.RabbitMQ.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddSingleton<GrowingService>();
+builder.Services.AddClientRabbitMqMessageBus(builder.Configuration, ModuleNames.MainControl);
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
-var summaries = new[]
+app.MapGet("/status", (GrowingService growingService) =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
+    return Results.Ok(new
+    {
+        growingService.IsBuzy
+    });
 })
-.WithName("GetWeatherForecast")
+.WithDisplayName("status")
+.WithOpenApi();
+
+app.MapPost("/grow", async (GrowingService growingService, Guid paramsId, CancellationToken cancellationToken) =>
+{
+    var isSuccess = await growingService.GrowAsync(paramsId, cancellationToken);
+    if (!isSuccess)
+    {
+        return Results.BadRequest();
+    }
+    return Results.Ok();
+})
+.WithDisplayName("grow")
 .WithOpenApi();
 
 app.Run();
-
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
