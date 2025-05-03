@@ -1,5 +1,4 @@
 ﻿using CyberGreenhouse.MessageBus.Abstractions;
-using CyberGreenhouse.MessageBus.Messages;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CyberGreenhouse.MessageBus.Extensions

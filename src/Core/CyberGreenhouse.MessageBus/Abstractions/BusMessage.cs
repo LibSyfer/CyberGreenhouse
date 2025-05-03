@@ -1,4 +1,4 @@
-﻿namespace CyberGreenhouse.MessageBus.Messages
+﻿namespace CyberGreenhouse.MessageBus.Abstractions
 {
     public class BusMessage
     {

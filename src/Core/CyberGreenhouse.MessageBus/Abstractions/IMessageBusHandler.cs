@@ -1,6 +1,4 @@
-﻿using CyberGreenhouse.MessageBus.Messages;
-
-namespace CyberGreenhouse.MessageBus.Abstractions
+﻿namespace CyberGreenhouse.MessageBus.Abstractions
 {
     public interface IMessageBusHandler<in TBusMessage> : IMessageBusHandler
         where TBusMessage : BusMessage
