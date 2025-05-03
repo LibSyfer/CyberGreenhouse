@@ -5,17 +5,53 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
+using Microsoft.Extensions.Configuration;
 
 namespace CyberGreenhouse.MessageBus.RabbitMQ.Extensions
 {
     public static class RabbitMqDependencyInjectionExtensions
     {
-        public static IMessageBusBuilder AddBaseRabbitMqServices(this IHostApplicationBuilder builder)
+        public static IMonitorMessageBusBuilder AddMonitorRabbitMqMessageBus(this IServiceCollection services, IConfiguration configuration)
         {
-            var messageBusSection = builder.Configuration.GetSection(RabbitMQSettings.Section);
-            builder.Services.Configure<RabbitMQSettings>(messageBusSection);
+            services.AddBaseRabbitMqServices(configuration);
 
-            builder.Services.AddSingleton<IRabbitMQPersistentConnection>(sp =>
+            services.AddSingleton<IMonitorMessageBus, MonitorMessageBusRabbitMQ>(sp =>
+            {
+                var rabbitMQPersistentConnection = sp.GetRequiredService<IRabbitMQPersistentConnection>();
+                var logger = sp.GetRequiredService<ILogger<MonitorMessageBusRabbitMQ>>();
+
+                return new MonitorMessageBusRabbitMQ(rabbitMQPersistentConnection, logger, sp);
+            });
+
+            services.AddSingleton<IHostedService>(sp => (MonitorMessageBusRabbitMQ)sp.GetRequiredService<IMonitorMessageBus>());
+
+            return new MonitorMessageBusBuilder(services);
+        }
+
+        public static IMessageBusBuilder AddClientRabbitMqMessageBus(this IServiceCollection services, IConfiguration configuration, string clientName)
+        {
+            services.AddBaseRabbitMqServices(configuration);
+
+            services.AddSingleton<IMessageBus, MessageBusRabbitMQ>(sp =>
+            {
+                var rabbitMQPersistentConnection = sp.GetRequiredService<IRabbitMQPersistentConnection>();
+                var logger = sp.GetRequiredService<ILogger<MessageBusRabbitMQ>>();
+                var registerOptions = sp.GetRequiredService<IOptions<MessageBusRegister>>();
+
+                return new MessageBusRabbitMQ(rabbitMQPersistentConnection, logger, sp, registerOptions, clientName);
+            });
+
+            services.AddSingleton<IHostedService>(sp => (MessageBusRabbitMQ)sp.GetRequiredService<IMessageBus>());
+
+            return new MessageBusBuilder(services);
+        }
+
+        private static IServiceCollection AddBaseRabbitMqServices(this IServiceCollection services, IConfiguration configuration)
+        {
+            var messageBusSection = configuration.GetSection(RabbitMQSettings.Section);
+            services.Configure<RabbitMQSettings>(messageBusSection);
+
+            services.AddSingleton<IRabbitMQPersistentConnection>(sp =>
             {
                 var logger = sp.GetRequiredService<ILogger<DefaultRabbitMQPersistentConnection>>();
 
@@ -39,46 +75,10 @@ namespace CyberGreenhouse.MessageBus.RabbitMQ.Extensions
                 return new DefaultRabbitMQPersistentConnection(factory, logger);
             });
 
-            return new MessageBusBuilder(builder.Services);
-        }
-
-        public static IClientMessageBusBuilder ConfigureClientMessageBus(this IMessageBusBuilder messageBusBuilder, string clientName)
-        {
-            messageBusBuilder.Services.AddSingleton<IMessageBus, MessageBusRabbitMQ>(sp =>
-            {
-                var rabbitMQPersistentConnection = sp.GetRequiredService<IRabbitMQPersistentConnection>();
-                var logger = sp.GetRequiredService<ILogger<MessageBusRabbitMQ>>();
-                var registerOptions = sp.GetRequiredService<IOptions<MessageBusRegister>>();
-
-                return new MessageBusRabbitMQ(rabbitMQPersistentConnection, logger, sp, registerOptions, clientName);
-            });
-
-            messageBusBuilder.Services.AddSingleton<IHostedService>(sp => (MessageBusRabbitMQ)sp.GetRequiredService<IMessageBus>());
-
-            return new ClientMessageBusBuilder(messageBusBuilder.Services);
-        }
-
-        public static IMonitorMessageBusBuilder ConfigureMonitorMessageBus(this IMessageBusBuilder messageBusBuilder)
-        {
-            messageBusBuilder.Services.AddSingleton<IMonitorMessageBus, MonitorMessageBusRabbitMQ>(sp =>
-            {
-                var rabbitMQPersistentConnection = sp.GetRequiredService<IRabbitMQPersistentConnection>();
-                var logger = sp.GetRequiredService<ILogger<MonitorMessageBusRabbitMQ>>();
-
-                return new MonitorMessageBusRabbitMQ(rabbitMQPersistentConnection, logger, sp);
-            });
-
-            messageBusBuilder.Services.AddSingleton<IHostedService>(sp => (MonitorMessageBusRabbitMQ)sp.GetRequiredService<IMonitorMessageBus>());
-
-            return new MonitorMessageBusBuilder(messageBusBuilder.Services);
+            return services;
         }
 
         private class MessageBusBuilder(IServiceCollection services) : IMessageBusBuilder
-        {
-            public IServiceCollection Services => services;
-        }
-
-        private class ClientMessageBusBuilder(IServiceCollection services) : IClientMessageBusBuilder
         {
             public IServiceCollection Services => services;
         }
