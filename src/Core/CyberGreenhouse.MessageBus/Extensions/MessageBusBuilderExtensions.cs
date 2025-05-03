@@ -16,9 +16,9 @@ namespace CyberGreenhouse.MessageBus.Extensions
 
         public static IClientMessageBusBuilder RegisterMessageHandler<T, TH>(this IClientMessageBusBuilder messageBusBuilder)
             where T: BusMessage
-            where TH: class, IIntegrationMessageHandler<T>
+            where TH: class, IMessageBusHandler<T>
         {
-            messageBusBuilder.Services.AddKeyedTransient<IIntegrationMessageHandler, TH>(typeof(T));
+            messageBusBuilder.Services.AddKeyedTransient<IMessageBusHandler, TH>(typeof(T));
 
             messageBusBuilder.Services.Configure<MessageBusRegister>(r =>
             {
