@@ -2,5 +2,14 @@ services:
   security-monitor:
     image: ${DOCKER_REGISTRY-}cybergreenhousesecuritymonitor
     build:
-      context: ../
+      context: ..
       dockerfile: src/Core/CyberGreenhouse.SecurityMonitor/Dockerfile
+
+  main-control:
+    image: ${DOCKER_REGISTRY-}cybergreenhousemaincontrol
+    build:
+      context: ..
+      dockerfile: src/Modules/CyberGreenhouse.MainControl/Dockerfile
+    ports:
+      - 8080:8080
+
