@@ -21,8 +21,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.MainControl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.Lighting", "src\Modules\CyberGreenhouse.Lighting\CyberGreenhouse.Lighting.csproj", "{A4224EAE-22B6-4392-A7E8-A99A95C9A149}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.ClimateControl", "CyberGreenhouse.ClimateControl\CyberGreenhouse.ClimateControl.csproj", "{7023C6AD-ABCD-4992-BCD5-BC767AE50526}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.RipenessMonitor", "src\Modules\CyberGreenhouse.RipenessMonitor\CyberGreenhouse.RipenessMonitor.csproj", "{825AAE0A-3ED2-476A-8542-57B6B38CA52F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.Irrigation", "src\Modules\CyberGreenhouse.Irrigation\CyberGreenhouse.Irrigation.csproj", "{E2FFBE58-1677-4583-B886-F210EA807445}"
@@ -30,6 +28,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.Harvesting", "src\Modules\CyberGreenhouse.Harvesting\CyberGreenhouse.Harvesting.csproj", "{C5AFE4C5-7A12-43C2-9253-C033313E841B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.Planting", "src\Modules\CyberGreenhouse.Planting\CyberGreenhouse.Planting.csproj", "{520A0033-7C43-42DB-A491-1E6DE52907E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.ClimateControl", "src\Modules\CyberGreenhouse.ClimateControl\CyberGreenhouse.ClimateControl.csproj", "{7F088CD5-0346-4C26-9B6B-1BAE39CD46E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,10 +61,6 @@ Global
 		{A4224EAE-22B6-4392-A7E8-A99A95C9A149}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4224EAE-22B6-4392-A7E8-A99A95C9A149}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4224EAE-22B6-4392-A7E8-A99A95C9A149}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7023C6AD-ABCD-4992-BCD5-BC767AE50526}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7023C6AD-ABCD-4992-BCD5-BC767AE50526}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7023C6AD-ABCD-4992-BCD5-BC767AE50526}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7023C6AD-ABCD-4992-BCD5-BC767AE50526}.Release|Any CPU.Build.0 = Release|Any CPU
 		{825AAE0A-3ED2-476A-8542-57B6B38CA52F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{825AAE0A-3ED2-476A-8542-57B6B38CA52F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{825AAE0A-3ED2-476A-8542-57B6B38CA52F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -81,6 +77,10 @@ Global
 		{520A0033-7C43-42DB-A491-1E6DE52907E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{520A0033-7C43-42DB-A491-1E6DE52907E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{520A0033-7C43-42DB-A491-1E6DE52907E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F088CD5-0346-4C26-9B6B-1BAE39CD46E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F088CD5-0346-4C26-9B6B-1BAE39CD46E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F088CD5-0346-4C26-9B6B-1BAE39CD46E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F088CD5-0346-4C26-9B6B-1BAE39CD46E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -91,11 +91,11 @@ Global
 		{95E38928-A8DC-40B5-B89C-F037EE0A24D2} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
 		{B6353E6E-B066-44BC-9989-0B0D78C9E4B0} = {B554F6C5-F485-4AE7-ADCA-C4406A946233}
 		{A4224EAE-22B6-4392-A7E8-A99A95C9A149} = {B554F6C5-F485-4AE7-ADCA-C4406A946233}
-		{7023C6AD-ABCD-4992-BCD5-BC767AE50526} = {B554F6C5-F485-4AE7-ADCA-C4406A946233}
 		{825AAE0A-3ED2-476A-8542-57B6B38CA52F} = {B554F6C5-F485-4AE7-ADCA-C4406A946233}
 		{E2FFBE58-1677-4583-B886-F210EA807445} = {B554F6C5-F485-4AE7-ADCA-C4406A946233}
 		{C5AFE4C5-7A12-43C2-9253-C033313E841B} = {B554F6C5-F485-4AE7-ADCA-C4406A946233}
 		{520A0033-7C43-42DB-A491-1E6DE52907E8} = {B554F6C5-F485-4AE7-ADCA-C4406A946233}
+		{7F088CD5-0346-4C26-9B6B-1BAE39CD46E0} = {B554F6C5-F485-4AE7-ADCA-C4406A946233}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {013EA216-6DD7-4102-B990-6AB10C4CDEA9}
