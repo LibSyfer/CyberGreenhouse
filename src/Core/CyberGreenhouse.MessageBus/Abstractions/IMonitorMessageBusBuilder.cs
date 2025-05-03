@@ -2,7 +2,7 @@
 
 namespace CyberGreenhouse.MessageBus.Abstractions
 {
-    public interface IMessageBusBuilder
+    public interface IMonitorMessageBusBuilder
     {
         public IServiceCollection Services { get; }
     }

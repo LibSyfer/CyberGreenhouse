@@ -14,7 +14,7 @@ namespace CyberGreenhouse.MessageBus.Extensions
             return messageBusBuilder;
         }
 
-        public static IClientMessageBusBuilder RegisterMessageHandler<T, TH>(this IClientMessageBusBuilder messageBusBuilder)
+        public static IMessageBusBuilder RegisterMessageHandler<T, TH>(this IMessageBusBuilder messageBusBuilder)
             where T: BusMessage
             where TH: class, IMessageBusHandler<T>
         {
