@@ -54,6 +54,11 @@ namespace CyberGreenhouse.MainControl
         {
             if (IsBuzy) return false;
 
+            lock(_isBuzyLock)
+            {
+                _isBuzy = true;
+            }
+
             _logger.LogInformation("Start growing. Getting growing params");
             await _messageBus.SendAsync(ModuleNames.PlantDataSignatureChecker, new GetPlantGrowingParamsCommand
             {
