@@ -20,6 +20,7 @@ namespace CyberGreenhouse.MainControl.MessageHandlers
 
         public async Task Handle(PlantingFinishedEvent message, CancellationToken cancellationToken = default)
         {
+            _logger.LogInformation("Planting is over");
             var settingGrowingParams = _growthingService.GrowingParams;
             if (settingGrowingParams is null)
             {
@@ -28,6 +29,7 @@ namespace CyberGreenhouse.MainControl.MessageHandlers
                 return;
             }
 
+            _logger.LogInformation("Send growing params into control modules");
             await _messageBus.SendAsync(ModuleNames.Lighting, new SetLightingLevelCommand
             {
                 LightIntensity = settingGrowingParams.LightIntensity,

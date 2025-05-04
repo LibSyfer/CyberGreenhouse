@@ -16,7 +16,7 @@ namespace CyberGreenhouse.MainControl.MessageHandlers
 
         public Task Handle(HarvestingFinishedEvent message, CancellationToken cancellationToken = default)
         {
-            _logger.LogInformation("Growing finished");
+            _logger.LogInformation("Harvesting finished. Growing stoped");
             _growthingService.FinishGrow();
 
             return Task.CompletedTask;

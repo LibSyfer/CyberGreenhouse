@@ -18,6 +18,7 @@ namespace CyberGreenhouse.MainControl.MessageHandlers
 
         public async Task Handle(PlantReadyEvent message, CancellationToken cancellationToken = default)
         {
+            _logger.LogInformation("Plant ready to harvest");
             await _messageBus.SendAsync(ModuleNames.Harvesting, new StartHarvestingCommand(), cancellationToken);
         }
     }

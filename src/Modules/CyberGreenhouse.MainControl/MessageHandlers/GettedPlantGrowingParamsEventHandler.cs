@@ -20,6 +20,7 @@ namespace CyberGreenhouse.MainControl.MessageHandlers
 
         public async Task Handle(GettedPlantGrowingParamsEvent message, CancellationToken cancellationToken = default)
         {
+            _logger.LogInformation("The growing parameters were getted");
             var growingParams = new PlantGrowingParams
             {
                 Id = message.ParamId,
@@ -35,6 +36,7 @@ namespace CyberGreenhouse.MainControl.MessageHandlers
 
             _growthingService.GrowingParams = growingParams;
 
+            _logger.LogInformation("Send start planting command");
             await _messageBus.SendAsync(ModuleNames.Planting, new StartPlantingCommand(), cancellationToken);
         }
     }
