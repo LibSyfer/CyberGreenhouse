@@ -13,18 +13,20 @@ namespace CyberGreenhouse.PlantDataSignatureChecker
         private readonly IMessageBus _messageBus;
         private readonly SignatureService _signatureService;
         private readonly HttpClient _httpClient;
+        private readonly string _connectionString;
 
-        public GetPlantGrowingParamsCommandHandler(ILogger<GetPlantGrowingParamsCommandHandler> logger, IMessageBus messageBus, SignatureService signatureService, HttpClient httpClient)
+        public GetPlantGrowingParamsCommandHandler(ILogger<GetPlantGrowingParamsCommandHandler> logger, IMessageBus messageBus, SignatureService signatureService, HttpClient httpClient, IConfiguration configuration)
         {
             _logger = logger;
             _messageBus = messageBus;
             _signatureService = signatureService;
             _httpClient = httpClient;
+            _connectionString = configuration.GetConnectionString("Database") ?? throw new ArgumentNullException("Database connsection string is null");
         }
 
         public async Task Handle(GetPlantGrowingParamsCommand message, CancellationToken cancellationToken = default)
         {
-            var response = await _httpClient.GetAsync($"http://localhost:8090/tomatos/growing-params/{message.ParamId}", cancellationToken);
+            var response = await _httpClient.GetAsync($"{_connectionString}/tomatos/growing-params/{message.ParamId}", cancellationToken);
             var content = await response.Content.ReadAsStringAsync(cancellationToken);
 
             if (!response.Headers.TryGetValues("X-Api-Signature", out var signatures))
