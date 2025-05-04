@@ -12,7 +12,8 @@
         "lighting": "StartDebugging",
         "planting": "StartDebugging",
         "ripeness-monitor": "StartDebugging",
-        "plantdata-signature-checker": "StartDebugging"
+        "plantdata-signature-checker": "StartDebugging",
+        "cybergreenhouse.external.database": "StartDebugging"
       }
     }
   }

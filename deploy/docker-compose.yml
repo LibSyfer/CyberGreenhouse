@@ -121,7 +121,15 @@ services:
       dockerfile: src/Modules/CyberGreenhouse.PlantDataSignatureChecker/Dockerfile
     environment:
         MessageBusConnection__RabbitMQ__Host: security-brocker
+        ConnectionStrings__Database: external-database
     depends_on:
         security-brocker:
             condition: service_healthy
+
+
+  external-database:
+    image: ${DOCKER_REGISTRY-}cybergreenhouseexternaldatabase
+    build:
+      context: ..
+      dockerfile: src/External/CyberGreenhouse.External.Database/Dockerfile
 
