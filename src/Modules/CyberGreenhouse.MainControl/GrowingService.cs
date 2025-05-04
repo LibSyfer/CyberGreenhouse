@@ -1,4 +1,6 @@
 ﻿using CyberGreenhouse.MessageBus.Abstractions;
+using CyberGreenhouse.MessageBus.Common;
+using CyberGreenhouse.MessageBus.Contracts.Commands;
 
 namespace CyberGreenhouse.MainControl
 {
@@ -55,7 +57,26 @@ namespace CyberGreenhouse.MainControl
             _logger.LogInformation("Начало процесса выращивания");
             _logger.LogInformation("Получение параметров выращивания");
 
-            // Sending command
+            await _messageBus.SendAsync(ModuleNames.PlantDataSignatureChecker, new GetPlantGrowingParamsCommand
+            {
+                ParamId = paramsId,
+            },
+            cancellationToken);
+
+            return true;
+        }
+
+        public bool FinishGrow()
+        {
+            if (!IsBuzy)
+            {
+                return false;
+            }
+
+            lock (_isBuzyLock)
+            {
+                _isBuzy = false;
+            }
 
             return true;
         }
