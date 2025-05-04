@@ -1,11 +1,18 @@
 using CyberGreenhouse.MainControl;
+using CyberGreenhouse.MainControl.MessageHandlers;
 using CyberGreenhouse.MessageBus.Common;
+using CyberGreenhouse.MessageBus.Contracts.Events;
+using CyberGreenhouse.MessageBus.Extensions;
 using CyberGreenhouse.MessageBus.RabbitMQ.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<GrowingService>();
-builder.Services.AddClientRabbitMqMessageBus(builder.Configuration, ModuleNames.MainControl);
+builder.Services.AddClientRabbitMqMessageBus(builder.Configuration, ModuleNames.MainControl)
+    .RegisterMessageHandler<GettedPlantGrowingParamsEvent, GettedPlantGrowingParamsEventHandler>()
+    .RegisterMessageHandler<PlantingFinishedEvent, PlantingFinishedEventHandler>()
+    .RegisterMessageHandler<PlantReadyEvent, PlantReadyEventHandler>()
+    .RegisterMessageHandler<HarvestingFinishedEvent, HarvestingFinishedEventHandler>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
