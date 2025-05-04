@@ -1,11 +1,19 @@
+using CyberGreenhouse.Core;
 using CyberGreenhouse.External.Database;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddSingleton(_ =>
+{
+    return new SignatureService(builder.Configuration["SignatureService:Key"] ?? throw new ArgumentNullException("Signature service key not set"));
+});
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.UseMiddleware<ResponseSigningMiddleware>();
 
 app.UseSwagger();
 app.UseSwaggerUI();
