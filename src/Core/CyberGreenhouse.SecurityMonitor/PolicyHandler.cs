@@ -1,4 +1,7 @@
 ﻿using CyberGreenhouse.MessageBus.Abstractions;
+using CyberGreenhouse.MessageBus.Common;
+using CyberGreenhouse.MessageBus.Contracts.Commands;
+using CyberGreenhouse.MessageBus.Contracts.Events;
 using CyberGreenhouse.MessageBus.RabbitMQ.Extensions;
 
 namespace CyberGreenhouse.SecurityMonitor
@@ -18,6 +21,16 @@ namespace CyberGreenhouse.SecurityMonitor
         {
             var monitorHeaders = metadata.ReadMonitorHeaders();
             var authorizeAction = false;
+
+            if (monitorHeaders.ActionName.Equals(nameof(GetPlantGrowingParamsCommand), StringComparison.OrdinalIgnoreCase)
+                && monitorHeaders.Source.Equals(ModuleNames.MainControl, StringComparison.OrdinalIgnoreCase)
+                && monitorHeaders.Destination.Equals(ModuleNames.PlantDataSignatureChecker, StringComparison.OrdinalIgnoreCase))
+                authorizeAction = true;
+
+            if (monitorHeaders.ActionName.Equals(nameof(GettedPlantGrowingParamsEvent), StringComparison.OrdinalIgnoreCase)
+                && monitorHeaders.Source.Equals(ModuleNames.PlantDataSignatureChecker, StringComparison.OrdinalIgnoreCase)
+                && monitorHeaders.Destination.Equals(ModuleNames.MainControl, StringComparison.OrdinalIgnoreCase))
+                authorizeAction = true;
 
             if (authorizeAction)
             {
