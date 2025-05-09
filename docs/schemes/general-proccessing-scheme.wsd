@@ -1,0 +1,23 @@
+@startuml "usecases"
+
+title "Базовый сценарий работы системы."
+
+actor "1. Агроном-оператор" as operator
+participant "2. Теплица" as greenhouse
+participant "3. База данных сортов помидоров" as tomato_db
+participant "4. Логистическая система" as logistics_system
+
+autonumber
+operator -> tomato_db: Получение идентификатора параметров выращивания сорта помидоров
+tomato_db -> operator: Идентификатор парметров выращивания получен
+
+operator -> greenhouse: Старт процесса выращивания
+
+greenhouse -> tomato_db: Получение параметров выращивания
+tomato_db -> greenhouse: Параметров выращивания получены
+
+greenhouse -> greenhouse: Начало процесса выращивания
+
+greenhouse -> logistics_system: Плоды собраны
+
+@enduml
