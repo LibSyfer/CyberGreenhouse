@@ -1,4 +1,4 @@
-@startuml "greenhouse-proccessing-scheme"
+@startuml "ns-5"
 
 title "Базовый сценарий работы теплицы. Атака через модуль системы орошения и подкормки. Нарушение ЦБ 2, 3"
 
