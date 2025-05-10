@@ -1,0 +1,57 @@
+@startuml "ns-1"
+
+title "Базовый сценарий работы теплицы. Атака через модуль центральной системы управления теплицей. Нарушение ЦБ 1, 4"
+
+actor "Агроном-оператор" as operator
+participant "Связь с базой данных сортов помидоров" as tomato_db
+participant "Логистическая система" as logistics_system
+participant "1. Модуль ЦСУ теплицы" as main_control_module #red
+participant "2. Модуль искусственного освещения" as lighting_module
+participant "3. Модуль климат-контроля" as climate_control_module
+participant "4. Модуль мониторинга зрелости" as ripeness_monitor_module
+participant "5. Модуль орошения и подкормки" as irrigation_module
+participant "6. Модуль контроля сборки урожая" as harvesting_module
+participant "7. Модуль контроля посадки семян" as planting_module
+
+autonumber
+
+operator -> tomato_db: Получение идентификатора параметров\nвыращивания сорта помидоров
+tomato_db -> operator: Идентификатор парметров выращивания получен
+
+operator -> main_control_module: Старт процесса выращивания
+
+main_control_module -> tomato_db: Получение параметров выращивания
+tomato_db -> main_control_module: Параметров выращивания получены
+
+main_control_module -> planting_module: Команда на высадку семян
+planting_module -> main_control_module: Высадка закончена
+
+main_control_module -> lighting_module: Передача параметров освещения
+loop
+lighting_module -> lighting_module: Изменение и поддержание необходимых\nпараметров освещения
+end
+
+main_control_module -> climate_control_module: Передача параметров температуры и влажности
+loop
+climate_control_module -> climate_control_module: Изменение и поддержание необходимых\nпараметров температуры и влажности
+end
+
+main_control_module -> irrigation_module: Передача параметров подкормки и полива
+loop
+irrigation_module -> irrigation_module: Изменение и поддержание необходимых\nпараметров подкормки и полива
+end
+
+main_control_module -> ripeness_monitor_module: Команда начала отслеживания стадии роста
+loop
+ripeness_monitor_module -> ripeness_monitor_module: Отслеживания и анализ показателей
+end
+
+main_control_module -[#red]> harvesting_module: Преждевременная команда на сбор урожая
+
+group #red Нарушение
+harvesting_module -> main_control_module: Собран недозревший урожай
+
+main_control_module -> logistics_system: На склад отправлены недозревшие плоды
+end
+
+@enduml
