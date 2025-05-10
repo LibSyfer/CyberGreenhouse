@@ -1,4 +1,4 @@
-@startuml "usecases"
+@startuml "general-proccessing-scheme"
 
 title "Базовый сценарий работы системы."
 

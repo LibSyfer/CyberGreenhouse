@@ -1,4 +1,4 @@
-@startuml "usecases"
+@startuml "greenhouse-proccessing-scheme"
 
 title "Базовый сценарий работы теплицы."
 
@@ -15,7 +15,7 @@ participant "7. Модуль контроля посадки семян" as plan
 
 autonumber
 
-operator -> tomato_db: Получение идентификатора параметров выращивания сорта помидоров
+operator -> tomato_db: Получение идентификатора параметров\nыращивания сорта помидоров
 tomato_db -> operator: Идентификатор парметров выращивания получен
 
 operator -> main_control_module: Старт процесса выращивания
@@ -28,17 +28,17 @@ planting_module -> main_control_module: Высадка закончена
 
 main_control_module -> lighting_module: Передача параметров освещения
 loop
-lighting_module -> lighting_module: Изменение и поддержание необходимых параметров освещения
+lighting_module -> lighting_module: Изменение и поддержание необходимых\nпараметров освещения
 end
 
 main_control_module -> climate_control_module: Передача параметров температуры и влажности
 loop
-climate_control_module -> climate_control_module: Изменение и поддержание необходимых параметров температуры и влажности
+climate_control_module -> climate_control_module: Изменение и поддержание необходимых\nпараметров температуры и влажности
 end
 
 main_control_module -> irrigation_module: Передача параметров подкормки и полива
 loop
-irrigation_module -> irrigation_module: Изменение и поддержание необходимых параметров подкормки и полива
+irrigation_module -> irrigation_module: Изменение и поддержание необходимых\nпараметров подкормки и полива
 end
 
 main_control_module -> ripeness_monitor_module: Команда начала отслеживания стадии роста
@@ -48,7 +48,7 @@ end
 
 ripeness_monitor_module -> main_control_module: Уведомление о готовности плодов
 
-main_control_module -> harvesting_module: Коменда на сбор урожая
+main_control_module -> harvesting_module: Команда на сбор урожая
 harvesting_module -> main_control_module: Сбор закончен
 
 main_control_module -> logistics_system: Плоды собраны
