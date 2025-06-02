@@ -32,6 +32,13 @@ public static class MonitorHeadersExtensions
         return monitorHeaders;
     }
 
+    public static bool AuthorizeAction(this MonitorHeaders monitorHeaders, string actionName, string sourceModule, string destinationModule)
+    {
+        return monitorHeaders.ActionName.Equals(actionName, StringComparison.OrdinalIgnoreCase)
+                && monitorHeaders.Source.Equals(sourceModule, StringComparison.OrdinalIgnoreCase)
+                && monitorHeaders.Destination.Equals(destinationModule, StringComparison.OrdinalIgnoreCase);
+    }
+
     public class MonitorHeaders
     {
         public string ActionName { get; set; } = string.Empty;

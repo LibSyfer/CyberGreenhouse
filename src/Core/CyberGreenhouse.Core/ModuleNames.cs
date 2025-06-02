@@ -8,6 +8,10 @@
 
         public const string Lighting = "Lighting";
 
+        public const string LightingControl = "LightingControlModule";
+
+        public const string LightSensorFilter = "LightSensorFilterModule";
+
         public const string ClimateControl = "ClimateControl";
 
         public const string RipenessMonitor = "RipenessMonitor";

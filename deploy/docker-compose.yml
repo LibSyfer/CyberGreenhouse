@@ -24,113 +24,132 @@ services:
             condition: service_healthy
 
 
-  main-control:
-    image: ${DOCKER_REGISTRY-}cybergreenhousemaincontrol
-    build:
-      context: ..
-      dockerfile: src/Modules/CyberGreenhouse.MainControl/Dockerfile
-    environment:
-        MessageBusConnection__RabbitMQ__Host: security-brocker
-    ports:
-      - 8080:8080
-    depends_on:
-        security-brocker:
-            condition: service_healthy
+  # main-control:
+  #   image: ${DOCKER_REGISTRY-}cybergreenhousemaincontrol
+  #   build:
+  #     context: ..
+  #     dockerfile: src/Modules/CyberGreenhouse.MainControl/Dockerfile
+  #   environment:
+  #       MessageBusConnection__RabbitMQ__Host: security-brocker
+  #   ports:
+  #     - 8080:8080
+  #   depends_on:
+  #       security-brocker:
+  #           condition: service_healthy
 
 
-  climate-control:
-    image: ${DOCKER_REGISTRY-}cybergreenhouseclimatecontrol
-    build:
-      context: ..
-      dockerfile: src/Modules/CyberGreenhouse.ClimateControl/Dockerfile
-    environment:
-        MessageBusConnection__RabbitMQ__Host: security-brocker
-    depends_on:
-        security-brocker:
-            condition: service_healthy
+  # climate-control:
+  #   image: ${DOCKER_REGISTRY-}cybergreenhouseclimatecontrol
+  #   build:
+  #     context: ..
+  #     dockerfile: src/Modules/CyberGreenhouse.ClimateControl/Dockerfile
+  #   environment:
+  #       MessageBusConnection__RabbitMQ__Host: security-brocker
+  #   depends_on:
+  #       security-brocker:
+  #           condition: service_healthy
 
       
-  harvesting:
-    image: ${DOCKER_REGISTRY-}cybergreenhouseharvesting
+  # harvesting:
+  #   image: ${DOCKER_REGISTRY-}cybergreenhouseharvesting
+  #   build:
+  #     context: ..
+  #     dockerfile: src/Modules/CyberGreenhouse.Harvesting/Dockerfile
+  #   environment:
+  #       MessageBusConnection__RabbitMQ__Host: security-brocker
+  #   ports:
+  #     - 8081:8080
+  #   depends_on:
+  #       security-brocker:
+  #           condition: service_healthy
+
+
+  # irrigation:
+  #   image: ${DOCKER_REGISTRY-}cybergreenhouseirrigation
+  #   build:
+  #     context: ..
+  #     dockerfile: src/Modules/CyberGreenhouse.Irrigation/Dockerfile
+  #   environment:
+  #       MessageBusConnection__RabbitMQ__Host: security-brocker
+  #   depends_on:
+  #       security-brocker:
+  #           condition: service_healthy
+
+
+  # lighting:
+  #   image: ${DOCKER_REGISTRY-}cybergreenhouselighting
+  #   build:
+  #     context: ..
+  #     dockerfile: src/Modules/CyberGreenhouse.Lighting/Dockerfile
+  #   environment:
+  #       MessageBusConnection__RabbitMQ__Host: security-brocker
+  #   depends_on:
+  #       security-brocker:
+  #           condition: service_healthy
+
+
+  # planting:
+  #   image: ${DOCKER_REGISTRY-}cybergreenhouseplanting
+  #   build:
+  #     context: ..
+  #     dockerfile: src/Modules/CyberGreenhouse.Planting/Dockerfile
+  #   environment:
+  #       MessageBusConnection__RabbitMQ__Host: security-brocker
+  #   ports:
+  #     - 8082:8080
+  #   depends_on:
+  #       security-brocker:
+  #           condition: service_healthy
+
+
+  # ripeness-monitor:
+  #   image: ${DOCKER_REGISTRY-}cybergreenhouseripenessmonitor
+  #   build:
+  #     context: ..
+  #     dockerfile: src/Modules/CyberGreenhouse.RipenessMonitor/Dockerfile
+  #   environment:
+  #       MessageBusConnection__RabbitMQ__Host: security-brocker
+  #   depends_on:
+  #       security-brocker:
+  #           condition: service_healthy
+
+
+  # plantdata-signature-checker:
+  #   image: ${DOCKER_REGISTRY-}cybergreenhouseplantdatasignaturechecker
+  #   build:
+  #     context: ..
+  #     dockerfile: src/Modules/CyberGreenhouse.PlantDataSignatureChecker/Dockerfile
+  #   environment:
+  #       MessageBusConnection__RabbitMQ__Host: security-brocker
+  #       ConnectionStrings__Database: http://external-database:8080
+  #   depends_on:
+  #       security-brocker:
+  #           condition: service_healthy
+
+
+  # external-database:
+  #   image: ${DOCKER_REGISTRY-}cybergreenhouseexternaldatabase
+  #   build:
+  #     context: ..
+  #     dockerfile: src/External/CyberGreenhouse.External.Database/Dockerfile
+  #   ports:
+  #     - 8090:8080
+
+
+  lighting-control-module:
+    image: ${DOCKER_REGISTRY-}cybergreenhouselightinglightingcontrolmodule
     build:
       context: ..
-      dockerfile: src/Modules/CyberGreenhouse.Harvesting/Dockerfile
+      dockerfile: src/Modules/Lighting/CyberGreenhouse.Lighting.LightingControlModule/Dockerfile
     environment:
         MessageBusConnection__RabbitMQ__Host: security-brocker
-    ports:
-      - 8081:8080
-    depends_on:
-        security-brocker:
-            condition: service_healthy
 
 
-  irrigation:
-    image: ${DOCKER_REGISTRY-}cybergreenhouseirrigation
+  light-sensor-filter-module:
+    image: ${DOCKER_REGISTRY-}cybergreenhouselightinglightsensorfiltermodule
     build:
       context: ..
-      dockerfile: src/Modules/CyberGreenhouse.Irrigation/Dockerfile
+      dockerfile: src/Modules/Lighting/CyberGreenhouse.Lighting.LightSensorFilterModule/Dockerfile
     environment:
         MessageBusConnection__RabbitMQ__Host: security-brocker
-    depends_on:
-        security-brocker:
-            condition: service_healthy
 
-
-  lighting:
-    image: ${DOCKER_REGISTRY-}cybergreenhouselighting
-    build:
-      context: ..
-      dockerfile: src/Modules/CyberGreenhouse.Lighting/Dockerfile
-    environment:
-        MessageBusConnection__RabbitMQ__Host: security-brocker
-    depends_on:
-        security-brocker:
-            condition: service_healthy
-
-
-  planting:
-    image: ${DOCKER_REGISTRY-}cybergreenhouseplanting
-    build:
-      context: ..
-      dockerfile: src/Modules/CyberGreenhouse.Planting/Dockerfile
-    environment:
-        MessageBusConnection__RabbitMQ__Host: security-brocker
-    ports:
-      - 8082:8080
-    depends_on:
-        security-brocker:
-            condition: service_healthy
-
-
-  ripeness-monitor:
-    image: ${DOCKER_REGISTRY-}cybergreenhouseripenessmonitor
-    build:
-      context: ..
-      dockerfile: src/Modules/CyberGreenhouse.RipenessMonitor/Dockerfile
-    environment:
-        MessageBusConnection__RabbitMQ__Host: security-brocker
-    depends_on:
-        security-brocker:
-            condition: service_healthy
-
-
-  plantdata-signature-checker:
-    image: ${DOCKER_REGISTRY-}cybergreenhouseplantdatasignaturechecker
-    build:
-      context: ..
-      dockerfile: src/Modules/CyberGreenhouse.PlantDataSignatureChecker/Dockerfile
-    environment:
-        MessageBusConnection__RabbitMQ__Host: security-brocker
-        ConnectionStrings__Database: http://external-database:8080
-    depends_on:
-        security-brocker:
-            condition: service_healthy
-
-
-  external-database:
-    image: ${DOCKER_REGISTRY-}cybergreenhouseexternaldatabase
-    build:
-      context: ..
-      dockerfile: src/External/CyberGreenhouse.External.Database/Dockerfile
-    ports:
-      - 8090:8080
