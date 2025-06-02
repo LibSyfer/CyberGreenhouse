@@ -1,6 +1,7 @@
 ﻿using CyberGreenhouse.MessageBus.Abstractions;
 using CyberGreenhouse.MessageBus.Common;
 using CyberGreenhouse.MessageBus.Contracts.Commands;
+using CyberGreenhouse.MessageBus.Contracts.Commands.LightingModule;
 using CyberGreenhouse.MessageBus.Contracts.Events;
 
 namespace CyberGreenhouse.MainControl.MessageHandlers
@@ -30,7 +31,7 @@ namespace CyberGreenhouse.MainControl.MessageHandlers
             }
 
             _logger.LogInformation("Send growing params into control modules");
-            await _messageBus.SendAsync(ModuleNames.Lighting, new SetLightingLevelCommand
+            await _messageBus.SendAsync(ModuleNames.LightingControl, new SetLightingLevelCommand
             {
                 LightIntensity = settingGrowingParams.LightIntensity,
             },
