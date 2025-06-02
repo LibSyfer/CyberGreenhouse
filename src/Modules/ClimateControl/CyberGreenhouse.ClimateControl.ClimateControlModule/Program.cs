@@ -10,6 +10,7 @@ builder.Services.AddSingleton<HeatingAirControllerService>();
 builder.Services.AddSingleton<FreezingAirControllerService>();
 builder.Services.AddSingleton<HumiditingAirControllerService>();
 builder.Services.AddSingleton<HeatingWaterControllerService>();
+builder.Services.AddSingleton<FreezingWaterControllerService>();
 builder.Services.AddClientRabbitMqMessageBus(builder.Configuration, ModuleNames.ClimateControl);
 
 var host = builder.Build();
