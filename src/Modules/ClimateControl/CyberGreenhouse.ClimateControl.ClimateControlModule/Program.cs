@@ -10,6 +10,7 @@ using CyberGreenhouse.MessageBus.RabbitMQ.Extensions;
 var builder = Host.CreateApplicationBuilder(args);
 
 builder.Services.Configure<ClimateSettings>(builder.Configuration.GetSection(ClimateSettings.Section));
+builder.Services.AddSingleton<RequiredClimateSettings>();
 builder.Services.AddSingleton<HeatingAirControllerService>();
 builder.Services.AddSingleton<FreezingAirControllerService>();
 builder.Services.AddSingleton<HumiditingAirControllerService>();
