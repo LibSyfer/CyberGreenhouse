@@ -6,8 +6,6 @@
 
         public const string PlantDataSignatureChecker = "PlantDataSignatureChecker";
 
-        public const string Lighting = "Lighting";
-
         public const string LightingControl = "LightingControlModule";
 
         public const string LightSensorFilter = "LightSensorFilterModule";
