@@ -136,20 +136,56 @@ services:
   #     - 8090:8080
 
 
-  lighting-control-module:
-    image: ${DOCKER_REGISTRY-}cybergreenhouselightinglightingcontrolmodule
+  # lighting-control-module:
+  #   image: ${DOCKER_REGISTRY-}cybergreenhouselightinglightingcontrolmodule
+  #   build:
+  #     context: ..
+  #     dockerfile: src/Modules/Lighting/CyberGreenhouse.Lighting.LightingControlModule/Dockerfile
+  #   environment:
+  #       MessageBusConnection__RabbitMQ__Host: security-brocker
+
+
+  # light-sensor-filter-module:
+  #   image: ${DOCKER_REGISTRY-}cybergreenhouselightinglightsensorfiltermodule
+  #   build:
+  #     context: ..
+  #     dockerfile: src/Modules/Lighting/CyberGreenhouse.Lighting.LightSensorFilterModule/Dockerfile
+  #   environment:
+  #       MessageBusConnection__RabbitMQ__Host: security-brocker
+
+
+  climate-control-module:
+    image: ${DOCKER_REGISTRY-}cybergreenhouseclimatecontrolclimatecontrolmodule
     build:
       context: ..
-      dockerfile: src/Modules/Lighting/CyberGreenhouse.Lighting.LightingControlModule/Dockerfile
+      dockerfile: src/Modules/ClimateControl/CyberGreenhouse.ClimateControl.ClimateControlModule/Dockerfile
     environment:
         MessageBusConnection__RabbitMQ__Host: security-brocker
 
 
-  light-sensor-filter-module:
-    image: ${DOCKER_REGISTRY-}cybergreenhouselightinglightsensorfiltermodule
+  air-termosensor-filter-module:
+    image: ${DOCKER_REGISTRY-}cybergreenhouseclimatecontrolairtermosensorfiltermodule
     build:
       context: ..
-      dockerfile: src/Modules/Lighting/CyberGreenhouse.Lighting.LightSensorFilterModule/Dockerfile
+      dockerfile: src/Modules/ClimateControl/CyberGreenhouse.ClimateControl.AirTermoSensorFilterModule/Dockerfile
+    environment:
+        MessageBusConnection__RabbitMQ__Host: security-brocker
+
+
+  water-termosensor-filter-module:
+    image: ${DOCKER_REGISTRY-}cybergreenhouseclimatecontrolwatertermosensorfiltermodule
+    build:
+      context: ..
+      dockerfile: src/Modules/ClimateControl/CyberGreenhouse.ClimateControl.WaterTermoSensorFilterModule/Dockerfile
+    environment:
+        MessageBusConnection__RabbitMQ__Host: security-brocker
+
+
+  air-humiditysensor-filter-module:
+    image: ${DOCKER_REGISTRY-}cybergreenhouseclimatecontrolairhumiditysensorfiltermodule
+    build:
+      context: ..
+      dockerfile: src/Modules/ClimateControl/CyberGreenhouse.ClimateControl.AirHumiditySensorFilterModule/Dockerfile
     environment:
         MessageBusConnection__RabbitMQ__Host: security-brocker
 
