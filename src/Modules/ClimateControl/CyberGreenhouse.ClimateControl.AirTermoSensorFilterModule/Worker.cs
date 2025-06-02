@@ -1,4 +1,4 @@
-namespace CyberGreenhouse.ClimateControl.ClimateHumiditySensorFilterModule
+namespace CyberGreenhouse.ClimateControl.AirTermoSensorFilterModule
 {
     public class Worker : BackgroundService
     {

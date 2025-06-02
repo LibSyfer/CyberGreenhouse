@@ -1,4 +1,4 @@
-using CyberGreenhouse.ClimateControl.ClimateTermoSensorFilterModule;
+using CyberGreenhouse.ClimateControl.AirTermoSensorFilterModule;
 
 var builder = Host.CreateApplicationBuilder(args);
 builder.Services.AddHostedService<Worker>();

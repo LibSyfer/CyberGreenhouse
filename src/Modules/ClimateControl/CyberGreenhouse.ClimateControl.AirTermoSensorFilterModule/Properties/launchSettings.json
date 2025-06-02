@@ -1,7 +1,7 @@
 ﻿{
   "$schema": "http://json.schemastore.org/launchsettings.json",
   "profiles": {
-    "CyberGreenhouse.ClimateControl.ClimateHumiditySensorFilterModule": {
+    "CyberGreenhouse.ClimateControl.AirTermoSensorFilterModule": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "environmentVariables": {

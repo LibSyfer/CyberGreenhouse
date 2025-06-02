@@ -49,9 +49,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClimateControl", "ClimateCo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.ClimateControl.ClimateControlModule", "src\Modules\ClimateControl\CyberGreenhouse.ClimateControl.ClimateControlModule\CyberGreenhouse.ClimateControl.ClimateControlModule.csproj", "{815649F6-022B-4299-8DC2-029ED1D41D83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.ClimateControl.ClimateTermoSensorFilterModule", "src\Modules\ClimateControl\CyberGreenhouse.ClimateControl.ClimateTermoSensorFilterModule\CyberGreenhouse.ClimateControl.ClimateTermoSensorFilterModule.csproj", "{A99AFF33-3A09-4C1B-8712-8FCCC925E70F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.ClimateControl.AirHumiditySensorFilterModule", "src\Modules\ClimateControl\CyberGreenhouse.ClimateControl.AirHumiditySensorFilterModule\CyberGreenhouse.ClimateControl.AirHumiditySensorFilterModule.csproj", "{50128036-A909-4572-A689-AFDF15A880CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.ClimateControl.ClimateHumiditySensorFilterModule", "src\Modules\ClimateControl\CyberGreenhouse.ClimateControl.ClimateHumiditySensorFilterModule\CyberGreenhouse.ClimateControl.ClimateHumiditySensorFilterModule.csproj", "{2819B6C9-4BB4-424A-AAC0-874F10E8139C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.ClimateControl.AirTermoSensorFilterModule", "src\Modules\ClimateControl\CyberGreenhouse.ClimateControl.AirTermoSensorFilterModule\CyberGreenhouse.ClimateControl.AirTermoSensorFilterModule.csproj", "{E250E513-E9A3-479A-B8CD-5A12CDBCF6AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
