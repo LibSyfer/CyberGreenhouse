@@ -5,15 +5,17 @@
       "commandVersion": "1.0",
       "serviceActions": {
         "security-monitor": "StartDebugging",
-        "main-control": "StartDebugging",
-        "climate-control": "StartDebugging",
-        "harvesting": "StartDebugging",
-        "irrigation": "StartDebugging",
-        "lighting": "StartDebugging",
-        "planting": "StartDebugging",
-        "ripeness-monitor": "StartDebugging",
-        "plantdata-signature-checker": "StartDebugging",
-        "external-database": "StartDebugging"
+        //"main-control": "StartDebugging",
+        //"climate-control": "StartDebugging",
+        //"harvesting": "StartDebugging",
+        //"irrigation": "StartDebugging",
+        //"lighting": "StartDebugging",
+        //"planting": "StartDebugging",
+        //"ripeness-monitor": "StartDebugging",
+        //"plantdata-signature-checker": "StartDebugging",
+        //"external-database": "StartDebugging",
+        "lighting-control-module": "StartDebugging",
+        "light-sensor-filter-module": "StartDebugging"
       }
     }
   }
