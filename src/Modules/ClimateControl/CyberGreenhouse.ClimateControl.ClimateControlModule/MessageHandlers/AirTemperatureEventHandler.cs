@@ -10,7 +10,6 @@ namespace CyberGreenhouse.ClimateControl.ClimateControlModule.MessageHandlers
 {
     public class AirTemperatureEventHandler : IMessageBusHandler<AirTemperatureEvent>
     {
-
         private readonly ILogger<AirTemperatureEventHandler> _logger;
         private readonly ClimateSettings _climateSettings;
         private readonly HeatingAirControllerService _heatingAirControllerService;
