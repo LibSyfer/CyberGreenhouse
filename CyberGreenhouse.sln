@@ -45,6 +45,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.Lighting.Li
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.Lighting.LightingControlModule", "src\Modules\Lighting\CyberGreenhouse.Lighting.LightingControlModule\CyberGreenhouse.Lighting.LightingControlModule.csproj", "{A1CD03AE-E593-23C3-7B9F-D093C534D1A1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClimateControl", "ClimateControl", "{14F2841A-35E9-49F0-AFE7-3B0151C5E05E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.ClimateControl.ClimateControlModule", "src\Modules\ClimateControl\CyberGreenhouse.ClimateControl.ClimateControlModule\CyberGreenhouse.ClimateControl.ClimateControlModule.csproj", "{815649F6-022B-4299-8DC2-029ED1D41D83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.ClimateControl.ClimateTermoSensorFilterModule", "src\Modules\ClimateControl\CyberGreenhouse.ClimateControl.ClimateTermoSensorFilterModule\CyberGreenhouse.ClimateControl.ClimateTermoSensorFilterModule.csproj", "{A99AFF33-3A09-4C1B-8712-8FCCC925E70F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.ClimateControl.ClimateHumiditySensorFilterModule", "src\Modules\ClimateControl\CyberGreenhouse.ClimateControl.ClimateHumiditySensorFilterModule\CyberGreenhouse.ClimateControl.ClimateHumiditySensorFilterModule.csproj", "{2819B6C9-4BB4-424A-AAC0-874F10E8139C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -115,6 +123,18 @@ Global
 		{A1CD03AE-E593-23C3-7B9F-D093C534D1A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1CD03AE-E593-23C3-7B9F-D093C534D1A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1CD03AE-E593-23C3-7B9F-D093C534D1A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{815649F6-022B-4299-8DC2-029ED1D41D83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{815649F6-022B-4299-8DC2-029ED1D41D83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{815649F6-022B-4299-8DC2-029ED1D41D83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{815649F6-022B-4299-8DC2-029ED1D41D83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A99AFF33-3A09-4C1B-8712-8FCCC925E70F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A99AFF33-3A09-4C1B-8712-8FCCC925E70F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A99AFF33-3A09-4C1B-8712-8FCCC925E70F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A99AFF33-3A09-4C1B-8712-8FCCC925E70F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2819B6C9-4BB4-424A-AAC0-874F10E8139C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2819B6C9-4BB4-424A-AAC0-874F10E8139C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2819B6C9-4BB4-424A-AAC0-874F10E8139C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2819B6C9-4BB4-424A-AAC0-874F10E8139C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -136,6 +156,10 @@ Global
 		{71F71F74-0686-468B-BD82-4C065F22B363} = {B554F6C5-F485-4AE7-ADCA-C4406A946233}
 		{5C315842-B6EE-4B2D-8EED-798B21C597BF} = {71F71F74-0686-468B-BD82-4C065F22B363}
 		{A1CD03AE-E593-23C3-7B9F-D093C534D1A1} = {71F71F74-0686-468B-BD82-4C065F22B363}
+		{14F2841A-35E9-49F0-AFE7-3B0151C5E05E} = {B554F6C5-F485-4AE7-ADCA-C4406A946233}
+		{815649F6-022B-4299-8DC2-029ED1D41D83} = {14F2841A-35E9-49F0-AFE7-3B0151C5E05E}
+		{A99AFF33-3A09-4C1B-8712-8FCCC925E70F} = {14F2841A-35E9-49F0-AFE7-3B0151C5E05E}
+		{2819B6C9-4BB4-424A-AAC0-874F10E8139C} = {14F2841A-35E9-49F0-AFE7-3B0151C5E05E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {013EA216-6DD7-4102-B990-6AB10C4CDEA9}
