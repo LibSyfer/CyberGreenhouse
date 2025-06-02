@@ -41,6 +41,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{40
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.External.Database", "src\External\CyberGreenhouse.External.Database\CyberGreenhouse.External.Database.csproj", "{78AC77F4-2AB0-4257-A838-A81E42AD8B10}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lighting", "Lighting", "{71F71F74-0686-468B-BD82-4C065F22B363}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.Lighting.LightSensorFilterModule", "src\Modules\Lighting\CyberGreenhouse.Lighting.LightSensorFilterModule\CyberGreenhouse.Lighting.LightSensorFilterModule.csproj", "{5C315842-B6EE-4B2D-8EED-798B21C597BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.Lighting.LightingControlModule", "src\Modules\Lighting\CyberGreenhouse.Lighting.LightingControlModule\CyberGreenhouse.Lighting.LightingControlModule.csproj", "{A1CD03AE-E593-23C3-7B9F-D093C534D1A1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +113,14 @@ Global
 		{78AC77F4-2AB0-4257-A838-A81E42AD8B10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78AC77F4-2AB0-4257-A838-A81E42AD8B10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78AC77F4-2AB0-4257-A838-A81E42AD8B10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C315842-B6EE-4B2D-8EED-798B21C597BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C315842-B6EE-4B2D-8EED-798B21C597BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C315842-B6EE-4B2D-8EED-798B21C597BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C315842-B6EE-4B2D-8EED-798B21C597BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1CD03AE-E593-23C3-7B9F-D093C534D1A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1CD03AE-E593-23C3-7B9F-D093C534D1A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1CD03AE-E593-23C3-7B9F-D093C534D1A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1CD03AE-E593-23C3-7B9F-D093C534D1A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -126,6 +140,9 @@ Global
 		{3CECF9C9-D816-4D31-BBF0-8527BDE5AFC6} = {B554F6C5-F485-4AE7-ADCA-C4406A946233}
 		{95A2B1BB-7D75-4016-A158-72C4B6BF1B13} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
 		{78AC77F4-2AB0-4257-A838-A81E42AD8B10} = {403346D6-4AAD-4113-AAA4-BE3E2D5ADB32}
+		{71F71F74-0686-468B-BD82-4C065F22B363} = {B554F6C5-F485-4AE7-ADCA-C4406A946233}
+		{5C315842-B6EE-4B2D-8EED-798B21C597BF} = {71F71F74-0686-468B-BD82-4C065F22B363}
+		{A1CD03AE-E593-23C3-7B9F-D093C534D1A1} = {71F71F74-0686-468B-BD82-4C065F22B363}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {013EA216-6DD7-4102-B990-6AB10C4CDEA9}
