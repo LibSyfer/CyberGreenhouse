@@ -2,7 +2,9 @@
 using CyberGreenhouse.MessageBus.Common;
 using CyberGreenhouse.MessageBus.Contracts.Commands;
 using CyberGreenhouse.MessageBus.Contracts.Events;
+using CyberGreenhouse.MessageBus.Contracts.Events.LightingModule;
 using CyberGreenhouse.MessageBus.RabbitMQ.Extensions;
+using static CyberGreenhouse.MessageBus.RabbitMQ.Extensions.MonitorHeadersExtensions;
 
 namespace CyberGreenhouse.SecurityMonitor
 {
@@ -22,14 +24,22 @@ namespace CyberGreenhouse.SecurityMonitor
             var monitorHeaders = metadata.ReadMonitorHeaders();
             var authorizeAction = false;
 
-            if (monitorHeaders.ActionName.Equals(nameof(GetPlantGrowingParamsCommand), StringComparison.OrdinalIgnoreCase)
-                && monitorHeaders.Source.Equals(ModuleNames.MainControl, StringComparison.OrdinalIgnoreCase)
-                && monitorHeaders.Destination.Equals(ModuleNames.PlantDataSignatureChecker, StringComparison.OrdinalIgnoreCase))
+            if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(GetPlantGrowingParamsCommand),
+                sourceModule: ModuleNames.MainControl,
+                destinationModule: ModuleNames.PlantDataSignatureChecker))
                 authorizeAction = true;
 
-            if (monitorHeaders.ActionName.Equals(nameof(GettedPlantGrowingParamsEvent), StringComparison.OrdinalIgnoreCase)
-                && monitorHeaders.Source.Equals(ModuleNames.PlantDataSignatureChecker, StringComparison.OrdinalIgnoreCase)
-                && monitorHeaders.Destination.Equals(ModuleNames.MainControl, StringComparison.OrdinalIgnoreCase))
+            if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(GettedPlantGrowingParamsEvent),
+                sourceModule: ModuleNames.PlantDataSignatureChecker,
+                destinationModule: ModuleNames.MainControl))
+                authorizeAction = true;
+
+            if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(LightingLevelEvent),
+                sourceModule: ModuleNames.LightSensorFilter,
+                destinationModule: ModuleNames.LightingControl))
                 authorizeAction = true;
 
             if (authorizeAction)
