@@ -1,7 +1,12 @@
-using CyberGreenhouse.ClimateControl.AirTermoSensorFilterModule;
+using CyberGreenhouse.ClimateControl.AirHumiditySensorFilterModule;
+using CyberGreenhouse.MessageBus.Common;
+using CyberGreenhouse.MessageBus.RabbitMQ.Extensions;
 
 var builder = Host.CreateApplicationBuilder(args);
-builder.Services.AddHostedService<Worker>();
+
+builder.Services.AddSingleton<AirTempreatureSensor>();
+builder.Services.AddHostedService<SensorDataBackgroundService>();
+builder.Services.AddClientRabbitMqMessageBus(builder.Configuration, ModuleNames.AirTermoSensorFilter);
 
 var host = builder.Build();
 host.Run();
