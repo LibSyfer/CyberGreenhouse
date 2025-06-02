@@ -10,7 +10,13 @@
 
         public const string LightSensorFilter = "LightSensorFilterModule";
 
-        public const string ClimateControl = "ClimateControl";
+        public const string ClimateControl = "ClimateControlModule";
+
+        public const string AirHumiditySensorFilter = "AirHumiditySensorFilterModule";
+
+        public const string AirTermoSensorFilter = "AirTermoSensorFilterModule";
+
+        public const string WaterTermoSensorFilter = "WaterTermoSensorFilterModule";
 
         public const string RipenessMonitor = "RipenessMonitor";
 
