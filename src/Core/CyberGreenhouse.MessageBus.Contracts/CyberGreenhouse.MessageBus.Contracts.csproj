@@ -10,4 +10,8 @@
     <ProjectReference Include="..\CyberGreenhouse.MessageBus\CyberGreenhouse.MessageBus.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Commands\ClimateModule\" />
+  </ItemGroup>
+
 </Project>
