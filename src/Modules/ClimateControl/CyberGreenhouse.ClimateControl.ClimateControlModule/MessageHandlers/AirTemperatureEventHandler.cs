@@ -33,7 +33,7 @@ namespace CyberGreenhouse.ClimateControl.ClimateControlModule.MessageHandlers
             if (message.Temperature < (_requiredClimateSettings.RequiredAirTemperature - _climateSettings.DeviationAirTemperature)
                 || message.Temperature > (_requiredClimateSettings.RequiredAirTemperature + _climateSettings.DeviationAirTemperature))
             {
-                if (_requiredClimateSettings.CurrentStabilizationAttempt == _requiredClimateSettings.StabilizationAttempts)
+                if (_requiredClimateSettings.CurrentAirStabilizationAttempt == _requiredClimateSettings.StabilizationAttempts)
                 {
                     await _messageBus.SendAsync(ModuleNames.EmergencyStop, new AbordSystemCommand
                     {
@@ -51,17 +51,17 @@ namespace CyberGreenhouse.ClimateControl.ClimateControlModule.MessageHandlers
                         _logger.LogError("Dangerous air temperature");
                     }
 
-                    _requiredClimateSettings.CurrentStabilizationAttempt++;
+                    _requiredClimateSettings.CurrentAirStabilizationAttempt++;
                     _heatingAirControllerService.Heat();
                 }
                 else if (message.Temperature > (_requiredClimateSettings.RequiredAirTemperature + _climateSettings.DeviationAirTemperature))
                 {
-                    if (message.Temperature > _climateSettings.MinAirTemperature)
+                    if (message.Temperature > _climateSettings.MaxAirTemperature)
                     {
                         _logger.LogError("Dangerous air temperature");
                     }
 
-                    _requiredClimateSettings.CurrentStabilizationAttempt++;
+                    _requiredClimateSettings.CurrentAirStabilizationAttempt++;
                     _freezingAirControllerService.Freez();
                 }
             }

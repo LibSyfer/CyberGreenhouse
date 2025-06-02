@@ -31,7 +31,7 @@ namespace CyberGreenhouse.ClimateControl.ClimateControlModule.MessageHandlers
             if (message.Humidity < (_requiredClimateSettings.RequiredHumidityLevel - _climateSettings.DeviationHumidityLevel)
                 || message.Humidity > (_requiredClimateSettings.RequiredHumidityLevel + _climateSettings.DeviationHumidityLevel))
             {
-                if (_requiredClimateSettings.CurrentStabilizationAttempt == _requiredClimateSettings.StabilizationAttempts)
+                if (_requiredClimateSettings.CurrentHumidityStabilizationAttempt == _requiredClimateSettings.StabilizationAttempts)
                 {
                     await _messageBus.SendAsync(ModuleNames.EmergencyStop, new AbordSystemCommand
                     {
@@ -49,7 +49,7 @@ namespace CyberGreenhouse.ClimateControl.ClimateControlModule.MessageHandlers
                         _logger.LogError("Dangerous humidity level");
                     }
 
-                    _requiredClimateSettings.CurrentStabilizationAttempt++;
+                    _requiredClimateSettings.CurrentHumidityStabilizationAttempt++;
                     _humiditingAirControllerService.Increase();
                 }
                 else if (message.Humidity > (_requiredClimateSettings.RequiredHumidityLevel + _climateSettings.DeviationHumidityLevel))
@@ -59,7 +59,7 @@ namespace CyberGreenhouse.ClimateControl.ClimateControlModule.MessageHandlers
                         _logger.LogError("Dangerous humidity level");
                     }
 
-                    _requiredClimateSettings.CurrentStabilizationAttempt++;
+                    _requiredClimateSettings.CurrentHumidityStabilizationAttempt++;
                     _humiditingAirControllerService.Decrease();
                 }
             }
