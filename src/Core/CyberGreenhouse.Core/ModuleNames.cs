@@ -25,5 +25,7 @@
         public const string Harvesting = "Harvesting";
 
         public const string Planting = "Planting";
+
+        public const string EmergencyStop = "EmergencyStopModule";
     }
 }
