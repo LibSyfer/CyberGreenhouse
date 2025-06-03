@@ -1,6 +1,6 @@
+using CyberGreenhouse.ClimateControl.ClimateControlModule.Controllers;
 using CyberGreenhouse.ClimateControl.ClimateControlModule.MessageHandlers;
 using CyberGreenhouse.ClimateControl.ClimateControlModule.Models;
-using CyberGreenhouse.ClimateControl.ClimateControlModule.Services;
 using CyberGreenhouse.MessageBus.Common;
 using CyberGreenhouse.MessageBus.Contracts.Commands.ClimateModule;
 using CyberGreenhouse.MessageBus.Contracts.Events.ClimateModule;

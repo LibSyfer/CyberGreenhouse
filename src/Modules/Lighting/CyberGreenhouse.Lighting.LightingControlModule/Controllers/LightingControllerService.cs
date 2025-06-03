@@ -1,4 +1,4 @@
-﻿namespace CyberGreenhouse.Lighting.LightingControlModule
+﻿namespace CyberGreenhouse.Lighting.LightingControlModule.Controllers
 {
     public class LightingControllerService
     {

@@ -1,7 +1,6 @@
-﻿using CyberGreenhouse.Lighting.LightingControlModule.Models;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 
-namespace CyberGreenhouse.Lighting.LightingControlModule
+namespace CyberGreenhouse.Lighting.LightingControlModule.Models
 {
     public class RequiredLightingSettings
     {

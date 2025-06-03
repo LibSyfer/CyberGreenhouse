@@ -1,4 +1,5 @@
-﻿using CyberGreenhouse.Lighting.LightingControlModule.Models;
+﻿using CyberGreenhouse.Lighting.LightingControlModule.Controllers;
+using CyberGreenhouse.Lighting.LightingControlModule.Models;
 using CyberGreenhouse.MessageBus.Abstractions;
 using CyberGreenhouse.MessageBus.Contracts.Events.LightingModule;
 using Microsoft.Extensions.Options;

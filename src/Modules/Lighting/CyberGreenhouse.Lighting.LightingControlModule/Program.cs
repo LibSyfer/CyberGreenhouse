@@ -1,4 +1,4 @@
-using CyberGreenhouse.Lighting.LightingControlModule;
+using CyberGreenhouse.Lighting.LightingControlModule.Controllers;
 using CyberGreenhouse.Lighting.LightingControlModule.MessageHandlers;
 using CyberGreenhouse.Lighting.LightingControlModule.Models;
 using CyberGreenhouse.MessageBus.Common;

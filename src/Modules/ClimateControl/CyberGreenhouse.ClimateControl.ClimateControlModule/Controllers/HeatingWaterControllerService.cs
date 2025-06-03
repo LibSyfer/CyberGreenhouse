@@ -1,4 +1,4 @@
-﻿namespace CyberGreenhouse.ClimateControl.ClimateControlModule.Services
+﻿namespace CyberGreenhouse.ClimateControl.ClimateControlModule.Controllers
 {
     public class HeatingWaterControllerService
     {
