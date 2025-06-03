@@ -6,10 +6,12 @@
 
         public const string PlantDataSignatureChecker = "PlantDataSignatureChecker";
 
+        // Lighting
         public const string LightingControl = "LightingControlModule";
 
         public const string LightSensorFilter = "LightSensorFilterModule";
 
+        // Climate
         public const string ClimateControl = "ClimateControlModule";
 
         public const string AirHumiditySensorFilter = "AirHumiditySensorFilterModule";
@@ -18,14 +20,26 @@
 
         public const string WaterTermoSensorFilter = "WaterTermoSensorFilterModule";
 
-        public const string RipenessMonitor = "RipenessMonitor";
+        // Irrigation
+        public const string IrrigationControl = "IrrigationControlModule";
 
-        public const string Irrigation = "Irrigation";
+        public const string NutrientCompositionControl = "NutrientCompositionControlModule";
 
+        public const string TankSensorFilter = "TankSensorFilterModule";
+
+        public const string SoilHumiditySensorFilter = "SoilHumiditySensorFilterModule";
+
+        public const string SoilPhEcSensorFilter = "SoilPhEcSensorFilterModule";
+
+        // Old
         public const string Harvesting = "Harvesting";
 
         public const string Planting = "Planting";
 
         public const string EmergencyStop = "EmergencyStopModule";
+
+        public const string RipenessMonitor = "RipenessMonitor";
+
+        public const string Irrigation = "Irrigation";
     }
 }
