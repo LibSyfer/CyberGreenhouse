@@ -10,7 +10,13 @@
 
         public const string LightSensorFilter = "LightSensorFilterModule";
 
-        public const string ClimateControl = "ClimateControl";
+        public const string ClimateControl = "ClimateControlModule";
+
+        public const string AirHumiditySensorFilter = "AirHumiditySensorFilterModule";
+
+        public const string AirTermoSensorFilter = "AirTermoSensorFilterModule";
+
+        public const string WaterTermoSensorFilter = "WaterTermoSensorFilterModule";
 
         public const string RipenessMonitor = "RipenessMonitor";
 
@@ -19,5 +25,7 @@
         public const string Harvesting = "Harvesting";
 
         public const string Planting = "Planting";
+
+        public const string EmergencyStop = "EmergencyStopModule";
     }
 }

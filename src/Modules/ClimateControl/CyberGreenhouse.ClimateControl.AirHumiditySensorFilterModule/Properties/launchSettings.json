@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "CyberGreenhouse.ClimateControl": {
+    "CyberGreenhouse.ClimateControl.AirHumiditySensorFilterModule": {
       "commandName": "Project",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"

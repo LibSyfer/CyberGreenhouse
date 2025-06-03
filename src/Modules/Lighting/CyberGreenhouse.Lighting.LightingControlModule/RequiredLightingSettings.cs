@@ -7,9 +7,14 @@ namespace CyberGreenhouse.Lighting.LightingControlModule
     {
         public RequiredLightingSettings(IOptions<LightingSettings> lightingSettingsOpt)
         {
-            RequiredLightIntensity = lightingSettingsOpt.Value.MinLightIntensity + (lightingSettingsOpt.Value.MaxLightIntensity - lightingSettingsOpt.Value.MinLightIntensity) / 2;
+            RequiredLightIntensity = AvarageValue(lightingSettingsOpt.Value.MinLightIntensity, lightingSettingsOpt.Value.MaxLightIntensity);
         }
 
         public double RequiredLightIntensity { get; set; }
+
+        private double AvarageValue(double min, double max)
+        {
+            return min + (max - min) / 2;
+        }
     }
 }

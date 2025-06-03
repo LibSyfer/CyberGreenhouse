@@ -2,6 +2,7 @@
 using CyberGreenhouse.MessageBus.Common;
 using CyberGreenhouse.MessageBus.Contracts.Commands;
 using CyberGreenhouse.MessageBus.Contracts.Events;
+using CyberGreenhouse.MessageBus.Contracts.Events.ClimateModule;
 using CyberGreenhouse.MessageBus.Contracts.Events.LightingModule;
 using CyberGreenhouse.MessageBus.RabbitMQ.Extensions;
 using static CyberGreenhouse.MessageBus.RabbitMQ.Extensions.MonitorHeadersExtensions;
@@ -40,6 +41,24 @@ namespace CyberGreenhouse.SecurityMonitor
                 actionName: nameof(LightingLevelEvent),
                 sourceModule: ModuleNames.LightSensorFilter,
                 destinationModule: ModuleNames.LightingControl))
+                authorizeAction = true;
+
+            if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(AirHumidityEvent),
+                sourceModule: ModuleNames.AirHumiditySensorFilter,
+                destinationModule: ModuleNames.ClimateControl))
+                authorizeAction = true;
+
+            if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(AirTemperatureEvent),
+                sourceModule: ModuleNames.AirTermoSensorFilter,
+                destinationModule: ModuleNames.ClimateControl))
+                authorizeAction = true;
+
+            if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(WaterTemperatureEvent),
+                sourceModule: ModuleNames.WaterTermoSensorFilter,
+                destinationModule: ModuleNames.ClimateControl))
                 authorizeAction = true;
 
             if (authorizeAction)
