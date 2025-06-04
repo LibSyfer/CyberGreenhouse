@@ -25,8 +25,6 @@
 
         public const string NutrientCompositionControl = "NutrientCompositionControlModule";
 
-        public const string TankSensorFilter = "TankSensorFilterModule";
-
         public const string SoilHumiditySensorFilter = "SoilHumiditySensorFilterModule";
 
         public const string SoilPhEcSensorFilter = "SoilPhEcSensorFilterModule";
