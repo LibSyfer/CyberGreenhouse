@@ -10,7 +10,10 @@
         "climate-control-module": "StartDebugging",
         "air-termosensor-filter-module": "StartDebugging",
         "water-termosensor-filter-module": "StartDebugging",
-        "air-humiditysensor-filter-module": "StartDebugging"
+        "air-humiditysensor-filter-module": "StartDebugging",
+        "irrigation-control-module": "StartDebugging",
+        "nutrient-composition-control-module": "StartDebugging",
+        "soil-humiditysensor-filter-module": "StartDebugging"
       }
     }
   }

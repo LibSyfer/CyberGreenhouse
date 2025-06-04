@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "CyberGreenhouse.Irrigation": {
+    "CyberGreenhouse.Irrigation.IrrigationControlModule": {
       "commandName": "Project",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"

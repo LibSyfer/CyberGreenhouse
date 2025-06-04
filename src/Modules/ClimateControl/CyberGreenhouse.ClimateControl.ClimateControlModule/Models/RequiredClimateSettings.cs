@@ -11,7 +11,6 @@ namespace CyberGreenhouse.ClimateControl.ClimateControlModule.Models
             RequiredWaterTemperature = AvarageValue(climateSettings.MinWaterTemperature, climateSettings.MaxWaterTemperature);
             RequiredHumidityLevel = AvarageValue(climateSettings.MinHumidityLevel, climateSettings.MaxHumidityLevel);
 
-            CurrentStabilizationAttempt = 0;
             CurrentWaterStabilizationAttempt = 0;
             CurrentAirStabilizationAttempt = 0;
             CurrentHumidityStabilizationAttempt = 0;
@@ -23,8 +22,6 @@ namespace CyberGreenhouse.ClimateControl.ClimateControlModule.Models
         public double RequiredWaterTemperature { get; set; }
 
         public double RequiredHumidityLevel { get; set; }
-
-        public int CurrentStabilizationAttempt { get; set; }
 
         public int CurrentWaterStabilizationAttempt { get; set; }
 

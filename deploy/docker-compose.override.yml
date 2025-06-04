@@ -83,28 +83,49 @@ services:
   #     - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
   #     - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
-  climate-control-module:
+  # climate-control-module:
+  #   environment:
+  #     - DOTNET_ENVIRONMENT=Development
+  #   volumes:
+  #     - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+  #     - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+
+  # air-termosensor-filter-module:
+  #   environment:
+  #     - DOTNET_ENVIRONMENT=Development
+  #   volumes:
+  #     - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+  #     - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+
+  # water-termosensor-filter-module:
+  #   environment:
+  #     - DOTNET_ENVIRONMENT=Development
+  #   volumes:
+  #     - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+  #     - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+
+  # air-humiditysensor-filter-module:
+  #   environment:
+  #     - DOTNET_ENVIRONMENT=Development
+  #   volumes:
+  #     - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+  #     - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+
+  irrigation-control-module:
     environment:
       - DOTNET_ENVIRONMENT=Development
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
-  air-termosensor-filter-module:
+  nutrient-composition-control-module:
     environment:
       - DOTNET_ENVIRONMENT=Development
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
-  water-termosensor-filter-module:
-    environment:
-      - DOTNET_ENVIRONMENT=Development
-    volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
-
-  air-humiditysensor-filter-module:
+  soil-humiditysensor-filter-module:
     environment:
       - DOTNET_ENVIRONMENT=Development
     volumes:

@@ -1,8 +1,10 @@
 ﻿using CyberGreenhouse.MessageBus.Abstractions;
 using CyberGreenhouse.MessageBus.Common;
 using CyberGreenhouse.MessageBus.Contracts.Commands;
+using CyberGreenhouse.MessageBus.Contracts.Commands.Irrigation;
 using CyberGreenhouse.MessageBus.Contracts.Events;
 using CyberGreenhouse.MessageBus.Contracts.Events.ClimateModule;
+using CyberGreenhouse.MessageBus.Contracts.Events.Irrigation;
 using CyberGreenhouse.MessageBus.Contracts.Events.LightingModule;
 using CyberGreenhouse.MessageBus.RabbitMQ.Extensions;
 using static CyberGreenhouse.MessageBus.RabbitMQ.Extensions.MonitorHeadersExtensions;
@@ -59,6 +61,25 @@ namespace CyberGreenhouse.SecurityMonitor
                 actionName: nameof(WaterTemperatureEvent),
                 sourceModule: ModuleNames.WaterTermoSensorFilter,
                 destinationModule: ModuleNames.ClimateControl))
+                authorizeAction = true;
+
+            // Irrigation
+            if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(FertilizerPreparationCommand),
+                sourceModule: ModuleNames.IrrigationControl,
+                destinationModule: ModuleNames.NutrientCompositionControl))
+                authorizeAction = true;
+
+            if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(FertilizerPreparationCompleteEvent),
+                sourceModule: ModuleNames.NutrientCompositionControl,
+                destinationModule: ModuleNames.IrrigationControl))
+                authorizeAction = true;
+
+            if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(SoilHumidityEvent),
+                sourceModule: ModuleNames.SoilHumiditySensorFilter,
+                destinationModule: ModuleNames.IrrigationControl))
                 authorizeAction = true;
 
             if (authorizeAction)
