@@ -5,7 +5,7 @@
         private readonly Random _random = new Random();
         private int _persentOfTrue;
 
-        public VisualInspectionDataService(int persentOfTrue = 10)
+        public VisualInspectionDataService(int persentOfTrue = 30)
         {
             _persentOfTrue = persentOfTrue;
         }
