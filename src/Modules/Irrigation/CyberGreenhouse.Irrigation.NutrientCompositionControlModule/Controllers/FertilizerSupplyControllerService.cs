@@ -1,10 +1,10 @@
 ﻿namespace CyberGreenhouse.Irrigation.NutrientCompositionControlModule.Controllers
 {
-    public class FertilizerSupplyController
+    public class FertilizerSupplyControllerService
     {
-        private readonly ILogger<FertilizerSupplyController> _logger;
+        private readonly ILogger<FertilizerSupplyControllerService> _logger;
 
-        public FertilizerSupplyController(ILogger<FertilizerSupplyController> logger)
+        public FertilizerSupplyControllerService(ILogger<FertilizerSupplyControllerService> logger)
         {
             _logger = logger;
         }

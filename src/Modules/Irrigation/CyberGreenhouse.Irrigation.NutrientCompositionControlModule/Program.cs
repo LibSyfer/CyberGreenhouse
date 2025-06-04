@@ -8,7 +8,7 @@ using CyberGreenhouse.MessageBus.RabbitMQ.Extensions;
 var builder = Host.CreateApplicationBuilder(args);
 
 builder.Services.AddSingleton<MixerControllerService>();
-builder.Services.AddSingleton<FertilizerSupplyController>();
+builder.Services.AddSingleton<FertilizerSupplyControllerService>();
 builder.Services.AddClientRabbitMqMessageBus(builder.Configuration, ModuleNames.NutrientCompositionControl)
     .RegisterMessageHandler<FertilizerPreparationCommand, FertilizerPreparationCommandHandler>();
 

@@ -7,7 +7,7 @@ namespace CyberGreenhouse.Irrigation.NutrientCompositionControlModule.MessageHan
     public class FertilizerPreparationCommandHandler : IMessageBusHandler<FertilizerPreparationCommand>
     {
         private readonly ILogger<FertilizerPreparationCommandHandler> _logger;
-        private readonly FertilizerSupplyController _fertilizerSupplyController;
+        private readonly FertilizerSupplyControllerService _fertilizerSupplyController;
         private readonly MixerControllerService _mixerControllerService;
         private readonly IMessageBus _messageBus;
 
