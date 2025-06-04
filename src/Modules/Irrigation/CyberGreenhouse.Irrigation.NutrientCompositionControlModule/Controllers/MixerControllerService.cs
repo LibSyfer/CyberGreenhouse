@@ -9,9 +9,13 @@
             _logger = logger;
         }
 
-        public void Mix()
+        public async Task Mix(CancellationToken cancellationToken = default)
         {
-            _logger.LogInformation("Start mixing fertilizer");
+            _logger.LogInformation("Mixing fertilizer...");
+
+            await Task.Delay(10000, cancellationToken);
+
+            _logger.LogInformation("Mixing fertilizer finished");
         }
     }
 }
