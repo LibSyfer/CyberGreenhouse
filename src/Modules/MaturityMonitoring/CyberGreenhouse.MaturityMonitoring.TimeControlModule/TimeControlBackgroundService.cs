@@ -35,6 +35,14 @@ namespace CyberGreenhouse.MaturityMonitoring.TimeControlModule
                         await _messageBus.SendAsync(ModuleNames.MaturityMonitoringControl, new MinimalGrowthTimeTriggeredEvent());
                         _triggerTime = null;
                     }
+                    else
+                    {
+                        _logger.LogInformation("Still early");
+                    }
+                }
+                else
+                {
+                    _logger.LogInformation("Trigger not set");
                 }
 
                 await Task.Delay(5000, stoppingToken);

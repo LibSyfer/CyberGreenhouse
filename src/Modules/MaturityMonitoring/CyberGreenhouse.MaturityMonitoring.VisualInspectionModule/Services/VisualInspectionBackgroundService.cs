@@ -27,6 +27,10 @@ namespace CyberGreenhouse.MaturityMonitoring.VisualInspectionModule.Services
                     _logger.LogInformation("Triggering the visual inspection trigger");
                     await _messageBus.SendAsync(ModuleNames.MaturityMonitoringControl, new VisualInspectionTriggeredEvent());
                 }
+                else
+                {
+                    _logger.LogInformation("False result of growing solution");
+                }
 
                 await Task.Delay(10000, stoppingToken);
             }
