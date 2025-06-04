@@ -12,10 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\..\Core\CyberGreenhouse.Core\CyberGreenhouse.Core.csproj" />
     <ProjectReference Include="..\..\..\Core\CyberGreenhouse.MessageBus.Contracts\CyberGreenhouse.MessageBus.Contracts.csproj" />
     <ProjectReference Include="..\..\..\Core\CyberGreenhouse.MessageBus.RabbitMQ\CyberGreenhouse.MessageBus.RabbitMQ.csproj" />

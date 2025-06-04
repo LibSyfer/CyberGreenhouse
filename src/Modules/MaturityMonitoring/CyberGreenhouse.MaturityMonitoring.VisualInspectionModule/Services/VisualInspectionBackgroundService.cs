@@ -1,9 +1,8 @@
-﻿using CyberGreenhouse.ClimateControl.AirHumiditySensorFilterModule;
-using CyberGreenhouse.MessageBus.Abstractions;
+﻿using CyberGreenhouse.MessageBus.Abstractions;
 using CyberGreenhouse.MessageBus.Common;
 using CyberGreenhouse.MessageBus.Contracts.Events.MaturityMonitoring;
 
-namespace CyberGreenhouse.MaturityMonitoring.VisualInspectionModule
+namespace CyberGreenhouse.MaturityMonitoring.VisualInspectionModule.Services
 {
     public class VisualInspectionBackgroundService : BackgroundService
     {

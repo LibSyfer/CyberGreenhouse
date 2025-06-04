@@ -1,4 +1,4 @@
-﻿namespace CyberGreenhouse.ClimateControl.AirHumiditySensorFilterModule
+﻿namespace CyberGreenhouse.MaturityMonitoring.VisualInspectionModule.Services
 {
     public class VisualInspectionDataService
     {
