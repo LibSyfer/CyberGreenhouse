@@ -61,8 +61,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.Irrigation.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.Irrigation.SoilHumiditySensorFilterModule", "src\Modules\Irrigation\CyberGreenhouse.Irrigation.SoilHumiditySensorFilterModule\CyberGreenhouse.Irrigation.SoilHumiditySensorFilterModule.csproj", "{B0296BB8-0C63-4886-92E2-08821803FD70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.Irrigation.SoilPhEcSensorFilterModule", "src\Modules\Irrigation\CyberGreenhouse.Irrigation.SoilPhEcSensorFilterModule\CyberGreenhouse.Irrigation.SoilPhEcSensorFilterModule.csproj", "{739E4F78-CB85-4B38-B269-794C631B7E77}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -157,10 +155,6 @@ Global
 		{B0296BB8-0C63-4886-92E2-08821803FD70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0296BB8-0C63-4886-92E2-08821803FD70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0296BB8-0C63-4886-92E2-08821803FD70}.Release|Any CPU.Build.0 = Release|Any CPU
-		{739E4F78-CB85-4B38-B269-794C631B7E77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{739E4F78-CB85-4B38-B269-794C631B7E77}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{739E4F78-CB85-4B38-B269-794C631B7E77}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{739E4F78-CB85-4B38-B269-794C631B7E77}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -190,7 +184,6 @@ Global
 		{6EC27C3B-14DD-405E-818D-A6936160EF83} = {7A79D0CF-2EA3-4C26-8476-E496FECA6CE0}
 		{1EB89E96-FFF1-4BB4-A924-65FB26BB5EB0} = {7A79D0CF-2EA3-4C26-8476-E496FECA6CE0}
 		{B0296BB8-0C63-4886-92E2-08821803FD70} = {7A79D0CF-2EA3-4C26-8476-E496FECA6CE0}
-		{739E4F78-CB85-4B38-B269-794C631B7E77} = {7A79D0CF-2EA3-4C26-8476-E496FECA6CE0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {013EA216-6DD7-4102-B990-6AB10C4CDEA9}
