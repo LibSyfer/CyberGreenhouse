@@ -58,7 +58,7 @@ app.MapGet("/status", (StateService stateService) =>
 .WithName("StatusPlanting")
 .WithOpenApi();
 
-app.MapPost("/start-seeding", (StateService stateService) =>
+app.MapPost("/start-planting", (StateService stateService) =>
 {
     if (stateService.CurrentState is not PlantingStatus.Ready)
     {
@@ -71,7 +71,7 @@ app.MapPost("/start-seeding", (StateService stateService) =>
 .WithName("StartPlanting")
 .WithOpenApi();
 
-app.MapPost("/finish-seeding", async (StateService stateService, IMessageBus messageBus, CancellationToken cancellationToken) =>
+app.MapPost("/finish-planting", async (StateService stateService, IMessageBus messageBus, CancellationToken cancellationToken) =>
 {
     if (stateService.CurrentState is not PlantingStatus.Planting)
     {
