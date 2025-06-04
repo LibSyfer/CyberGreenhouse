@@ -2,10 +2,12 @@
 using CyberGreenhouse.MessageBus.Common;
 using CyberGreenhouse.MessageBus.Contracts.Commands;
 using CyberGreenhouse.MessageBus.Contracts.Commands.Irrigation;
+using CyberGreenhouse.MessageBus.Contracts.Commands.MaturityMonitoring;
 using CyberGreenhouse.MessageBus.Contracts.Events;
 using CyberGreenhouse.MessageBus.Contracts.Events.ClimateModule;
 using CyberGreenhouse.MessageBus.Contracts.Events.Irrigation;
 using CyberGreenhouse.MessageBus.Contracts.Events.LightingModule;
+using CyberGreenhouse.MessageBus.Contracts.Events.MaturityMonitoring;
 using CyberGreenhouse.MessageBus.RabbitMQ.Extensions;
 using static CyberGreenhouse.MessageBus.RabbitMQ.Extensions.MonitorHeadersExtensions;
 
@@ -82,6 +84,24 @@ namespace CyberGreenhouse.SecurityMonitor
                 destinationModule: ModuleNames.IrrigationControl))
                 authorizeAction = true;
 
+            // MaturityMonitoring
+            if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(StartTimeControlCommand),
+                sourceModule: ModuleNames.MaturityMonitoringControl,
+                destinationModule: ModuleNames.TimeControl))
+                authorizeAction = true;
+
+            if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(MinimalGrowthTimeTriggeredEvent),
+                sourceModule: ModuleNames.TimeControl,
+                destinationModule: ModuleNames.MaturityMonitoringControl))
+                authorizeAction = true;
+
+            if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(VisualInspectionTriggeredEvent),
+                sourceModule: ModuleNames.VisualInspection,
+                destinationModule: ModuleNames.MaturityMonitoringControl))
+                authorizeAction = true;
             if (authorizeAction)
             {
                 _logger.LogInformation($"Действие [Action: {monitorHeaders.ActionName}] [Source: {monitorHeaders.Source}] [Destination: {monitorHeaders.Destination}] разрешено политиками безопасности");

@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "CyberGreenhouse.RipenessMonitor": {
+    "CyberGreenhouse.MaturityMonitoring.TimeControlModule": {
       "commandName": "Project",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"

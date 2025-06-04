@@ -29,6 +29,13 @@
 
         public const string SoilPhEcSensorFilter = "SoilPhEcSensorFilterModule";
 
+        // MaturityMonitoring
+        public const string MaturityMonitoringControl = "MaturityMonitoringControlModule";
+
+        public const string TimeControl = "TimeControlModule";
+
+        public const string VisualInspection = "VisualInspectionModule";
+
         // Old
         public const string Harvesting = "Harvesting";
 
