@@ -25,11 +25,11 @@ namespace CyberGreenhouse.MaturityMonitoring.TimeControlModule
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            while (stoppingToken.IsCancellationRequested)
+            while (!stoppingToken.IsCancellationRequested)
             {
-                if (_triggerTime is not null)
+                if (_triggerTime.HasValue)
                 {
-                    if (_triggerTime.Value >= DateTime.UtcNow)
+                    if (_triggerTime.Value <= DateTime.UtcNow)
                     {
                         _logger.LogInformation("Triggering the minimum growth time trigger");
                         await _messageBus.SendAsync(ModuleNames.MaturityMonitoringControl, new MinimalGrowthTimeTriggeredEvent());
