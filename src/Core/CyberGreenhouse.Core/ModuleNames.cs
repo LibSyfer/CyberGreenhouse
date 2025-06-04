@@ -2,9 +2,14 @@
 {
     public static class ModuleNames
     {
+        // Common
         public const string MainControl = "MainControl";
 
         public const string PlantDataSignatureChecker = "PlantDataSignatureChecker";
+
+        public const string PlantingModule = "PlantingModule";
+
+        public const string HarvestingModule = "HarvestingModule";
 
         // Lighting
         public const string LightingControl = "LightingControlModule";
