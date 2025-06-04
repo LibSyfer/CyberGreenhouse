@@ -26,6 +26,7 @@ namespace CyberGreenhouse.MaturityMonitoring.MaturityMonitoringControlModule.Mes
                 return;
             }
 
+            _stateService.CurrentState = MaturityMonitoringStatus.WaitTimeTrigger;
             _logger.LogInformation("Send timer set command");
             await _messageBus.SendAsync(ModuleNames.TimeControl, new StartTimeControlCommand
             {
