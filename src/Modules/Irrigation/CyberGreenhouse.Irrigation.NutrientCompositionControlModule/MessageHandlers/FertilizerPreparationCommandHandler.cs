@@ -14,7 +14,7 @@ namespace CyberGreenhouse.Irrigation.NutrientCompositionControlModule.MessageHan
         private readonly MixerControllerService _mixerControllerService;
         private readonly TankCleanerControllerService _tankCleanerControllerService;
         private readonly WaterSupplyControllerService _waterSupplyControllerService;
-        private readonly TankParams _tankParams;
+        private readonly StateService _tankParams;
         private readonly IMessageBus _messageBus;
 
         public FertilizerPreparationCommandHandler(ILogger<FertilizerPreparationCommandHandler> logger,
@@ -22,7 +22,7 @@ namespace CyberGreenhouse.Irrigation.NutrientCompositionControlModule.MessageHan
             MixerControllerService mixerControllerService,
             TankCleanerControllerService tankCleanerControllerService,
             WaterSupplyControllerService waterSupplyControllerService,
-            TankParams tankParams,
+            StateService tankParams,
             IMessageBus messageBus)
         {
             _logger = logger;

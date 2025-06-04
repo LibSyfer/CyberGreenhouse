@@ -1,6 +1,6 @@
 ﻿namespace CyberGreenhouse.Irrigation.NutrientCompositionControlModule.Services
 {
-    public class TankParams
+    public class StateService
     {
         public TankState CurrentState { get; set; }
     }
