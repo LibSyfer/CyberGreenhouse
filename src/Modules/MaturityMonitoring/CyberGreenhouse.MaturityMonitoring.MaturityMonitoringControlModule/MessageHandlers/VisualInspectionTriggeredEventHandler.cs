@@ -7,11 +7,11 @@ namespace CyberGreenhouse.MaturityMonitoring.MaturityMonitoringControlModule.Mes
 {
     public class VisualInspectionTriggeredEventHandler : IMessageBusHandler<VisualInspectionTriggeredEvent>
     {
-        private readonly ILogger<StartMaturityMonitoringCommandHandler> _logger;
+        private readonly ILogger<VisualInspectionTriggeredEventHandler> _logger;
         private readonly StateService _stateService;
         private readonly IMessageBus _messageBus;
 
-        public VisualInspectionTriggeredEventHandler(ILogger<StartMaturityMonitoringCommandHandler> logger, StateService stateService, IMessageBus messageBus)
+        public VisualInspectionTriggeredEventHandler(ILogger<VisualInspectionTriggeredEventHandler> logger, StateService stateService, IMessageBus messageBus)
         {
             _logger = logger;
             _stateService = stateService;
