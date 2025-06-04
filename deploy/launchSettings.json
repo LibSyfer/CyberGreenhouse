@@ -13,7 +13,10 @@
         "air-humiditysensor-filter-module": "StartDebugging",
         "irrigation-control-module": "StartDebugging",
         "nutrient-composition-control-module": "StartDebugging",
-        "soil-humiditysensor-filter-module": "StartDebugging"
+        "soil-humiditysensor-filter-module": "StartDebugging",
+        "maturity-monitoring-control-module": "StartDebugging",
+        "time-control-module": "StartDebugging",
+        "visual-inspection-module": "StartDebugging"
       }
     }
   }
