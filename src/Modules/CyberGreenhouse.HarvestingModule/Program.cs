@@ -1,42 +1,90 @@
+using CyberGreenhouse.HarvestingModule.MessageHandlers;
+using CyberGreenhouse.HarvestingModule.Models;
+using CyberGreenhouse.HarvestingModule.Services;
+using CyberGreenhouse.MessageBus.Abstractions;
+using CyberGreenhouse.MessageBus.Common;
+using CyberGreenhouse.MessageBus.Contracts.Commands;
+using CyberGreenhouse.MessageBus.Contracts.Events.Harvesting;
+using CyberGreenhouse.MessageBus.Extensions;
+using CyberGreenhouse.MessageBus.RabbitMQ.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.Configure<HarvestingSettings>(builder.Configuration.GetSection(HarvestingSettings.Section));
+builder.Services.AddSingleton<StateService>();
+builder.Services.AddClientRabbitMqMessageBus(builder.Configuration, ModuleNames.PlantingModule)
+    .RegisterMessageHandler<StartHarvestingCommand, StartHarvestingCommandHandler>();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
-var summaries = new[]
+app.MapGet("/status", (StateService stateService) =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
+    return stateService.CurrentState switch
+    {
+        HarvestingStatus.NotInitiated => Results.BadRequest(new
+        {
+            Status = HarvestingStatus.Ready.ToString(),
+            Message = "Harvesting readiness is not initiated"
+        }),
+        HarvestingStatus.Ready => Results.Ok(new
+        {
+            Status = HarvestingStatus.Ready.ToString(),
+            Message = "Ready for harvesting"
+        }),
+        HarvestingStatus.Harvesting => Results.Ok(new
+        {
+            Code = HarvestingStatus.Harvesting.ToString(),
+            Message = "Harvesting in proccess"
+        }),
+        HarvestingStatus.Complete => Results.Ok(new
+        {
+            Code = HarvestingStatus.Complete,
+            Message = "Harvesting completed"
+        }),
+        _ => Results.BadRequest(new
+        {
+            Code = "Unknown",
+            Message = "Unknown state"
+        })
+    };
 })
-.WithName("GetWeatherForecast")
+.WithName("StatusHarvesting")
+.WithOpenApi();
+
+app.MapPost("/start-harvesting", (StateService stateService) =>
+{
+    if (stateService.CurrentState is not HarvestingStatus.Ready)
+    {
+        return Results.BadRequest($"Cannot start harvesting, state must be {HarvestingStatus.Ready.ToString()}, but in state: {stateService.CurrentState.ToString()}");
+    }
+
+    stateService.CurrentState = HarvestingStatus.Harvesting;
+    return Results.Ok("Harvesting start");
+})
+.WithName("StartHarvesting")
+.WithOpenApi();
+
+app.MapPost("/finish-harvesting", async (StateService stateService, IMessageBus messageBus, CancellationToken cancellationToken) =>
+{
+    if (stateService.CurrentState is not HarvestingStatus.Harvesting)
+    {
+        return Results.BadRequest($"Cannot finish harvesting, state must be {HarvestingStatus.Harvesting.ToString()}, but in state: {stateService.CurrentState.ToString()}");
+    }
+
+    stateService.CurrentState = HarvestingStatus.Complete;
+
+    await messageBus.SendAsync(ModuleNames.MainControl, new HarvestingCompleteEvent());
+
+    return Results.Ok("Harvesting completed");
+})
+.WithName("FinishHarvesting")
 .WithOpenApi();
 
 app.Run();
-
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
