@@ -19,10 +19,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{AA7CBE2B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.MainControl", "src\Modules\CyberGreenhouse.MainControl\CyberGreenhouse.MainControl.csproj", "{B6353E6E-B066-44BC-9989-0B0D78C9E4B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.Harvesting", "src\Modules\CyberGreenhouse.Harvesting\CyberGreenhouse.Harvesting.csproj", "{C5AFE4C5-7A12-43C2-9253-C033313E841B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.Planting", "src\Modules\CyberGreenhouse.Planting\CyberGreenhouse.Planting.csproj", "{520A0033-7C43-42DB-A491-1E6DE52907E8}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.Core", "src\Core\CyberGreenhouse.Core\CyberGreenhouse.Core.csproj", "{759DE37F-ED01-B968-3EB8-B60440150FD5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.PlantDataSignatureChecker", "src\Modules\CyberGreenhouse.PlantDataSignatureChecker\CyberGreenhouse.PlantDataSignatureChecker.csproj", "{3CECF9C9-D816-4D31-BBF0-8527BDE5AFC6}"
@@ -65,6 +61,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.MaturityMon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.MaturityMonitoring.TimeControlModule", "src\Modules\MaturityMonitoring\CyberGreenhouse.MaturityMonitoring.TimeControlModule\CyberGreenhouse.MaturityMonitoring.TimeControlModule.csproj", "{6D47EE2C-2905-4A7B-8E13-44F767E1EED8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.PlantingModule", "src\Modules\CyberGreenhouse.PlantingModule\CyberGreenhouse.PlantingModule.csproj", "{CF4E6199-72C3-41BB-A6C2-B8BD0BB1E22E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.HarvestingModule", "src\Modules\CyberGreenhouse.HarvestingModule\CyberGreenhouse.HarvestingModule.csproj", "{1B363B12-3982-4B55-993C-6CDD6AB0E7F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,14 +91,6 @@ Global
 		{B6353E6E-B066-44BC-9989-0B0D78C9E4B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6353E6E-B066-44BC-9989-0B0D78C9E4B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6353E6E-B066-44BC-9989-0B0D78C9E4B0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C5AFE4C5-7A12-43C2-9253-C033313E841B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C5AFE4C5-7A12-43C2-9253-C033313E841B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C5AFE4C5-7A12-43C2-9253-C033313E841B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C5AFE4C5-7A12-43C2-9253-C033313E841B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{520A0033-7C43-42DB-A491-1E6DE52907E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{520A0033-7C43-42DB-A491-1E6DE52907E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{520A0033-7C43-42DB-A491-1E6DE52907E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{520A0033-7C43-42DB-A491-1E6DE52907E8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{759DE37F-ED01-B968-3EB8-B60440150FD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{759DE37F-ED01-B968-3EB8-B60440150FD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{759DE37F-ED01-B968-3EB8-B60440150FD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -163,6 +155,14 @@ Global
 		{6D47EE2C-2905-4A7B-8E13-44F767E1EED8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D47EE2C-2905-4A7B-8E13-44F767E1EED8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D47EE2C-2905-4A7B-8E13-44F767E1EED8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF4E6199-72C3-41BB-A6C2-B8BD0BB1E22E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF4E6199-72C3-41BB-A6C2-B8BD0BB1E22E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF4E6199-72C3-41BB-A6C2-B8BD0BB1E22E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF4E6199-72C3-41BB-A6C2-B8BD0BB1E22E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B363B12-3982-4B55-993C-6CDD6AB0E7F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B363B12-3982-4B55-993C-6CDD6AB0E7F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B363B12-3982-4B55-993C-6CDD6AB0E7F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B363B12-3982-4B55-993C-6CDD6AB0E7F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -172,8 +172,6 @@ Global
 		{906255C8-A999-42FD-8069-7893D477B346} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
 		{95E38928-A8DC-40B5-B89C-F037EE0A24D2} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
 		{B6353E6E-B066-44BC-9989-0B0D78C9E4B0} = {B554F6C5-F485-4AE7-ADCA-C4406A946233}
-		{C5AFE4C5-7A12-43C2-9253-C033313E841B} = {B554F6C5-F485-4AE7-ADCA-C4406A946233}
-		{520A0033-7C43-42DB-A491-1E6DE52907E8} = {B554F6C5-F485-4AE7-ADCA-C4406A946233}
 		{759DE37F-ED01-B968-3EB8-B60440150FD5} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
 		{3CECF9C9-D816-4D31-BBF0-8527BDE5AFC6} = {B554F6C5-F485-4AE7-ADCA-C4406A946233}
 		{95A2B1BB-7D75-4016-A158-72C4B6BF1B13} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
@@ -194,6 +192,8 @@ Global
 		{06AB3AA7-6582-4262-B5BC-3B15610ED25E} = {D8648B9E-E0AC-4B66-941F-BE72D81EC4E5}
 		{0A3A15A0-A65E-4F5B-ABEA-42E1762D724E} = {D8648B9E-E0AC-4B66-941F-BE72D81EC4E5}
 		{6D47EE2C-2905-4A7B-8E13-44F767E1EED8} = {D8648B9E-E0AC-4B66-941F-BE72D81EC4E5}
+		{CF4E6199-72C3-41BB-A6C2-B8BD0BB1E22E} = {B554F6C5-F485-4AE7-ADCA-C4406A946233}
+		{1B363B12-3982-4B55-993C-6CDD6AB0E7F0} = {B554F6C5-F485-4AE7-ADCA-C4406A946233}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {013EA216-6DD7-4102-B990-6AB10C4CDEA9}

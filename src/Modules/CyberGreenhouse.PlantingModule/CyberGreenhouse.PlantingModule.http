@@ -1,0 +1,6 @@
+@CyberGreenhouse.PlantingModule_HostAddress = http://localhost:5075
+
+GET {{CyberGreenhouse.PlantingModule_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

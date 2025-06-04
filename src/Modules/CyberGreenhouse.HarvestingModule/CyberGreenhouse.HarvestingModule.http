@@ -1,0 +1,6 @@
+@CyberGreenhouse.HarvestingModule_HostAddress = http://localhost:5183
+
+GET {{CyberGreenhouse.HarvestingModule_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
