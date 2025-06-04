@@ -19,7 +19,7 @@ namespace CyberGreenhouse.MaturityMonitoring.MaturityMonitoringControlModule.Mes
         {
             if (_stateService.CurrentState is not MaturityMonitoringStatus.WaitTimeTrigger)
             {
-                _logger.LogWarning($"Cannot set params, already in state: {_stateService.CurrentState.ToString()}");
+                _logger.LogWarning($"Cannot set params, state must be {MaturityMonitoringStatus.WaitTimeTrigger.ToString()}, but in state: {_stateService.CurrentState.ToString()}");
                 return Task.CompletedTask;
             }
 
