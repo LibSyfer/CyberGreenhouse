@@ -61,7 +61,7 @@ namespace CyberGreenhouse.Irrigation.NutrientCompositionControlModule.MessageHan
             _logger.LogInformation("Finish mixing");
 
             _tankParams.CurrentState = TankState.NotWork;
-            await _messageBus.SendAsync(ModuleNames.NutrientCompositionControl, new FertilizerPreparationCompleteEvent());
+            await _messageBus.SendAsync(ModuleNames.IrrigationControl, new FertilizerPreparationCompleteEvent());
         }
     }
 }
