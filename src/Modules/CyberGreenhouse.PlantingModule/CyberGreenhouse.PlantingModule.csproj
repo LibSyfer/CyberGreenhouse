@@ -12,7 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="MessageHandlers\" />
+    <ProjectReference Include="..\..\Core\CyberGreenhouse.Core\CyberGreenhouse.Core.csproj" />
+    <ProjectReference Include="..\..\Core\CyberGreenhouse.MessageBus.Contracts\CyberGreenhouse.MessageBus.Contracts.csproj" />
+    <ProjectReference Include="..\..\Core\CyberGreenhouse.MessageBus.RabbitMQ\CyberGreenhouse.MessageBus.RabbitMQ.csproj" />
   </ItemGroup>
 
 </Project>
