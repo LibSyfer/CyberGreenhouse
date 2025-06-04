@@ -9,9 +9,9 @@
             _logger = logger;
         }
 
-        public void Supply(int fertilizerSection, double weightKg)
+        public void Supply()
         {
-            _logger.LogInformation($"Fertilizer supply kg: {weightKg} from section {fertilizerSection}");
+            _logger.LogInformation("Fertilizer supply");
         }
     }
 }
