@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-CyberGreenhouse.GrowingCycleControlModule-f1b42fe0-d390-4f6b-b00b-f1707a487625</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\CyberGreenhouse.Core\CyberGreenhouse.Core.csproj" />
+    <ProjectReference Include="..\..\Core\CyberGreenhouse.MessageBus.Contracts\CyberGreenhouse.MessageBus.Contracts.csproj" />
+    <ProjectReference Include="..\..\Core\CyberGreenhouse.MessageBus.RabbitMQ\CyberGreenhouse.MessageBus.RabbitMQ.csproj" />
+  </ItemGroup>
+</Project>
