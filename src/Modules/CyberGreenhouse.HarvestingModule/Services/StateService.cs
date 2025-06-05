@@ -6,7 +6,7 @@
 
         public StateService()
         {
-            CurrentState = HarvestingStatus.Ready;
+            CurrentState = HarvestingStatus.NotInitiated;
         }
     }
 
