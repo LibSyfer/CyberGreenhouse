@@ -12,14 +12,16 @@ namespace CyberGreenhouse.MessageBus.Contracts.Events
 
         public int LightDuration { get; set; }                      //Продолжительность светового дня в часах
 
-        public double TemperatureDay { get; set; }                  //Температура днем в цельсиях
+        public double AirTemperature { get; set; }                  // Температура воздуха
 
-        public double TemperatureNight { get; set; }                //Температура ночью в цельсиях
+        public double WaterTemperature { get; set; }                // Температура воды полива
 
-        public double HumidityLevel { get; set; }                   //Уровень влажности в процентах
+        public double HumidityLevel { get; set; } = 0;               // Влажность воздуха
 
-        public double WateringFrequency { get; set; }               //Частота полива в днях
+        public double SoilHumidity { get; set; }                    // Влажность почвы
 
-        public string FertilizerType { get; set; } = string.Empty;  //Тип удобрения
+        public double FertilizerConcentrationPpm { get; set; }      // Концентрация удобрений
+
+        public int MinGrowthSeconds { get; set; }                   // Минимальный период роста
     }
 }

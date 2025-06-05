@@ -79,11 +79,12 @@ namespace CyberGreenhouse.PlantDataSignatureChecker
                 TomatoId = growingParams.TomatoId,
                 LightIntensity = growingParams.LightIntensity,
                 LightDuration = growingParams.LightDuration,
-                TemperatureDay = growingParams.TemperatureDay,
-                TemperatureNight = growingParams.TemperatureNight,
+                AirTemperature = growingParams.AirTemperature,
+                WaterTemperature = growingParams.WaterTemperature,
                 HumidityLevel = growingParams.HumidityLevel,
-                WateringFrequency = growingParams.WateringFrequency,
-                FertilizerType = growingParams.FertilizerType
+                SoilHumidity = growingParams.SoilHumidity,
+                FertilizerConcentrationPpm = growingParams.FertilizerConcentrationPpm,
+                MinGrowthSeconds = growingParams.MinGrowthSeconds
             },
             cancellationToken);
         }

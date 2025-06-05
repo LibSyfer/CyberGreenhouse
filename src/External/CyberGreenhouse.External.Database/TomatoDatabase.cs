@@ -1,4 +1,6 @@
-﻿namespace CyberGreenhouse.External.Database
+﻿using CyberGreenhouse.Core;
+
+namespace CyberGreenhouse.External.Database
 {
     public static class TomatoDatabase
     {
@@ -15,61 +17,40 @@
             {
                 Id = Guid.Parse("DF30DBEC-E088-4A62-A788-A023ED744029"),
                 TomatoId = Tomatos[0].Id,
-                LightIntensity = 30000,             // 30 000 люксов
-                LightDuration = 14,                 // 14 часов светового дня
-                TemperatureDay = 25,                // 25 °C днем
-                TemperatureNight = 18,              // 18 °C ночью
-                HumidityLevel = 70,                 // 70% влажности
-                WateringFrequency = 2,              // Полив каждые 2 дня
-                FertilizerType = "NPK 20-20-20",    // Сбалансированное удобрение
+                LightIntensity = 35,        // 20 - 70
+                LightDuration = 14,         // 10 - 20
+                AirTemperature = 25,        // 20 - 40
+                WaterTemperature = 23,      // 20 - 40
+                HumidityLevel = 80,         // 20 - 80
+                SoilHumidity = 65,          // 60 - 80
+                FertilizerConcentrationPpm = 30,
+                MinGrowthSeconds = 180
             },
             new PlantGrowingParams
             {
                 Id = Guid.Parse("629A58D6-1C63-4B19-B15D-4E131CB48F4B"),
                 TomatoId = Tomatos[0].Id,
-                LightIntensity = 50000,             // 50 000 люксов (естественный солнечный свет)
-                LightDuration = 12,                 // 12 часов светового дня
-                TemperatureDay = 28,                // 28 °C днем
-                TemperatureNight = 20,              // 20 °C ночью
-                HumidityLevel = 60,                 // 60% влажности
-                WateringFrequency = 3,              // Полив каждые 3 дня
-                FertilizerType = "Компост",         // Органическое удобрение
+                LightIntensity = 40,
+                LightDuration = 12,
+                AirTemperature = 38,
+                WaterTemperature = 20,
+                HumidityLevel = 60,
+                SoilHumidity = 73,
+                FertilizerConcentrationPpm = 55,
+                MinGrowthSeconds = 120
             },
             new PlantGrowingParams
             {
                 Id = Guid.Parse("0E8D8080-FA13-4448-B134-472C6101387C"),
                 TomatoId = Tomatos[1].Id,
-                LightIntensity = 15000,             // 15 000 люксов
-                LightDuration = 12,                 // 12 часов светового дня
-                TemperatureDay = 20,                // 20 °C днем
-                TemperatureNight = 16,              // 16 °C ночью
-                HumidityLevel = 75,                 // 75% влажности
-                WateringFrequency = 1,              // Полив каждый день
-                FertilizerType = "Азотное",         // Удобрение с высоким содержанием азота
-            },
-            new PlantGrowingParams
-            {
-                Id = Guid.Parse("A2440942-AA5F-4323-B97B-7677687BA720"),
-                TomatoId = Tomatos[1].Id,
-                LightIntensity = 40000,             // 40 000 люксов
-                LightDuration = 14,                 // 14 часов светового дня
-                TemperatureDay = 26,                // 26 °C днем
-                TemperatureNight = 19,              // 19 °C ночью
-                HumidityLevel = 65,                 // 65% влажности
-                WateringFrequency = 2,              // Полив каждые 2 дня
-                FertilizerType = "Калийное",        // Удобрение с высоким содержанием калия
-            },
-            new PlantGrowingParams
-            {
-                Id = Guid.Parse("02791717-4E57-4C88-98F5-177B5B978FAF"),
-                TomatoId = Tomatos[2].Id,
-                LightIntensity = 35000,             // 35 000 люксов
-                LightDuration = 12,                 // 12 часов светового дня
-                TemperatureDay = 32,                // 32 °C днем
-                TemperatureNight = 25,              // 25 °C ночью
-                HumidityLevel = 50,                 // 50% влажности
-                WateringFrequency = 1,              // Полив каждый день
-                FertilizerType = "Фосфорное",       // Удобрение с высоким содержанием фосфора
+                LightIntensity = 67,
+                LightDuration = 18,
+                AirTemperature = 30,
+                WaterTemperature = 38,
+                HumidityLevel = 55,
+                SoilHumidity = 64,
+                FertilizerConcentrationPpm = 66,
+                MinGrowthSeconds = 60
             }
         ];
     }

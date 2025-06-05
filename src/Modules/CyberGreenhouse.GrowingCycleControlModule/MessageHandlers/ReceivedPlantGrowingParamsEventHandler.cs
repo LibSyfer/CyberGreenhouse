@@ -36,11 +36,12 @@ namespace CyberGreenhouse.GrowingCycleControlModule.MessageHandlers
                 TomatoId = message.TomatoId,
                 LightIntensity = message.LightIntensity,
                 LightDuration = message.LightDuration,
-                TemperatureDay = message.TemperatureDay,
-                TemperatureNight = message.TemperatureNight,
+                AirTemperature = message.AirTemperature,
+                WaterTemperature = message.WaterTemperature,
                 HumidityLevel = message.HumidityLevel,
-                WateringFrequency = message.WateringFrequency,
-                FertilizerType = message.FertilizerType
+                SoilHumidity = message.SoilHumidity,
+                FertilizerConcentrationPpm = message.FertilizerConcentrationPpm,
+                MinGrowthSeconds = message.MinGrowthSeconds
             };
 
             _stateService.PlantGrowingParams = growingParams;
@@ -50,11 +51,11 @@ namespace CyberGreenhouse.GrowingCycleControlModule.MessageHandlers
             {
                 LightIntensity = message.LightIntensity,
                 LightDuration = message.LightDuration,
-                AirTemperature = 0,
-                WaterTemperature = 0,
+                AirTemperature = message.AirTemperature,
+                WaterTemperature = message.WaterTemperature,
                 HumidityLevel = message.HumidityLevel,
-                SoilHumidity = 0,
-                FertilizerConcentrationPpm = 0
+                SoilHumidity = message.SoilHumidity,
+                FertilizerConcentrationPpm = message.FertilizerConcentrationPpm
             });
 
             _logger.LogInformation($"Initiate planting");
