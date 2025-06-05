@@ -1,6 +1,6 @@
 using CyberGreenhouse.MessageBus.Abstractions;
 using CyberGreenhouse.MessageBus.Common;
-using CyberGreenhouse.MessageBus.Contracts.Commands;
+using CyberGreenhouse.MessageBus.Contracts.Commands.Planting;
 using CyberGreenhouse.MessageBus.Contracts.Events.Planting;
 using CyberGreenhouse.MessageBus.Extensions;
 using CyberGreenhouse.MessageBus.RabbitMQ.Extensions;
@@ -45,7 +45,7 @@ app.MapGet("/status", (StateService stateService) =>
         }),
         PlantingStatus.Complete => Results.Ok(new
         {
-            Code = PlantingStatus.Complete,
+            Code = PlantingStatus.Complete.ToString(),
             Message = "Planting completed"
         }),
         _ => Results.BadRequest(new

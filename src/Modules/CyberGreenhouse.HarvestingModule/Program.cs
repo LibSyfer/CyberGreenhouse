@@ -3,7 +3,7 @@ using CyberGreenhouse.HarvestingModule.Models;
 using CyberGreenhouse.HarvestingModule.Services;
 using CyberGreenhouse.MessageBus.Abstractions;
 using CyberGreenhouse.MessageBus.Common;
-using CyberGreenhouse.MessageBus.Contracts.Commands;
+using CyberGreenhouse.MessageBus.Contracts.Commands.Harvesting;
 using CyberGreenhouse.MessageBus.Contracts.Events.Harvesting;
 using CyberGreenhouse.MessageBus.Extensions;
 using CyberGreenhouse.MessageBus.RabbitMQ.Extensions;
@@ -45,7 +45,7 @@ app.MapGet("/status", (StateService stateService) =>
         }),
         HarvestingStatus.Complete => Results.Ok(new
         {
-            Code = HarvestingStatus.Complete,
+            Code = HarvestingStatus.Complete.ToString(),
             Message = "Harvesting completed"
         }),
         _ => Results.BadRequest(new
