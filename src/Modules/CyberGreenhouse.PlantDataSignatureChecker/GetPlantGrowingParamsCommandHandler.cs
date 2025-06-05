@@ -2,6 +2,7 @@
 using CyberGreenhouse.MessageBus.Abstractions;
 using CyberGreenhouse.MessageBus.Common;
 using CyberGreenhouse.MessageBus.Contracts.Commands;
+using CyberGreenhouse.MessageBus.Contracts.Commands.EmergencyStopModule;
 using CyberGreenhouse.MessageBus.Contracts.Events;
 using System.Text.Json;
 
@@ -33,9 +34,10 @@ namespace CyberGreenhouse.PlantDataSignatureChecker
             {
                 _logger.LogCritical("Signature of data from database not exists. Send abord command...");
 
-                await _messageBus.SendAsync(ModuleNames.MainControl, new AbordCommand
+                await _messageBus.SendAsync(ModuleNames.MainControl, new AbordSystemCommand
                 {
-                    Message = "Signature of data from database not exists"
+                    ModuleName = ModuleNames.PlantDataSignatureChecker,
+                    ErrorMessage = "Signature of data from database not exists"
                 },
                 cancellationToken);
 
@@ -46,9 +48,10 @@ namespace CyberGreenhouse.PlantDataSignatureChecker
             {
                 _logger.LogCritical("Wrong signature of data from database. Send abord command...");
 
-                await _messageBus.SendAsync(ModuleNames.MainControl, new AbordCommand
+                await _messageBus.SendAsync(ModuleNames.MainControl, new AbordSystemCommand
                 {
-                    Message = "Wrong signature of data from database"
+                    ModuleName = ModuleNames.PlantDataSignatureChecker,
+                    ErrorMessage = "Wrong signature of data from database"
                 },
                 cancellationToken);
 
@@ -60,9 +63,10 @@ namespace CyberGreenhouse.PlantDataSignatureChecker
             {
                 _logger.LogCritical("Data cannot be deserialize. Send abord command...");
 
-                await _messageBus.SendAsync(ModuleNames.MainControl, new AbordCommand
+                await _messageBus.SendAsync(ModuleNames.MainControl, new AbordSystemCommand
                 {
-                    Message = "Data cannot be deserialize"
+                    ModuleName = ModuleNames.PlantDataSignatureChecker,
+                    ErrorMessage = "Data cannot be deserialize"
                 },
                 cancellationToken);
 
@@ -70,7 +74,7 @@ namespace CyberGreenhouse.PlantDataSignatureChecker
             }
 
             _logger.LogInformation("Send getted growing params");
-            await _messageBus.SendAsync(ModuleNames.MainControl, new GettedPlantGrowingParamsEvent
+            await _messageBus.SendAsync(ModuleNames.MainControl, new ReceivedPlantGrowingParamsEvent
             {
                 ParamId = growingParams.Id,
                 TomatoId = growingParams.TomatoId,
