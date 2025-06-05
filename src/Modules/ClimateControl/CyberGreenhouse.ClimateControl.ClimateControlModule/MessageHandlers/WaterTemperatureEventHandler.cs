@@ -29,9 +29,7 @@ namespace CyberGreenhouse.ClimateControl.ClimateControlModule.MessageHandlers
 
         public async Task Handle(WaterTemperatureEvent message, CancellationToken cancellationToken = default)
         {
-
-            if (message.Temperature < (_requiredClimateSettings.RequiredWaterTemperature - _climateSettings.DeviationWaterTemperature)
-                || message.Temperature > (_requiredClimateSettings.RequiredWaterTemperature + _climateSettings.DeviationWaterTemperature))
+            if (message.Temperature < _climateSettings.MinWaterTemperature || message.Temperature > _climateSettings.MaxWaterTemperature)
             {
                 if (_requiredClimateSettings.CurrentWaterStabilizationAttempt == _requiredClimateSettings.StabilizationAttempts)
                 {
@@ -43,31 +41,21 @@ namespace CyberGreenhouse.ClimateControl.ClimateControlModule.MessageHandlers
 
                     return;
                 }
+                _logger.LogError($"Dangerous water temperature ({message.Temperature}). Try stabilize. Attempt: {_requiredClimateSettings.CurrentWaterStabilizationAttempt + 1}/{_requiredClimateSettings.StabilizationAttempts}");
+                _requiredClimateSettings.CurrentWaterStabilizationAttempt++;
+            }
 
-                if (message.Temperature < (_requiredClimateSettings.RequiredWaterTemperature - _climateSettings.DeviationWaterTemperature))
-                {
-                    if (message.Temperature < _climateSettings.MinWaterTemperature)
-                    {
-                        _logger.LogError("Dangerous water temperature");
-                    }
-
-                    _requiredClimateSettings.CurrentWaterStabilizationAttempt++;
-                    _heatingWaterControllerService.Heat();
-                }
-                else if (message.Temperature > (_requiredClimateSettings.RequiredWaterTemperature + _climateSettings.DeviationWaterTemperature))
-                {
-                    if (message.Temperature > _climateSettings.MaxWaterTemperature)
-                    {
-                        _logger.LogError("Dangerous water temperature");
-                    }
-
-                    _requiredClimateSettings.CurrentWaterStabilizationAttempt++;
-                    _freezingWaterControllerService.Freez();
-                }
-                else
-                {
-                    _requiredClimateSettings.CurrentWaterStabilizationAttempt = 0;
-                }
+            if (message.Temperature < (_requiredClimateSettings.RequiredWaterTemperature - _climateSettings.DeviationWaterTemperature))
+            {
+                _heatingWaterControllerService.Heat();
+            }
+            else if (message.Temperature > (_requiredClimateSettings.RequiredWaterTemperature + _climateSettings.DeviationWaterTemperature))
+            {
+                _freezingWaterControllerService.Freez();
+            }
+            else
+            {
+                _requiredClimateSettings.CurrentWaterStabilizationAttempt = 0;
             }
         }
     }

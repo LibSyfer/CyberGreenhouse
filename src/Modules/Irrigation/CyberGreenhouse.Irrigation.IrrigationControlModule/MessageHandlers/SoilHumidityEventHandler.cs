@@ -37,8 +37,7 @@ namespace CyberGreenhouse.Irrigation.IrrigationControlModule.MessageHandlers
         {
             if (_stateService.CurrentState is not IrrigationStatus.Work) return;
 
-            if (message.CurrentSoilHumidity < (_requiredIrrigationSettings.RequiredSoilHumidity - _irrigationSettings.DeviationSoilHumidity)
-                || message.CurrentSoilHumidity > (_requiredIrrigationSettings.RequiredSoilHumidity + _irrigationSettings.DeviationSoilHumidity))
+            if (message.CurrentSoilHumidity < _irrigationSettings.MinSoilHumidity)
             {
                 if (_requiredIrrigationSettings.CurrentSoilHumidityStabilizationAttempt == _requiredIrrigationSettings.StabilizationAttempts)
                 {
@@ -50,21 +49,21 @@ namespace CyberGreenhouse.Irrigation.IrrigationControlModule.MessageHandlers
 
                     return;
                 }
+                _logger.LogError($"Dangerous soil humidity. Try stabilize. Attempt: {_requiredIrrigationSettings.CurrentSoilHumidityStabilizationAttempt + 1}/{_requiredIrrigationSettings.StabilizationAttempts}");
+                _requiredIrrigationSettings.CurrentSoilHumidityStabilizationAttempt++;
+            }
 
-                if (message.CurrentSoilHumidity < (_requiredIrrigationSettings.RequiredSoilHumidity - _irrigationSettings.DeviationSoilHumidity))
-                {
-                    if (message.CurrentSoilHumidity < _irrigationSettings.MinSoilHumidity)
-                    {
-                        _logger.LogError("Dangerous soil humidity");
-                    }
-
-                    _requiredIrrigationSettings.CurrentSoilHumidityStabilizationAttempt++;
-                    _dripIrrigationControllerService.Drip();
-                }
-                else
-                {
-                    _requiredIrrigationSettings.CurrentSoilHumidityStabilizationAttempt = 0;
-                }
+            if (message.CurrentSoilHumidity < (_requiredIrrigationSettings.RequiredSoilHumidity - _irrigationSettings.DeviationSoilHumidity))
+            {
+                _dripIrrigationControllerService.Drip();
+            }
+            else if (message.CurrentSoilHumidity > (_requiredIrrigationSettings.RequiredSoilHumidity + _irrigationSettings.DeviationSoilHumidity))
+            {
+                //
+            }
+            else
+            {
+                _requiredIrrigationSettings.CurrentSoilHumidityStabilizationAttempt = 0;
             }
         }
     }

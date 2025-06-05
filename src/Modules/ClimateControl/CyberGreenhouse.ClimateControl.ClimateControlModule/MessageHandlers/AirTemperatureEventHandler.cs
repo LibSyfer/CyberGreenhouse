@@ -29,9 +29,7 @@ namespace CyberGreenhouse.ClimateControl.ClimateControlModule.MessageHandlers
 
         public async Task Handle(AirTemperatureEvent message, CancellationToken cancellationToken = default)
         {
-
-            if (message.Temperature < (_requiredClimateSettings.RequiredAirTemperature - _climateSettings.DeviationAirTemperature)
-                || message.Temperature > (_requiredClimateSettings.RequiredAirTemperature + _climateSettings.DeviationAirTemperature))
+            if (message.Temperature < _climateSettings.MinAirTemperature || message.Temperature > _climateSettings.MaxAirTemperature)
             {
                 if (_requiredClimateSettings.CurrentAirStabilizationAttempt == _requiredClimateSettings.StabilizationAttempts)
                 {
@@ -43,31 +41,21 @@ namespace CyberGreenhouse.ClimateControl.ClimateControlModule.MessageHandlers
 
                     return;
                 }
+                _logger.LogError($"Dangerous air temperature ({message.Temperature}). Try stabilize. Attempt: {_requiredClimateSettings.CurrentAirStabilizationAttempt + 1}/{_requiredClimateSettings.StabilizationAttempts}");
+                _requiredClimateSettings.CurrentAirStabilizationAttempt++;
+            }
 
-                if (message.Temperature < (_requiredClimateSettings.RequiredAirTemperature - _climateSettings.DeviationAirTemperature))
-                {
-                    if (message.Temperature < _climateSettings.MinAirTemperature)
-                    {
-                        _logger.LogError("Dangerous air temperature");
-                    }
-
-                    _requiredClimateSettings.CurrentAirStabilizationAttempt++;
-                    _heatingAirControllerService.Heat();
-                }
-                else if (message.Temperature > (_requiredClimateSettings.RequiredAirTemperature + _climateSettings.DeviationAirTemperature))
-                {
-                    if (message.Temperature > _climateSettings.MaxAirTemperature)
-                    {
-                        _logger.LogError("Dangerous air temperature");
-                    }
-
-                    _requiredClimateSettings.CurrentAirStabilizationAttempt++;
-                    _freezingAirControllerService.Freez();
-                }
-                else
-                {
-                    _requiredClimateSettings.CurrentAirStabilizationAttempt = 0;
-                }
+            if (message.Temperature < (_requiredClimateSettings.RequiredAirTemperature - _climateSettings.DeviationAirTemperature))
+            {
+                _heatingAirControllerService.Heat();
+            }
+            else if (message.Temperature > (_requiredClimateSettings.RequiredAirTemperature + _climateSettings.DeviationAirTemperature))
+            {
+                _freezingAirControllerService.Freez();
+            }
+            else
+            {
+                _requiredClimateSettings.CurrentAirStabilizationAttempt = 0;
             }
         }
     }

@@ -9,9 +9,7 @@
         {
             SensorsData = new List<double>()
             {
-                0,
-                2.2,
-                3.6,
+                10.0,
                 31.3,
                 38.7,
                 40.1,

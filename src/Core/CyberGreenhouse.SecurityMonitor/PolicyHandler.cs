@@ -81,9 +81,21 @@ namespace CyberGreenhouse.SecurityMonitor
                 authorizeAction = true;
 
             if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(StartMaturityMonitoringCommand),
+                sourceModule: ModuleNames.GrowingCycleControlModule,
+                destinationModule: ModuleNames.MaturityMonitoringControl))
+                authorizeAction = true;
+
+            if (monitorHeaders.AuthorizeAction(
                 actionName: nameof(StartHarvestingCommand),
                 sourceModule: ModuleNames.GrowingCycleControlModule,
                 destinationModule: ModuleNames.HarvestingModule))
+                authorizeAction = true;
+
+            if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(GrowingCompleteEvent),
+                sourceModule: ModuleNames.GrowingCycleControlModule,
+                destinationModule: ModuleNames.MainControl))
                 authorizeAction = true;
 
             // From PlantDataSignatureChecker
@@ -155,6 +167,12 @@ namespace CyberGreenhouse.SecurityMonitor
                 actionName: nameof(VisualInspectionTriggeredEvent),
                 sourceModule: ModuleNames.VisualInspection,
                 destinationModule: ModuleNames.MaturityMonitoringControl))
+                authorizeAction = true;
+
+            if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(MaturityCompletedEvent),
+                sourceModule: ModuleNames.MaturityMonitoringControl,
+                destinationModule: ModuleNames.GrowingCycleControlModule))
                 authorizeAction = true;
 
             // From Planting

@@ -27,7 +27,7 @@ namespace CyberGreenhouse.MaturityMonitoring.MaturityMonitoringControlModule.Mes
             }
 
             _logger.LogInformation("Maturity completed");
-            await _messageBus.SendAsync(ModuleNames.MainControl, new MaturityCompletedEvent());
+            await _messageBus.SendAsync(ModuleNames.GrowingCycleControlModule, new MaturityCompletedEvent());
 
             _stateService.CurrentState = MaturityMonitoringStatus.NotWork;
         }

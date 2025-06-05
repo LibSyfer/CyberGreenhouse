@@ -64,9 +64,10 @@ app.MapPost("/grow", async (IMessageBus messageBus, Guid paramsId, StateService 
         return Results.BadRequest($"Cannot start growing, state must be {MainControlStatus.Ready.ToString()}, but in state: {stateService.CurrentState.ToString()}");
     }
 
+    stateService.CurrentState = MainControlStatus.Growing;
     await messageBus.SendAsync(ModuleNames.GrowingCycleControlModule, new StartGrowingCycleCommand
     {
-        Id = paramsId,
+        ParamId = paramsId,
     });
 
     return Results.Ok();

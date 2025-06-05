@@ -26,9 +26,9 @@ namespace CyberGreenhouse.GrowingCycleControlModule.MessageHandlers
                 return;
             }
 
-            _stateService.CurrentState = GrowingCycleStatus.Complete;
-            _logger.LogInformation("Growing complete");
-            await _messageBus.SendAsync(ModuleNames.MainControl, new GetPlantGrowingParamsCommand
+            _stateService.CurrentState = GrowingCycleStatus.GettingParams;
+            _logger.LogInformation("Getting params");
+            await _messageBus.SendAsync(ModuleNames.PlantDataSignatureChecker, new GetPlantGrowingParamsCommand
             {
                 ParamId = message.ParamId,
             });

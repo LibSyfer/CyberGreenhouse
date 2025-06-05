@@ -12,7 +12,7 @@ using CyberGreenhouse.MessageBus.RabbitMQ.Extensions;
 var builder = Host.CreateApplicationBuilder(args);
 
 builder.Services.AddSingleton<StateService>();
-builder.Services.AddClientRabbitMqMessageBus(builder.Configuration, ModuleNames.MainControl)
+builder.Services.AddClientRabbitMqMessageBus(builder.Configuration, ModuleNames.GrowingCycleControlModule)
     .RegisterMessageHandler<StartGrowingCycleCommand, StartGrowingCycleCommandHandler>()
     .RegisterMessageHandler<ReceivedPlantGrowingParamsEvent, ReceivedPlantGrowingParamsEventHandler>()
     .RegisterMessageHandler<PlantingCompleteEvent, PlantingCompleteEventHandler>()

@@ -27,9 +27,7 @@ namespace CyberGreenhouse.ClimateControl.ClimateControlModule.MessageHandlers
 
         public async Task Handle(AirHumidityEvent message, CancellationToken cancellationToken = default)
         {
-
-            if (message.Humidity < (_requiredClimateSettings.RequiredHumidityLevel - _climateSettings.DeviationHumidityLevel)
-                || message.Humidity > (_requiredClimateSettings.RequiredHumidityLevel + _climateSettings.DeviationHumidityLevel))
+            if (message.Humidity < _climateSettings.MinHumidityLevel || message.Humidity > _climateSettings.MaxHumidityLevel)
             {
                 if (_requiredClimateSettings.CurrentHumidityStabilizationAttempt == _requiredClimateSettings.StabilizationAttempts)
                 {
@@ -41,31 +39,21 @@ namespace CyberGreenhouse.ClimateControl.ClimateControlModule.MessageHandlers
 
                     return;
                 }
+                _logger.LogError($"Dangerous humidity level ({message.Humidity}). Try stabilize. Attempt: {_requiredClimateSettings.CurrentHumidityStabilizationAttempt + 1}/{_requiredClimateSettings.StabilizationAttempts}");
+                _requiredClimateSettings.CurrentHumidityStabilizationAttempt++;
+            }
 
-                if (message.Humidity < (_requiredClimateSettings.RequiredHumidityLevel - _climateSettings.DeviationHumidityLevel))
-                {
-                    if (message.Humidity < _climateSettings.MinHumidityLevel)
-                    {
-                        _logger.LogError("Dangerous humidity level");
-                    }
-
-                    _requiredClimateSettings.CurrentHumidityStabilizationAttempt++;
-                    _humiditingAirControllerService.Increase();
-                }
-                else if (message.Humidity > (_requiredClimateSettings.RequiredHumidityLevel + _climateSettings.DeviationHumidityLevel))
-                {
-                    if (message.Humidity > _climateSettings.MaxHumidityLevel)
-                    {
-                        _logger.LogError("Dangerous humidity level");
-                    }
-
-                    _requiredClimateSettings.CurrentHumidityStabilizationAttempt++;
-                    _humiditingAirControllerService.Decrease();
-                }
-                else
-                {
-                    _requiredClimateSettings.CurrentHumidityStabilizationAttempt = 0;
-                }
+            if (message.Humidity < (_requiredClimateSettings.RequiredHumidityLevel - _climateSettings.DeviationHumidityLevel))
+            {
+                _humiditingAirControllerService.Increase();
+            }
+            else if (message.Humidity > (_requiredClimateSettings.RequiredHumidityLevel + _climateSettings.DeviationHumidityLevel))
+            {
+                _humiditingAirControllerService.Decrease();
+            }
+            else
+            {
+                _requiredClimateSettings.CurrentHumidityStabilizationAttempt = 0;
             }
         }
     }

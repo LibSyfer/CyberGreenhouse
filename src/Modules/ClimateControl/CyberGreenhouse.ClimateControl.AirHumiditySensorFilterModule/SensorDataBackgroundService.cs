@@ -6,12 +6,14 @@ namespace CyberGreenhouse.ClimateControl.AirHumiditySensorFilterModule
 {
     public class SensorDataBackgroundService : BackgroundService
     {
+        private readonly ILogger<SensorDataBackgroundService> _logger;
         private readonly AirHumiditySensor _sensors;
         private readonly IMessageBus _messageBus;
         private readonly int _sensorsCount;
 
-        public SensorDataBackgroundService(AirHumiditySensor sensors, IMessageBus messageBus, int sensorsCount = 3)
+        public SensorDataBackgroundService(ILogger<SensorDataBackgroundService> logger, AirHumiditySensor sensors, IMessageBus messageBus, int sensorsCount = 3)
         {
+            _logger = logger;
             _sensors = sensors;
             _messageBus = messageBus;
             _sensorsCount = sensorsCount;
@@ -25,7 +27,9 @@ namespace CyberGreenhouse.ClimateControl.AirHumiditySensorFilterModule
                 foreach (var _ in Enumerable.Range(1, _sensorsCount))
                     humidityeData.Add(_sensors.GetSensorData());
 
+                _logger.LogInformation($"Selected {_sensorsCount} values: {string.Join(" ", humidityeData)}");
                 var currentHumidity = AvarageFilter(humidityeData);
+                _logger.LogInformation($"Selected value: {currentHumidity}");
 
                 await _messageBus.SendAsync(ModuleNames.ClimateControl, new AirHumidityEvent
                 {

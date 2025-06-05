@@ -4,11 +4,17 @@ namespace CyberGreenhouse.Irrigation.IrrigationControlModule.Models
 {
     public class RequiredIrrigationSettings
     {
-        public RequiredIrrigationSettings(IOptions<IrrigationSettings> irrigationSettingsOpt, int stabilizationAttempts = 7)
+        private readonly ILogger<RequiredIrrigationSettings> _logger;
+
+        public RequiredIrrigationSettings(ILogger<RequiredIrrigationSettings> logger, IOptions<IrrigationSettings> irrigationSettingsOpt, int stabilizationAttempts = 7)
         {
+            _logger = logger;
+
             var irrigationSettings = irrigationSettingsOpt.Value;
             RequiredSoilHumidity = AvarageValue(irrigationSettings.MinSoilHumidity, irrigationSettings.MaxSoilHumidity);
             RequiredFertilizerConcentrationPpm = AvarageValue(irrigationSettings.MinFertilizerConcentrationPpm, irrigationSettings.MaxFertilizerConcentrationPpm);
+
+            _logger.LogInformation($"Set required params SoilHumidity: {RequiredSoilHumidity}, FertilizerConcentrationPpm: {RequiredFertilizerConcentrationPpm}");
 
             CurrentSoilHumidityStabilizationAttempt = 0;
             StabilizationAttempts = stabilizationAttempts;
