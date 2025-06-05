@@ -1,0 +1,27 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "security-monitor": "StartDebugging",
+        "growing-cycle-control-module": "StartDebugging",
+        "lighting-control-module": "StartDebugging",
+        "light-sensor-filter-module": "StartDebugging",
+        "climate-control-module": "StartDebugging",
+        "air-termosensor-filter-module": "StartDebugging",
+        "water-termosensor-filter-module": "StartDebugging",
+        "air-humiditysensor-filter-module": "StartDebugging",
+        "irrigation-control-module": "StartDebugging",
+        "nutrient-composition-control-module": "StartDebugging",
+        "soil-humiditysensor-filter-module": "StartDebugging",
+        "maturity-monitoring-control-module": "StartDebugging",
+        "time-control-module": "StartDebugging",
+        "visual-inspection-module": "StartDebugging",
+        "harvesting-module": "StartDebugging",
+        "planting-module": "StartDebugging",
+        "emergency-stop-module": "StartDebugging"
+      }
+    }
+  }
+}

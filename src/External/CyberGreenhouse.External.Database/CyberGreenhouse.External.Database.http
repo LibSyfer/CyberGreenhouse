@@ -1,0 +1,6 @@
+@CyberGreenhouse.External.Database_HostAddress = http://localhost:5289
+
+GET {{CyberGreenhouse.External.Database_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
