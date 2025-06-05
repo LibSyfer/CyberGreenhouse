@@ -5,6 +5,7 @@
       "commandVersion": "1.0",
       "serviceActions": {
         "security-monitor": "StartDebugging",
+        "growing-cycle-control-module": "StartDebugging",
         "lighting-control-module": "StartDebugging",
         "light-sensor-filter-module": "StartDebugging",
         "climate-control-module": "StartDebugging",
