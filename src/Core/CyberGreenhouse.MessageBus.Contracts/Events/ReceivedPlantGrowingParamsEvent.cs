@@ -2,7 +2,7 @@
 
 namespace CyberGreenhouse.MessageBus.Contracts.Events
 {
-    public class GettedPlantGrowingParamsEvent : BusMessage
+    public class ReceivedPlantGrowingParamsEvent : BusMessage
     {
         public Guid ParamId { get; set; }
 

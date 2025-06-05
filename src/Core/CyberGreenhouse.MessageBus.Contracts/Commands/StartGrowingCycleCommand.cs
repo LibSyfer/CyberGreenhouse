@@ -2,8 +2,8 @@
 
 namespace CyberGreenhouse.MessageBus.Contracts.Commands
 {
-    public class AbordCommand : BusMessage
+    public class StartGrowingCycleCommand : BusMessage
     {
-        public string Message { get; set; }
+        public Guid ParamId { get; set; }
     }
 }
