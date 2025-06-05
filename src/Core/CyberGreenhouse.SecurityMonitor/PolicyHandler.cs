@@ -1,8 +1,10 @@
 ﻿using CyberGreenhouse.Core;
 using CyberGreenhouse.MessageBus.Abstractions;
 using CyberGreenhouse.MessageBus.Contracts.Commands;
+using CyberGreenhouse.MessageBus.Contracts.Commands.ClimateModule;
 using CyberGreenhouse.MessageBus.Contracts.Commands.Harvesting;
 using CyberGreenhouse.MessageBus.Contracts.Commands.Irrigation;
+using CyberGreenhouse.MessageBus.Contracts.Commands.LightingModule;
 using CyberGreenhouse.MessageBus.Contracts.Commands.MaturityMonitoring;
 using CyberGreenhouse.MessageBus.Contracts.Commands.Planting;
 using CyberGreenhouse.MessageBus.Contracts.Events;
@@ -33,24 +35,71 @@ namespace CyberGreenhouse.SecurityMonitor
             var monitorHeaders = metadata.ReadMonitorHeaders();
             var authorizeAction = false;
 
+            // Form MainControlModule
+            if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(StartGrowingCycleCommand),
+                sourceModule: ModuleNames.MainControl,
+                destinationModule: ModuleNames.GrowingCycleControlModule))
+                authorizeAction = true;
+
+            if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(SetLightingLevelCommand),
+                sourceModule: ModuleNames.MainControl,
+                destinationModule: ModuleNames.LightingControl))
+                authorizeAction = true;
+
+            if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(SetClimateParamsCommand),
+                sourceModule: ModuleNames.MainControl,
+                destinationModule: ModuleNames.ClimateControl))
+                authorizeAction = true;
+
+            if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(SetIrrigationParamsCommand),
+                sourceModule: ModuleNames.MainControl,
+                destinationModule: ModuleNames.IrrigationControl))
+                authorizeAction = true;
+
+            // From GrowingCycleControlModule
             if (monitorHeaders.AuthorizeAction(
                 actionName: nameof(GetPlantGrowingParamsCommand),
-                sourceModule: ModuleNames.MainControl,
+                sourceModule: ModuleNames.GrowingCycleControlModule,
                 destinationModule: ModuleNames.PlantDataSignatureChecker))
                 authorizeAction = true;
 
             if (monitorHeaders.AuthorizeAction(
-                actionName: nameof(ReceivedPlantGrowingParamsEvent),
-                sourceModule: ModuleNames.PlantDataSignatureChecker,
+                actionName: nameof(SetupAllControlModulesCommand),
+                sourceModule: ModuleNames.GrowingCycleControlModule,
                 destinationModule: ModuleNames.MainControl))
                 authorizeAction = true;
 
+            if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(StartPlantingCommand),
+                sourceModule: ModuleNames.GrowingCycleControlModule,
+                destinationModule: ModuleNames.PlantingModule))
+                authorizeAction = true;
+
+            if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(StartHarvestingCommand),
+                sourceModule: ModuleNames.GrowingCycleControlModule,
+                destinationModule: ModuleNames.HarvestingModule))
+                authorizeAction = true;
+
+            // From PlantDataSignatureChecker
+            if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(ReceivedPlantGrowingParamsEvent),
+                sourceModule: ModuleNames.PlantDataSignatureChecker,
+                destinationModule: ModuleNames.GrowingCycleControlModule))
+                authorizeAction = true;
+
+            // From LightingControl
             if (monitorHeaders.AuthorizeAction(
                 actionName: nameof(LightingLevelEvent),
                 sourceModule: ModuleNames.LightSensorFilter,
                 destinationModule: ModuleNames.LightingControl))
                 authorizeAction = true;
 
+            // From ClimateControlModule
             if (monitorHeaders.AuthorizeAction(
                 actionName: nameof(AirHumidityEvent),
                 sourceModule: ModuleNames.AirHumiditySensorFilter,
@@ -69,7 +118,7 @@ namespace CyberGreenhouse.SecurityMonitor
                 destinationModule: ModuleNames.ClimateControl))
                 authorizeAction = true;
 
-            // Irrigation
+            // From Irrigation
             if (monitorHeaders.AuthorizeAction(
                 actionName: nameof(FertilizerPreparationCommand),
                 sourceModule: ModuleNames.IrrigationControl,
@@ -88,7 +137,7 @@ namespace CyberGreenhouse.SecurityMonitor
                 destinationModule: ModuleNames.IrrigationControl))
                 authorizeAction = true;
 
-            // MaturityMonitoring
+            // From MaturityMonitoring
             if (monitorHeaders.AuthorizeAction(
                 actionName: nameof(StartTimeControlCommand),
                 sourceModule: ModuleNames.MaturityMonitoringControl,
@@ -107,30 +156,18 @@ namespace CyberGreenhouse.SecurityMonitor
                 destinationModule: ModuleNames.MaturityMonitoringControl))
                 authorizeAction = true;
 
-            // Planting
-            if (monitorHeaders.AuthorizeAction(
-                actionName: nameof(StartPlantingCommand),
-                sourceModule: ModuleNames.MainControl,
-                destinationModule: ModuleNames.PlantingModule))
-                authorizeAction = true;
-
+            // From Planting
             if (monitorHeaders.AuthorizeAction(
                 actionName: nameof(PlantingCompleteEvent),
                 sourceModule: ModuleNames.PlantingModule,
-                destinationModule: ModuleNames.MainControl))
+                destinationModule: ModuleNames.GrowingCycleControlModule))
                 authorizeAction = true;
 
-            // Harvesting
-            if (monitorHeaders.AuthorizeAction(
-                actionName: nameof(StartHarvestingCommand),
-                sourceModule: ModuleNames.MainControl,
-                destinationModule: ModuleNames.HarvestingModule))
-                authorizeAction = true;
-
+            // From Harvesting
             if (monitorHeaders.AuthorizeAction(
                 actionName: nameof(HarvestingCompleteEvent),
                 sourceModule: ModuleNames.HarvestingModule,
-                destinationModule: ModuleNames.MainControl))
+                destinationModule: ModuleNames.GrowingCycleControlModule))
                 authorizeAction = true;
 
             if (authorizeAction)
