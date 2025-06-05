@@ -4,7 +4,7 @@ namespace CyberGreenhouse.ClimateControl.ClimateControlModule.Models
 {
     public class RequiredClimateSettings
     {
-        public RequiredClimateSettings(IOptions<ClimateSettings> climateSettingsOpt, int stabilizationAttempts = 5)
+        public RequiredClimateSettings(IOptions<ClimateSettings> climateSettingsOpt, int stabilizationAttempts = 7)
         {
             var climateSettings = climateSettingsOpt.Value;
             RequiredAirTemperature = AvarageValue(climateSettings.MinAirTemperature, climateSettings.MaxAirTemperature);

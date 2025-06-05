@@ -61,6 +61,10 @@ namespace CyberGreenhouse.Irrigation.IrrigationControlModule.MessageHandlers
                     _requiredIrrigationSettings.CurrentSoilHumidityStabilizationAttempt++;
                     _dripIrrigationControllerService.Drip();
                 }
+                else
+                {
+                    _requiredIrrigationSettings.CurrentSoilHumidityStabilizationAttempt = 0;
+                }
             }
         }
     }

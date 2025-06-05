@@ -64,6 +64,10 @@ namespace CyberGreenhouse.ClimateControl.ClimateControlModule.MessageHandlers
                     _requiredClimateSettings.CurrentAirStabilizationAttempt++;
                     _freezingAirControllerService.Freez();
                 }
+                else
+                {
+                    _requiredClimateSettings.CurrentAirStabilizationAttempt = 0;
+                }
             }
         }
     }

@@ -62,6 +62,10 @@ namespace CyberGreenhouse.ClimateControl.ClimateControlModule.MessageHandlers
                     _requiredClimateSettings.CurrentHumidityStabilizationAttempt++;
                     _humiditingAirControllerService.Decrease();
                 }
+                else
+                {
+                    _requiredClimateSettings.CurrentHumidityStabilizationAttempt = 0;
+                }
             }
         }
     }

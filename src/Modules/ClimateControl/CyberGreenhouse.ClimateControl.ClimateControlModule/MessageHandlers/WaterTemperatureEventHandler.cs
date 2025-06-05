@@ -64,6 +64,10 @@ namespace CyberGreenhouse.ClimateControl.ClimateControlModule.MessageHandlers
                     _requiredClimateSettings.CurrentWaterStabilizationAttempt++;
                     _freezingWaterControllerService.Freez();
                 }
+                else
+                {
+                    _requiredClimateSettings.CurrentWaterStabilizationAttempt = 0;
+                }
             }
         }
     }
