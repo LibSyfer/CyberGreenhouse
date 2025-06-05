@@ -1,13 +1,17 @@
 ﻿using CyberGreenhouse.MessageBus.Abstractions;
 using CyberGreenhouse.MessageBus.Common;
 using CyberGreenhouse.MessageBus.Contracts.Commands;
+using CyberGreenhouse.MessageBus.Contracts.Commands.Harvesting;
 using CyberGreenhouse.MessageBus.Contracts.Commands.Irrigation;
 using CyberGreenhouse.MessageBus.Contracts.Commands.MaturityMonitoring;
+using CyberGreenhouse.MessageBus.Contracts.Commands.Planting;
 using CyberGreenhouse.MessageBus.Contracts.Events;
 using CyberGreenhouse.MessageBus.Contracts.Events.ClimateModule;
+using CyberGreenhouse.MessageBus.Contracts.Events.Harvesting;
 using CyberGreenhouse.MessageBus.Contracts.Events.Irrigation;
 using CyberGreenhouse.MessageBus.Contracts.Events.LightingModule;
 using CyberGreenhouse.MessageBus.Contracts.Events.MaturityMonitoring;
+using CyberGreenhouse.MessageBus.Contracts.Events.Planting;
 using CyberGreenhouse.MessageBus.RabbitMQ.Extensions;
 using static CyberGreenhouse.MessageBus.RabbitMQ.Extensions.MonitorHeadersExtensions;
 
@@ -102,6 +106,33 @@ namespace CyberGreenhouse.SecurityMonitor
                 sourceModule: ModuleNames.VisualInspection,
                 destinationModule: ModuleNames.MaturityMonitoringControl))
                 authorizeAction = true;
+
+            // Planting
+            if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(MessageBus.Contracts.Commands.Planting.StartPlantingCommand),
+                sourceModule: ModuleNames.MainControl,
+                destinationModule: ModuleNames.PlantingModule))
+                authorizeAction = true;
+
+            if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(PlantingCompleteEvent),
+                sourceModule: ModuleNames.PlantingModule,
+                destinationModule: ModuleNames.MainControl))
+                authorizeAction = true;
+
+            // Harvesting
+            if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(MessageBus.Contracts.Commands.StartHarvestingCommand),
+                sourceModule: ModuleNames.MainControl,
+                destinationModule: ModuleNames.HarvestingModule))
+                authorizeAction = true;
+
+            if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(HarvestingCompleteEvent),
+                sourceModule: ModuleNames.HarvestingModule,
+                destinationModule: ModuleNames.MainControl))
+                authorizeAction = true;
+
             if (authorizeAction)
             {
                 _logger.LogInformation($"Действие [Action: {monitorHeaders.ActionName}] [Source: {monitorHeaders.Source}] [Destination: {monitorHeaders.Destination}] разрешено политиками безопасности");
