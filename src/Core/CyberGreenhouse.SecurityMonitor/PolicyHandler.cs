@@ -2,6 +2,7 @@
 using CyberGreenhouse.MessageBus.Abstractions;
 using CyberGreenhouse.MessageBus.Contracts.Commands;
 using CyberGreenhouse.MessageBus.Contracts.Commands.ClimateModule;
+using CyberGreenhouse.MessageBus.Contracts.Commands.EmergencyStopModule;
 using CyberGreenhouse.MessageBus.Contracts.Commands.Harvesting;
 using CyberGreenhouse.MessageBus.Contracts.Commands.Irrigation;
 using CyberGreenhouse.MessageBus.Contracts.Commands.LightingModule;
@@ -168,6 +169,31 @@ namespace CyberGreenhouse.SecurityMonitor
                 actionName: nameof(HarvestingCompleteEvent),
                 sourceModule: ModuleNames.HarvestingModule,
                 destinationModule: ModuleNames.GrowingCycleControlModule))
+                authorizeAction = true;
+
+            // EmergencyStopModule
+            if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(AbordSystemCommand),
+                sourceModule: ModuleNames.ClimateControl,
+                destinationModule: ModuleNames.EmergencyStop))
+                authorizeAction = true;
+
+            if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(AbordSystemCommand),
+                sourceModule: ModuleNames.ClimateControl,
+                destinationModule: ModuleNames.EmergencyStop))
+                authorizeAction = true;
+
+            if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(AbordSystemCommand),
+                sourceModule: ModuleNames.ClimateControl,
+                destinationModule: ModuleNames.EmergencyStop))
+                authorizeAction = true;
+
+            if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(AbordSystemCommand),
+                sourceModule: ModuleNames.ClimateControl,
+                destinationModule: ModuleNames.EmergencyStop))
                 authorizeAction = true;
 
             if (authorizeAction)

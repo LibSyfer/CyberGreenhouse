@@ -244,3 +244,15 @@ services:
          security-brocker:
              condition: service_healthy
 
+
+  emergency-stop-module:
+    image: ${DOCKER_REGISTRY-}cybergreenhouseemergencystopmodule
+    build:
+      context: ..
+      dockerfile: src/Modules/CyberGreenhouse.EmergencyStopModule/Dockerfile
+    environment:
+        MessageBusConnection__RabbitMQ__Host: security-brocker
+    depends_on:
+         security-brocker:
+             condition: service_healthy
+

@@ -19,7 +19,8 @@
         "time-control-module": "StartDebugging",
         "visual-inspection-module": "StartDebugging",
         "harvesting-module": "StartDebugging",
-        "planting-module": "StartDebugging"
+        "planting-module": "StartDebugging",
+        "emergency-stop-module": "StartDebugging"
       }
     }
   }

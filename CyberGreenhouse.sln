@@ -67,6 +67,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.HarvestingM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.GrowingCycleControlModule", "src\Modules\CyberGreenhouse.GrowingCycleControlModule\CyberGreenhouse.GrowingCycleControlModule.csproj", "{1ED61F2C-87F2-4FA7-BBDB-508E3381DDFC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberGreenhouse.EmergencyStopModule", "src\Modules\CyberGreenhouse.EmergencyStopModule\CyberGreenhouse.EmergencyStopModule.csproj", "{ECFD0E41-13D6-436A-91A2-647EA1A8EC16}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -169,6 +171,10 @@ Global
 		{1ED61F2C-87F2-4FA7-BBDB-508E3381DDFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1ED61F2C-87F2-4FA7-BBDB-508E3381DDFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1ED61F2C-87F2-4FA7-BBDB-508E3381DDFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECFD0E41-13D6-436A-91A2-647EA1A8EC16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECFD0E41-13D6-436A-91A2-647EA1A8EC16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECFD0E41-13D6-436A-91A2-647EA1A8EC16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECFD0E41-13D6-436A-91A2-647EA1A8EC16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -201,6 +207,7 @@ Global
 		{CF4E6199-72C3-41BB-A6C2-B8BD0BB1E22E} = {B554F6C5-F485-4AE7-ADCA-C4406A946233}
 		{1B363B12-3982-4B55-993C-6CDD6AB0E7F0} = {B554F6C5-F485-4AE7-ADCA-C4406A946233}
 		{1ED61F2C-87F2-4FA7-BBDB-508E3381DDFC} = {B554F6C5-F485-4AE7-ADCA-C4406A946233}
+		{ECFD0E41-13D6-436A-91A2-647EA1A8EC16} = {B554F6C5-F485-4AE7-ADCA-C4406A946233}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {013EA216-6DD7-4102-B990-6AB10C4CDEA9}
