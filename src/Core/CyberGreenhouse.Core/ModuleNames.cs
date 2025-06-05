@@ -5,6 +5,8 @@
         // Common
         public const string MainControl = "MainControl";
 
+        public const string GrowingCycleControlModule = "GrowingCycleControlModule";
+
         public const string PlantDataSignatureChecker = "PlantDataSignatureChecker";
 
         public const string PlantingModule = "PlantingModule";
