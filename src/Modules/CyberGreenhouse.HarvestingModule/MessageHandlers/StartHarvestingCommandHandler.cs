@@ -42,7 +42,7 @@ namespace CyberGreenhouse.HarvestingModule.MessageHandlers
                 await Task.Delay(5000, cancellationToken);
 
                 _logger.LogInformation("Harvesting complete");
-                await _messageBus.SendAsync(ModuleNames.MainControl, new HarvestingCompleteEvent());
+                await _messageBus.SendAsync(ModuleNames.GrowingCycleControlModule, new HarvestingCompleteEvent());
                 return;
             }
 

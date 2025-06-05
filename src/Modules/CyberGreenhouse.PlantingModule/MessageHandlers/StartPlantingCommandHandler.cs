@@ -42,7 +42,7 @@ namespace CyberGreenhouse.PlantingModule.MessageHandlers
                 await Task.Delay(5000, cancellationToken);
 
                 _logger.LogInformation("Planting complete");
-                await _messageBus.SendAsync(ModuleNames.MainControl, new PlantingCompleteEvent());
+                await _messageBus.SendAsync(ModuleNames.GrowingCycleControlModule, new PlantingCompleteEvent());
                 return;
             }
 
