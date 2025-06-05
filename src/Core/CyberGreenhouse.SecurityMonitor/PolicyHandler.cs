@@ -40,7 +40,7 @@ namespace CyberGreenhouse.SecurityMonitor
                 authorizeAction = true;
 
             if (monitorHeaders.AuthorizeAction(
-                actionName: nameof(GettedPlantGrowingParamsEvent),
+                actionName: nameof(ReceivedPlantGrowingParamsEvent),
                 sourceModule: ModuleNames.PlantDataSignatureChecker,
                 destinationModule: ModuleNames.MainControl))
                 authorizeAction = true;
@@ -109,7 +109,7 @@ namespace CyberGreenhouse.SecurityMonitor
 
             // Planting
             if (monitorHeaders.AuthorizeAction(
-                actionName: nameof(MessageBus.Contracts.Commands.Planting.StartPlantingCommand),
+                actionName: nameof(StartPlantingCommand),
                 sourceModule: ModuleNames.MainControl,
                 destinationModule: ModuleNames.PlantingModule))
                 authorizeAction = true;
@@ -122,7 +122,7 @@ namespace CyberGreenhouse.SecurityMonitor
 
             // Harvesting
             if (monitorHeaders.AuthorizeAction(
-                actionName: nameof(MessageBus.Contracts.Commands.StartHarvestingCommand),
+                actionName: nameof(StartHarvestingCommand),
                 sourceModule: ModuleNames.MainControl,
                 destinationModule: ModuleNames.HarvestingModule))
                 authorizeAction = true;
