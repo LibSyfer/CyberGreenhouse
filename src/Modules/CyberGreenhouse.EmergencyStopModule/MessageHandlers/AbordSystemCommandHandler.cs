@@ -1,4 +1,5 @@
-﻿using CyberGreenhouse.MessageBus.Abstractions;
+﻿using CyberGreenhouse.Core;
+using CyberGreenhouse.MessageBus.Abstractions;
 using CyberGreenhouse.MessageBus.Contracts.Commands.EmergencyStopModule;
 
 namespace CyberGreenhouse.EmergencyStopModule.MessageHandlers
@@ -6,16 +7,22 @@ namespace CyberGreenhouse.EmergencyStopModule.MessageHandlers
     public class AbordSystemCommandHandler : IMessageBusHandler<AbordSystemCommand>
     {
         private readonly ILogger<AbordSystemCommandHandler> _logger;
+        private readonly IMessageBus _messageBus;
 
-        public AbordSystemCommandHandler(ILogger<AbordSystemCommandHandler> logger)
+        public AbordSystemCommandHandler(ILogger<AbordSystemCommandHandler> logger, IMessageBus messageBus  )
         {
             _logger = logger;
+            _messageBus = messageBus;
         }
 
-        public Task Handle(AbordSystemCommand message, CancellationToken cancellationToken = default)
+        public async Task Handle(AbordSystemCommand message, CancellationToken cancellationToken = default)
         {
             _logger.LogInformation($"Abord: from {message.ModuleName}, message: {message.ErrorMessage}");
-            return Task.CompletedTask;
+            await _messageBus.SendAsync(ModuleNames.MainControl, new AbordSystemCommand
+            {
+                ModuleName = message.ModuleName,
+                ErrorMessage = message.ErrorMessage
+            });
         }
     }
 }

@@ -4,6 +4,9 @@
     {
         public MainControlStatus CurrentState { get; set; }
 
+        public string? ErrorModule { get; set; }
+        public string? Error { get; set; }
+
         public StateService()
         {
             CurrentState = MainControlStatus.Ready;

@@ -192,6 +192,12 @@ namespace CyberGreenhouse.SecurityMonitor
             // EmergencyStopModule
             if (monitorHeaders.AuthorizeAction(
                 actionName: nameof(AbordSystemCommand),
+                sourceModule: ModuleNames.EmergencyStop,
+                destinationModule: ModuleNames.MainControl))
+                authorizeAction = true;
+
+            if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(AbordSystemCommand),
                 sourceModule: ModuleNames.ClimateControl,
                 destinationModule: ModuleNames.EmergencyStop))
                 authorizeAction = true;

@@ -7,13 +7,15 @@ using CyberGreenhouse.MessageBus.Contracts.Events;
 using CyberGreenhouse.MessageBus.Extensions;
 using CyberGreenhouse.MessageBus.RabbitMQ.Extensions;
 using CyberGreenhouse.Core;
+using CyberGreenhouse.MessageBus.Contracts.Commands.EmergencyStopModule;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<StateService>();
 builder.Services.AddClientRabbitMqMessageBus(builder.Configuration, ModuleNames.MainControl)
     .RegisterMessageHandler<SetupAllControlModulesCommand, SetupAllControlModulesCommandHandler>()
-    .RegisterMessageHandler<GrowingCompleteEvent, GrowingCompleteEventHandler>();
+    .RegisterMessageHandler<GrowingCompleteEvent, GrowingCompleteEventHandler>()
+    .RegisterMessageHandler<AbordSystemCommand, AbordSystemCommandHandler>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -45,7 +47,7 @@ app.MapGet("/status", (StateService stateService) =>
         MainControlStatus.Aborded => Results.Ok(new
         {
             Code = MainControlStatus.Aborded.ToString(),
-            Message = "Growing aborded"
+            Message = $"[{stateService.ErrorModule}] {stateService.Error}"
         }),
         _ => Results.BadRequest(new
         {
