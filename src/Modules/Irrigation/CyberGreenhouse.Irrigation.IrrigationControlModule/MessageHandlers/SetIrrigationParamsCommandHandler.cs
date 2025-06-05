@@ -1,6 +1,6 @@
-﻿using CyberGreenhouse.Irrigation.IrrigationControlModule.Models;
+﻿using CyberGreenhouse.Core;
+using CyberGreenhouse.Irrigation.IrrigationControlModule.Models;
 using CyberGreenhouse.MessageBus.Abstractions;
-using CyberGreenhouse.MessageBus.Common;
 using CyberGreenhouse.MessageBus.Contracts.Commands.Irrigation;
 using Microsoft.Extensions.Options;
 

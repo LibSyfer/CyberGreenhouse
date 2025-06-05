@@ -1,8 +1,8 @@
+using CyberGreenhouse.Core;
 using CyberGreenhouse.Irrigation.IrrigationControlModule.Controllers;
 using CyberGreenhouse.Irrigation.IrrigationControlModule.MessageHandlers;
 using CyberGreenhouse.Irrigation.IrrigationControlModule.Models;
 using CyberGreenhouse.Irrigation.IrrigationControlModule.Service;
-using CyberGreenhouse.MessageBus.Common;
 using CyberGreenhouse.MessageBus.Contracts.Commands.Irrigation;
 using CyberGreenhouse.MessageBus.Contracts.Events.Irrigation;
 using CyberGreenhouse.MessageBus.Extensions;

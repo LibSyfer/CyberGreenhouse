@@ -1,5 +1,4 @@
 using CyberGreenhouse.Core;
-using CyberGreenhouse.MessageBus.Common;
 using CyberGreenhouse.MessageBus.Contracts.Commands;
 using CyberGreenhouse.MessageBus.Extensions;
 using CyberGreenhouse.MessageBus.RabbitMQ.Extensions;

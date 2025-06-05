@@ -1,4 +1,4 @@
-﻿namespace CyberGreenhouse.PlantDataSignatureChecker
+﻿namespace CyberGreenhouse.Core
 {
     public class PlantGrowingParams
     {
@@ -19,5 +19,9 @@
         public double WateringFrequency { get; set; }               //Частота полива в днях
 
         public string FertilizerType { get; set; } = string.Empty;  //Тип удобрения
+
+
+
+        public int MinGrowthSeconds { get; set; }
     }
 }

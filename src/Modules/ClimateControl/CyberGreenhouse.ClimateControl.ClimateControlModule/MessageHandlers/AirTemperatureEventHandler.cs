@@ -1,7 +1,7 @@
 ﻿using CyberGreenhouse.ClimateControl.ClimateControlModule.Controllers;
 using CyberGreenhouse.ClimateControl.ClimateControlModule.Models;
+using CyberGreenhouse.Core;
 using CyberGreenhouse.MessageBus.Abstractions;
-using CyberGreenhouse.MessageBus.Common;
 using CyberGreenhouse.MessageBus.Contracts.Commands.EmergencyStopModule;
 using CyberGreenhouse.MessageBus.Contracts.Events.ClimateModule;
 using Microsoft.Extensions.Options;

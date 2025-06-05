@@ -1,6 +1,5 @@
 ﻿using CyberGreenhouse.Core;
 using CyberGreenhouse.MessageBus.Abstractions;
-using CyberGreenhouse.MessageBus.Common;
 using CyberGreenhouse.MessageBus.Contracts.Commands;
 using CyberGreenhouse.MessageBus.Contracts.Commands.EmergencyStopModule;
 using CyberGreenhouse.MessageBus.Contracts.Events;
@@ -48,7 +47,7 @@ namespace CyberGreenhouse.PlantDataSignatureChecker
             {
                 _logger.LogCritical("Wrong signature of data from database. Send abord command...");
 
-                await _messageBus.SendAsync(ModuleNames.MainControl, new AbordSystemCommand
+                await _messageBus.SendAsync(ModuleNames.EmergencyStop, new AbordSystemCommand
                 {
                     ModuleName = ModuleNames.PlantDataSignatureChecker,
                     ErrorMessage = "Wrong signature of data from database"
@@ -63,7 +62,7 @@ namespace CyberGreenhouse.PlantDataSignatureChecker
             {
                 _logger.LogCritical("Data cannot be deserialize. Send abord command...");
 
-                await _messageBus.SendAsync(ModuleNames.MainControl, new AbordSystemCommand
+                await _messageBus.SendAsync(ModuleNames.EmergencyStop, new AbordSystemCommand
                 {
                     ModuleName = ModuleNames.PlantDataSignatureChecker,
                     ErrorMessage = "Data cannot be deserialize"
@@ -74,7 +73,7 @@ namespace CyberGreenhouse.PlantDataSignatureChecker
             }
 
             _logger.LogInformation("Send getted growing params");
-            await _messageBus.SendAsync(ModuleNames.MainControl, new ReceivedPlantGrowingParamsEvent
+            await _messageBus.SendAsync(ModuleNames.GrowingCycleControlModule, new ReceivedPlantGrowingParamsEvent
             {
                 ParamId = growingParams.Id,
                 TomatoId = growingParams.TomatoId,

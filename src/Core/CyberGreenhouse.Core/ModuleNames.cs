@@ -1,4 +1,4 @@
-﻿namespace CyberGreenhouse.MessageBus.Common
+﻿namespace CyberGreenhouse.Core
 {
     public static class ModuleNames
     {
@@ -12,6 +12,8 @@
         public const string PlantingModule = "PlantingModule";
 
         public const string HarvestingModule = "HarvestingModule";
+
+        public const string EmergencyStop = "EmergencyStopModule";
 
         // Lighting
         public const string LightingControl = "LightingControlModule";
@@ -42,16 +44,5 @@
         public const string TimeControl = "TimeControlModule";
 
         public const string VisualInspection = "VisualInspectionModule";
-
-        // Old
-        public const string Harvesting = "Harvesting";
-
-        public const string Planting = "Planting";
-
-        public const string EmergencyStop = "EmergencyStopModule";
-
-        public const string RipenessMonitor = "RipenessMonitor";
-
-        public const string Irrigation = "Irrigation";
     }
 }

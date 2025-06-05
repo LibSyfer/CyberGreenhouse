@@ -1,7 +1,7 @@
-﻿using CyberGreenhouse.HarvestingModule.Models;
+﻿using CyberGreenhouse.Core;
+using CyberGreenhouse.HarvestingModule.Models;
 using CyberGreenhouse.HarvestingModule.Services;
 using CyberGreenhouse.MessageBus.Abstractions;
-using CyberGreenhouse.MessageBus.Common;
 using CyberGreenhouse.MessageBus.Contracts.Commands.Harvesting;
 using CyberGreenhouse.MessageBus.Contracts.Events.Harvesting;
 using Microsoft.Extensions.Options;

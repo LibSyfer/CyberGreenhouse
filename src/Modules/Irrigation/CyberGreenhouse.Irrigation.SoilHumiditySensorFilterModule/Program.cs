@@ -1,5 +1,5 @@
+using CyberGreenhouse.Core;
 using CyberGreenhouse.Irrigation.SoilHumiditySensorFilterModule;
-using CyberGreenhouse.MessageBus.Common;
 using CyberGreenhouse.MessageBus.RabbitMQ.Extensions;
 
 var builder = Host.CreateApplicationBuilder(args);

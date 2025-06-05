@@ -1,7 +1,7 @@
+using CyberGreenhouse.Core;
 using CyberGreenhouse.Irrigation.NutrientCompositionControlModule.Controllers;
 using CyberGreenhouse.Irrigation.NutrientCompositionControlModule.MessageHandlers;
 using CyberGreenhouse.Irrigation.NutrientCompositionControlModule.Services;
-using CyberGreenhouse.MessageBus.Common;
 using CyberGreenhouse.MessageBus.Contracts.Commands.Irrigation;
 using CyberGreenhouse.MessageBus.Extensions;
 using CyberGreenhouse.MessageBus.RabbitMQ.Extensions;

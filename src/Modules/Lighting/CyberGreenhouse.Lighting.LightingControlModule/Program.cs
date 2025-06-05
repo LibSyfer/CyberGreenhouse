@@ -1,7 +1,7 @@
+using CyberGreenhouse.Core;
 using CyberGreenhouse.Lighting.LightingControlModule.Controllers;
 using CyberGreenhouse.Lighting.LightingControlModule.MessageHandlers;
 using CyberGreenhouse.Lighting.LightingControlModule.Models;
-using CyberGreenhouse.MessageBus.Common;
 using CyberGreenhouse.MessageBus.Contracts.Commands.LightingModule;
 using CyberGreenhouse.MessageBus.Contracts.Events.LightingModule;
 using CyberGreenhouse.MessageBus.Extensions;

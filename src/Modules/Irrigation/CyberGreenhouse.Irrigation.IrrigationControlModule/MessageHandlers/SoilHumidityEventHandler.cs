@@ -1,8 +1,8 @@
-﻿using CyberGreenhouse.Irrigation.IrrigationControlModule.Controllers;
+﻿using CyberGreenhouse.Core;
+using CyberGreenhouse.Irrigation.IrrigationControlModule.Controllers;
 using CyberGreenhouse.Irrigation.IrrigationControlModule.Models;
 using CyberGreenhouse.Irrigation.IrrigationControlModule.Service;
 using CyberGreenhouse.MessageBus.Abstractions;
-using CyberGreenhouse.MessageBus.Common;
 using CyberGreenhouse.MessageBus.Contracts.Commands.EmergencyStopModule;
 using CyberGreenhouse.MessageBus.Contracts.Events.Irrigation;
 using Microsoft.Extensions.Options;
