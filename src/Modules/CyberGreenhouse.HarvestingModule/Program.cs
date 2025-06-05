@@ -13,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.Configure<HarvestingSettings>(builder.Configuration.GetSection(HarvestingSettings.Section));
 builder.Services.AddSingleton<StateService>();
-builder.Services.AddClientRabbitMqMessageBus(builder.Configuration, ModuleNames.PlantingModule)
+builder.Services.AddClientRabbitMqMessageBus(builder.Configuration, ModuleNames.HarvestingModule)
     .RegisterMessageHandler<StartHarvestingCommand, StartHarvestingCommandHandler>();
 
 builder.Services.AddEndpointsApiExplorer();
@@ -30,7 +30,7 @@ app.MapGet("/status", (StateService stateService) =>
     {
         HarvestingStatus.NotInitiated => Results.BadRequest(new
         {
-            Status = HarvestingStatus.Ready.ToString(),
+            Status = HarvestingStatus.NotInitiated.ToString(),
             Message = "Harvesting readiness is not initiated"
         }),
         HarvestingStatus.Ready => Results.Ok(new

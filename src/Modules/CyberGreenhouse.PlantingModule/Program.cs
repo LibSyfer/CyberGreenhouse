@@ -30,7 +30,7 @@ app.MapGet("/status", (StateService stateService) =>
     {
         PlantingStatus.NotInitiated => Results.BadRequest(new
         {
-            Status = PlantingStatus.Ready.ToString(),
+            Status = PlantingStatus.NotInitiated.ToString(),
             Message = "Planting readiness is not initiated"
         }),
         PlantingStatus.Ready => Results.Ok(new

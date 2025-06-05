@@ -16,7 +16,9 @@
         "soil-humiditysensor-filter-module": "StartDebugging",
         "maturity-monitoring-control-module": "StartDebugging",
         "time-control-module": "StartDebugging",
-        "visual-inspection-module": "StartDebugging"
+        "visual-inspection-module": "StartDebugging",
+        "harvesting-module": "StartDebugging",
+        "planting-module": "StartDebugging"
       }
     }
   }

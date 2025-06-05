@@ -24,18 +24,18 @@ services:
             condition: service_healthy
 
 
-  # main-control:
-  #   image: ${DOCKER_REGISTRY-}cybergreenhousemaincontrol
-  #   build:
-  #     context: ..
-  #     dockerfile: src/Modules/CyberGreenhouse.MainControl/Dockerfile
-  #   environment:
-  #       MessageBusConnection__RabbitMQ__Host: security-brocker
-  #   ports:
-  #     - 8080:8080
-  #   depends_on:
-  #       security-brocker:
-  #           condition: service_healthy
+  main-control:
+    image: ${DOCKER_REGISTRY-}cybergreenhousemaincontrol
+    build:
+      context: ..
+      dockerfile: src/Modules/CyberGreenhouse.MainControl/Dockerfile
+    environment:
+        MessageBusConnection__RabbitMQ__Host: security-brocker
+    ports:
+      - 8080:8080
+    depends_on:
+        security-brocker:
+            condition: service_healthy
 
 
   # climate-control:
@@ -226,36 +226,66 @@ services:
   #            condition: service_healthy
 
 
-  maturity-monitoring-control-module:
-    image: ${DOCKER_REGISTRY-}cybergreenhousematuritymonitoringmaturitymonitoringcontrolmodule
+  # maturity-monitoring-control-module:
+  #   image: ${DOCKER_REGISTRY-}cybergreenhousematuritymonitoringmaturitymonitoringcontrolmodule
+  #   build:
+  #     context: ..
+  #     dockerfile: src/Modules/MaturityMonitoring/CyberGreenhouse.MaturityMonitoring.MaturityMonitoringControlModule/Dockerfile
+  #   environment:
+  #       MessageBusConnection__RabbitMQ__Host: security-brocker
+  #   depends_on:
+  #        security-brocker:
+  #            condition: service_healthy
+
+  # time-control-module:
+  #   image: ${DOCKER_REGISTRY-}cybergreenhousematuritymonitoringtimecontrolmodule
+  #   build:
+  #     context: ..
+  #     dockerfile: src/Modules/MaturityMonitoring/CyberGreenhouse.MaturityMonitoring.TimeControlModule/Dockerfile
+  #   environment:
+  #       MessageBusConnection__RabbitMQ__Host: security-brocker
+  #   depends_on:
+  #        security-brocker:
+  #            condition: service_healthy
+
+
+  # visual-inspection-module:
+  #   image: ${DOCKER_REGISTRY-}cybergreenhousematuritymonitoringvisualinspectionmodule
+  #   build:
+  #     context: ..
+  #     dockerfile: src/Modules/MaturityMonitoring/CyberGreenhouse.MaturityMonitoring.VisualInspectionModule/Dockerfile
+  #   environment:
+  #       MessageBusConnection__RabbitMQ__Host: security-brocker
+  #   depends_on:
+  #        security-brocker:
+  #            condition: service_healthy
+
+
+  harvesting-module:
+    image: ${DOCKER_REGISTRY-}cybergreenhouseharvestingmodule
     build:
       context: ..
-      dockerfile: src/Modules/MaturityMonitoring/CyberGreenhouse.MaturityMonitoring.MaturityMonitoringControlModule/Dockerfile
+      dockerfile: src/Modules/CyberGreenhouse.HarvestingModule/Dockerfile
+    ports:
+      - 8082:8080
     environment:
         MessageBusConnection__RabbitMQ__Host: security-brocker
+        HarvestingSettings__IsAutoComplete: true
     depends_on:
          security-brocker:
              condition: service_healthy
 
-  time-control-module:
-    image: ${DOCKER_REGISTRY-}cybergreenhousematuritymonitoringtimecontrolmodule
+
+  planting-module:
+    image: ${DOCKER_REGISTRY-}cybergreenhouseplantingmodule
     build:
       context: ..
-      dockerfile: src/Modules/MaturityMonitoring/CyberGreenhouse.MaturityMonitoring.TimeControlModule/Dockerfile
+      dockerfile: src/Modules/CyberGreenhouse.PlantingModule/Dockerfile
+    ports:
+      - 8081:8080
     environment:
         MessageBusConnection__RabbitMQ__Host: security-brocker
-    depends_on:
-         security-brocker:
-             condition: service_healthy
-
-
-  visual-inspection-module:
-    image: ${DOCKER_REGISTRY-}cybergreenhousematuritymonitoringvisualinspectionmodule
-    build:
-      context: ..
-      dockerfile: src/Modules/MaturityMonitoring/CyberGreenhouse.MaturityMonitoring.VisualInspectionModule/Dockerfile
-    environment:
-        MessageBusConnection__RabbitMQ__Host: security-brocker
+        PlantingSettings__IsAutoComplete: true
     depends_on:
          security-brocker:
              condition: service_healthy
