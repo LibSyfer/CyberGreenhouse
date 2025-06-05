@@ -27,8 +27,8 @@ namespace CyberGreenhouse.GrowingCycleControlModule.MessageHandlers
                 return;
             }
 
-            _stateService.CurrentState = GrowingCycleStatus.Harvesting;
-            _logger.LogInformation("Start harvesting...");
+            _stateService.CurrentState = GrowingCycleStatus.Complete;
+            _logger.LogInformation("Harvesting finished");
             await _messageBus.SendAsync(ModuleNames.MainControl, new GrowingCompleteEvent());
         }
     }
