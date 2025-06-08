@@ -207,3 +207,196 @@
 ### Проверка негативного сценария - ПНС-2
 ![Проверка негативного сценария 2](img/pns/pns-2.png)
 [Исходник диаграммы](schemes/pns/pns-2.wsd)
+
+### Политики монитора безопасности
+```C#
+// Form MainControlModule
+if (monitorHeaders.AuthorizeAction(
+    actionName: nameof(StartGrowingCycleCommand),
+    sourceModule: ModuleNames.MainControl,
+    destinationModule: ModuleNames.GrowingCycleControlModule))
+    authorizeAction = true;
+
+if (monitorHeaders.AuthorizeAction(
+    actionName: nameof(SetLightingLevelCommand),
+    sourceModule: ModuleNames.MainControl,
+    destinationModule: ModuleNames.LightingControl))
+    authorizeAction = true;
+
+if (monitorHeaders.AuthorizeAction(
+    actionName: nameof(SetClimateParamsCommand),
+    sourceModule: ModuleNames.MainControl,
+    destinationModule: ModuleNames.ClimateControl))
+    authorizeAction = true;
+
+if (monitorHeaders.AuthorizeAction(
+    actionName: nameof(SetIrrigationParamsCommand),
+    sourceModule: ModuleNames.MainControl,
+    destinationModule: ModuleNames.IrrigationControl))
+    authorizeAction = true;
+
+// From GrowingCycleControlModule
+if (monitorHeaders.AuthorizeAction(
+    actionName: nameof(GetPlantGrowingParamsCommand),
+    sourceModule: ModuleNames.GrowingCycleControlModule,
+    destinationModule: ModuleNames.PlantDataSignatureChecker))
+    authorizeAction = true;
+
+if (monitorHeaders.AuthorizeAction(
+    actionName: nameof(SetupAllControlModulesCommand),
+    sourceModule: ModuleNames.GrowingCycleControlModule,
+    destinationModule: ModuleNames.MainControl))
+    authorizeAction = true;
+
+if (monitorHeaders.AuthorizeAction(
+    actionName: nameof(StartPlantingCommand),
+    sourceModule: ModuleNames.GrowingCycleControlModule,
+    destinationModule: ModuleNames.PlantingModule))
+    authorizeAction = true;
+
+if (monitorHeaders.AuthorizeAction(
+    actionName: nameof(StartMaturityMonitoringCommand),
+    sourceModule: ModuleNames.GrowingCycleControlModule,
+    destinationModule: ModuleNames.MaturityMonitoringControl))
+    authorizeAction = true;
+
+if (monitorHeaders.AuthorizeAction(
+    actionName: nameof(StartHarvestingCommand),
+    sourceModule: ModuleNames.GrowingCycleControlModule,
+    destinationModule: ModuleNames.HarvestingModule))
+    authorizeAction = true;
+
+if (monitorHeaders.AuthorizeAction(
+    actionName: nameof(GrowingCompleteEvent),
+    sourceModule: ModuleNames.GrowingCycleControlModule,
+    destinationModule: ModuleNames.MainControl))
+    authorizeAction = true;
+
+// From PlantDataSignatureChecker
+if (monitorHeaders.AuthorizeAction(
+    actionName: nameof(ReceivedPlantGrowingParamsEvent),
+    sourceModule: ModuleNames.PlantDataSignatureChecker,
+    destinationModule: ModuleNames.GrowingCycleControlModule))
+    authorizeAction = true;
+
+// From LightingControl
+if (monitorHeaders.AuthorizeAction(
+    actionName: nameof(LightingLevelEvent),
+    sourceModule: ModuleNames.LightSensorFilter,
+    destinationModule: ModuleNames.LightingControl))
+    authorizeAction = true;
+
+// From ClimateControlModule
+if (monitorHeaders.AuthorizeAction(
+    actionName: nameof(AirHumidityEvent),
+    sourceModule: ModuleNames.AirHumiditySensorFilter,
+    destinationModule: ModuleNames.ClimateControl))
+    authorizeAction = true;
+
+if (monitorHeaders.AuthorizeAction(
+    actionName: nameof(AirTemperatureEvent),
+    sourceModule: ModuleNames.AirTermoSensorFilter,
+    destinationModule: ModuleNames.ClimateControl))
+    authorizeAction = true;
+
+if (monitorHeaders.AuthorizeAction(
+    actionName: nameof(WaterTemperatureEvent),
+    sourceModule: ModuleNames.WaterTermoSensorFilter,
+    destinationModule: ModuleNames.ClimateControl))
+    authorizeAction = true;
+
+// From Irrigation
+if (monitorHeaders.AuthorizeAction(
+    actionName: nameof(FertilizerPreparationCommand),
+    sourceModule: ModuleNames.IrrigationControl,
+    destinationModule: ModuleNames.NutrientCompositionControl))
+    authorizeAction = true;
+
+if (monitorHeaders.AuthorizeAction(
+    actionName: nameof(FertilizerPreparationCompleteEvent),
+    sourceModule: ModuleNames.NutrientCompositionControl,
+    destinationModule: ModuleNames.IrrigationControl))
+    authorizeAction = true;
+
+if (monitorHeaders.AuthorizeAction(
+    actionName: nameof(SoilHumidityEvent),
+    sourceModule: ModuleNames.SoilHumiditySensorFilter,
+    destinationModule: ModuleNames.IrrigationControl))
+    authorizeAction = true;
+
+// From MaturityMonitoring
+if (monitorHeaders.AuthorizeAction(
+    actionName: nameof(StartTimeControlCommand),
+    sourceModule: ModuleNames.MaturityMonitoringControl,
+    destinationModule: ModuleNames.TimeControl))
+    authorizeAction = true;
+
+if (monitorHeaders.AuthorizeAction(
+    actionName: nameof(MinimalGrowthTimeTriggeredEvent),
+    sourceModule: ModuleNames.TimeControl,
+    destinationModule: ModuleNames.MaturityMonitoringControl))
+    authorizeAction = true;
+
+if (monitorHeaders.AuthorizeAction(
+    actionName: nameof(VisualInspectionTriggeredEvent),
+    sourceModule: ModuleNames.VisualInspection,
+    destinationModule: ModuleNames.MaturityMonitoringControl))
+    authorizeAction = true;
+
+if (monitorHeaders.AuthorizeAction(
+    actionName: nameof(MaturityCompletedEvent),
+    sourceModule: ModuleNames.MaturityMonitoringControl,
+    destinationModule: ModuleNames.GrowingCycleControlModule))
+    authorizeAction = true;
+
+// From Planting
+if (monitorHeaders.AuthorizeAction(
+    actionName: nameof(PlantingCompleteEvent),
+    sourceModule: ModuleNames.PlantingModule,
+    destinationModule: ModuleNames.GrowingCycleControlModule))
+    authorizeAction = true;
+
+// From Harvesting
+if (monitorHeaders.AuthorizeAction(
+    actionName: nameof(HarvestingCompleteEvent),
+    sourceModule: ModuleNames.HarvestingModule,
+    destinationModule: ModuleNames.GrowingCycleControlModule))
+    authorizeAction = true;
+
+// EmergencyStopModule
+if (monitorHeaders.AuthorizeAction(
+    actionName: nameof(AbordSystemCommand),
+    sourceModule: ModuleNames.EmergencyStop,
+    destinationModule: ModuleNames.MainControl))
+    authorizeAction = true;
+
+if (monitorHeaders.AuthorizeAction(
+    actionName: nameof(AbordSystemCommand),
+    sourceModule: ModuleNames.ClimateControl,
+    destinationModule: ModuleNames.EmergencyStop))
+    authorizeAction = true;
+
+if (monitorHeaders.AuthorizeAction(
+    actionName: nameof(AbordSystemCommand),
+    sourceModule: ModuleNames.ClimateControl,
+    destinationModule: ModuleNames.EmergencyStop))
+    authorizeAction = true;
+
+if (monitorHeaders.AuthorizeAction(
+    actionName: nameof(AbordSystemCommand),
+    sourceModule: ModuleNames.ClimateControl,
+    destinationModule: ModuleNames.EmergencyStop))
+    authorizeAction = true;
+
+if (monitorHeaders.AuthorizeAction(
+    actionName: nameof(AbordSystemCommand),
+    sourceModule: ModuleNames.ClimateControl,
+    destinationModule: ModuleNames.EmergencyStop))
+    authorizeAction = true;
+```
+
+### Запуск теста негативного сценария
+```bash
+cd deploy
+docker compose -f docker-compose.test.ns1.yml up -d
+```
