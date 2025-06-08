@@ -220,6 +220,12 @@ namespace CyberGreenhouse.SecurityMonitor
                 destinationModule: ModuleNames.EmergencyStop))
                 authorizeAction = true;
 
+            if (monitorHeaders.AuthorizeAction(
+                actionName: nameof(AbordSystemCommand),
+                sourceModule: ModuleNames.PlantDataSignatureChecker,
+                destinationModule: ModuleNames.EmergencyStop))
+                authorizeAction = true;
+
             if (authorizeAction)
             {
                 _logger.LogInformation($"Действие [Action: {monitorHeaders.ActionName}] [Source: {monitorHeaders.Source}] [Destination: {monitorHeaders.Destination}] разрешено политиками безопасности");

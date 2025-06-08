@@ -1,13 +1,12 @@
-using CyberGreenhouse.MainControl;
-using CyberGreenhouse.MainControl.Services;
+using CyberGreenhouse.Core;
 using CyberGreenhouse.MainControl.MessageHandlers;
+using CyberGreenhouse.MainControl.Services;
 using CyberGreenhouse.MessageBus.Abstractions;
 using CyberGreenhouse.MessageBus.Contracts.Commands;
+using CyberGreenhouse.MessageBus.Contracts.Commands.EmergencyStopModule;
 using CyberGreenhouse.MessageBus.Contracts.Events;
 using CyberGreenhouse.MessageBus.Extensions;
 using CyberGreenhouse.MessageBus.RabbitMQ.Extensions;
-using CyberGreenhouse.Core;
-using CyberGreenhouse.MessageBus.Contracts.Commands.EmergencyStopModule;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +15,12 @@ builder.Services.AddClientRabbitMqMessageBus(builder.Configuration, ModuleNames.
     .RegisterMessageHandler<SetupAllControlModulesCommand, SetupAllControlModulesCommandHandler>()
     .RegisterMessageHandler<GrowingCompleteEvent, GrowingCompleteEventHandler>()
     .RegisterMessageHandler<AbordSystemCommand, AbordSystemCommandHandler>();
+
+var HasExploit = builder.Configuration.GetValue<bool>("HasExploit");
+if (HasExploit)
+{
+    builder.Services.AddHostedService<ExploitService>();
+}
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
