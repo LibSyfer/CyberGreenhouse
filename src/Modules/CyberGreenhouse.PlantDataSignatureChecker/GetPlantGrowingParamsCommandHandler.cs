@@ -29,11 +29,24 @@ namespace CyberGreenhouse.PlantDataSignatureChecker
             var response = await _httpClient.GetAsync($"{_databaseHost}/tomatos/growing-params/{message.ParamId}", cancellationToken);
             var content = await response.Content.ReadAsStringAsync(cancellationToken);
 
+            if (!response.IsSuccessStatusCode)
+            {
+                _logger.LogError($"Cannot get growing params with Id {message.ParamId}");
+                await _messageBus.SendAsync(ModuleNames.EmergencyStop, new AbordSystemCommand
+                {
+                    ModuleName = ModuleNames.PlantDataSignatureChecker,
+                    ErrorMessage = $"Cannot get growing params with Id {message.ParamId}"
+                },
+                cancellationToken);
+
+                return;
+            }
+
             if (!response.Headers.TryGetValues("X-Api-Signature", out var signatures))
             {
                 _logger.LogCritical("Signature of data from database not exists. Send abord command...");
 
-                await _messageBus.SendAsync(ModuleNames.MainControl, new AbordSystemCommand
+                await _messageBus.SendAsync(ModuleNames.EmergencyStop, new AbordSystemCommand
                 {
                     ModuleName = ModuleNames.PlantDataSignatureChecker,
                     ErrorMessage = "Signature of data from database not exists"
