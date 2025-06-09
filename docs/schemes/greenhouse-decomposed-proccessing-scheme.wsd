@@ -1,0 +1,79 @@
+@startuml "greenhouse-decomposed-proccessing-scheme"
+
+title "Базовый сценарий работы декомпозированной архитектуры теплицы."
+
+actor "Агроном-оператор" as operator
+participant "Связь с базой данных сортов помидоров" as tomato_db
+participant "Логистическая система" as logistics_system
+participant "1. Модуль ЦСУ теплицы" as main_control_module
+participant "2. Модуль контроля искусственного освещения" as lighting_control_module
+participant "3. Модуль отслеживания климат-контроля" as climate_control_module
+participant "4. Модуль мониторинга зрелости" as ripeness_monitor_module
+participant "5. Модуль контроля орошения и подкормки" as irrigation_control_module
+participant "6. Модуль контроля сборки урожая" as harvesting_module
+participant "7. Модуль контроля посадки семян" as planting_module
+participant "8. Модуль проверки подписи данных" as plant_data_signature_checker_module
+participant "9. Модуль фильтрации показателей датчиков освещения" as LightSensorFilterModule
+participant "10. Модуль фильтрации показателей влажности воздуха " as AirHumiditySensorFilterModule
+participant "11. Модуль фильтрации показателей температуры воздуха" as AirTermoSensorFilterModule
+participant "12. Модуль фильтрации показателей температуры воды" as WaterTermoSensorFilterModule
+participant "13. Модуль визуальной проверки плодов" as VisualInspectionModule
+participant "14. Модуль контроля времени роста" as TimeControlModule
+participant "15. Модуль фильтрации показателей влажности почвы" as SoilHumiditySensorFilterModule
+participant "16. Модуль контроля питательного состава" as NutrientCompositionControlModule
+participant "17. Модуль контроля цикла выращивания" as GrowingCycleControlModule
+participant "18. Модуль аварийной остановки выращивания" as EmergencyStopModule
+
+autonumber
+
+operator -> tomato_db: Получение идентификатора параметров\nыращивания сорта помидоров
+tomato_db -> operator: Идентификатор парметров выращивания получен
+
+operator -> main_control_module: Старт процесса выращивания
+
+main_control_module -> GrowingCycleControlModule: Передача идентификатора параметров выращивания
+
+GrowingCycleControlModule -> tomato_db: Получение параметров выращивания
+tomato_db -> GrowingCycleControlModule: Параметров выращивания получены
+
+GrowingCycleControlModule -> main_control_module: Передача параметров среды выращивания
+
+main_control_module -> lighting_control_module: Передача параметров освещения
+loop
+LightSensorFilterModule -> lighting_control_module: Передача текущих параметров освещения
+lighting_control_module -> lighting_control_module: Проверка необходимых параметров и изменение при необходимости
+end
+
+main_control_module -> climate_control_module: Передача параметров температуры и влажности
+loop
+AirHumiditySensorFilterModule -> climate_control_module: Передача текущих параметров влажности воздуха
+AirTermoSensorFilterModule -> climate_control_module: Передача текущих параметров температуры воздуха
+WaterTermoSensorFilterModule -> climate_control_module: Передача текущих параметров температуры воды
+climate_control_module -> climate_control_module: Проверка необходимых параметров и изменение при необходимости
+end
+
+main_control_module -> irrigation_control_module: Передача параметров подкормки и полива
+irrigation_control_module -> NutrientCompositionControlModule: Передача параметров раствора удобрений
+loop
+SoilHumiditySensorFilterModule -> irrigation_control_module: Передача текущих параметров влажности почвы
+irrigation_control_module -> irrigation_control_module: Проверка необходимых параметров и осуществление полива по необходимости
+end
+
+GrowingCycleControlModule -> planting_module: Команда на высадку семян
+planting_module -> GrowingCycleControlModule: Высадка закончена
+
+GrowingCycleControlModule -> ripeness_monitor_module: Команда начала отслеживания стадии роста
+loop
+ripeness_monitor_module -> ripeness_monitor_module: Отслеживания и анализ показателей
+end
+
+ripeness_monitor_module -> GrowingCycleControlModule: Уведомление о готовности плодов
+
+GrowingCycleControlModule -> harvesting_module: Команда на сбор урожая
+harvesting_module -> GrowingCycleControlModule: Сбор закончен
+
+GrowingCycleControlModule -> main_control_module: Сбор закончен
+
+main_control_module -> logistics_system: Плоды собраны
+
+@enduml
